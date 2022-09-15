@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3863060516881996933}
   - component: {fileID: 4780739145665394062}
   - component: {fileID: 4229766203069691028}
-  - component: {fileID: -231378510939988662}
+  - component: {fileID: -6596323161473441652}
   m_Layer: 0
   m_Name: Laser
   m_TagString: Laser
@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3850816559718289990}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.950647, y: 2.06, z: 0}
+  m_LocalPosition: {x: -3.4597154, y: 1.0327907, z: 0}
   m_LocalScale: {x: 0.11050116, y: 0.524206, z: 0.14263}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -99,7 +99,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-231378510939988662
+--- !u!114 &-6596323161473441652
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

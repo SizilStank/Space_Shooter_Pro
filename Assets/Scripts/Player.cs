@@ -13,6 +13,11 @@ public class Player : MonoBehaviour
     void Start()
     {
         transform.position = new Vector3(0, 0, 0);
+
+        if (_laserPrefab == null)
+        {
+            Debug.Log("Laser Prefab is NULL!");
+        }
     }
 
     // Update is called once per frame
@@ -36,28 +41,27 @@ public class Player : MonoBehaviour
         /* transform.Translate(new Vector3(horizontalInput * _speed * Time.deltaTime, 0, 0));
         transform.Translate(Vector3.up * verticalInput * _speed * Time.deltaTime); */
 
-
+        //if my player is on the x axis and goes too far I want to wrap the Player back to the other side.
         if (transform.position.x >= 11.28f)
         {
-            transform.position = new Vector3(-9.28f, transform.position.y, 0);
+            transform.position = new Vector3(-11.2f, transform.position.y, 0);
         }
         else if (transform.position.x <= -11.28f)
         {
-            transform.position = new Vector3(9.28f, transform.position.y, 0);
+            transform.position = new Vector3(11.19f, transform.position.y, 0);
         }
 
+        //if my player is on the y axis and goes too far I want to wrap the Player back to the other side.
         if (transform.position.y >= 0.9f)
         {                                  //transform.position.x here means use current pos
             transform.position = new Vector3(transform.position.x, 0.9f, 0);
         }
-        else if (transform.position.y <= -3.93)
+        else if (transform.position.y <= -4.94)
         {
-            transform.position = new Vector3(transform.position.x, -3.93f, 0);
+            transform.position = new Vector3(transform.position.x, -4.94f, 0);
         }
-
-
-
     }
+
 
     void LaserInstantiate()
     {
