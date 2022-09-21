@@ -21,14 +21,13 @@ public class EnemyBehavior : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("HIT: " + other.transform.name);
 
         if (other.CompareTag("Player"))
         {   //we are accessing the Player Damage method
-            Player player = other.transform.GetComponent<Player>();
+            Player player = other.transform.GetComponent<Player>();//why did we do this here and not as global var?
             if (player != null)
             {
-                player.Damage();
+                player.Damage(); 
             }
 
             Destroy(this.gameObject);

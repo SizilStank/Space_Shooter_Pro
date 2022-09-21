@@ -8,6 +8,7 @@ TagManager:
   - EnemyA
   - PlayerBullet1
   - PowerUp
+  - SheildOnPlayer
   layers:
   - Default
   - TransparentFX
