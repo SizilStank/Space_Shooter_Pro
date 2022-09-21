@@ -49,8 +49,10 @@ MonoBehaviour:
   _enemySpawnTimer: 1
   _enemySpawnerContainer: {fileID: 6663599436850760792}
   _initializeSpawmManagerPos: {x: 0, y: 10, z: 0}
-  _tripleShotPrefab: {fileID: 4954854661842003942, guid: aebf7fad86b88e942adca76c1dee296f, type: 3}
-  _speedBoostPrefab: {fileID: 39842288954593576, guid: eec349a95195381408b59286d66408aa, type: 3}
+  _powerUps:
+  - {fileID: 4954854661842003942, guid: aebf7fad86b88e942adca76c1dee296f, type: 3}
+  - {fileID: 39842288954593576, guid: eec349a95195381408b59286d66408aa, type: 3}
+  - {fileID: 5787096984372237109, guid: f8a5800cccf93e84c9ab609355a6a049, type: 3}
 --- !u!1 &6663599436850760792
 GameObject:
   m_ObjectHideFlags: 0

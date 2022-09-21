@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 538856729136586319}
-  - component: {fileID: 2669008655094048325}
   - component: {fileID: 3060966500420717532}
   m_Layer: 0
   m_Name: AudioManager
@@ -33,25 +32,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2669008655094048325
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6367276818863997948}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59b0339add79fc34dbff839f5d0928b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _audioSource: {fileID: 3060966500420717532}
-  _audioClipID: 0
-  _PlayerDefaultLaser: {fileID: 0}
-  _tripleShotShooting: {fileID: 0}
-  _tripleShotOver: {fileID: 0}
-  _powerUpAudioClip: {fileID: 0}
-  _tripleShotLoad: {fileID: 0}
 --- !u!82 &3060966500420717532
 AudioSource:
   m_ObjectHideFlags: 0

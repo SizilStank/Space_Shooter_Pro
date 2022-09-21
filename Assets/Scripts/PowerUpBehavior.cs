@@ -39,8 +39,6 @@ public class PowerUpBehavior : MonoBehaviour
         {
             if (other.CompareTag("Player"))
             {
-
-
                 switch (_powerUpID)
                 {
                     case 0:
@@ -49,7 +47,9 @@ public class PowerUpBehavior : MonoBehaviour
                     case 1:
                         player.SpeedBoostActive();
                         break;
-
+                    case 2:
+                        player.ShieldIsActive();
+                        break;
                 }
 
 

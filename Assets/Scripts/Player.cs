@@ -23,6 +23,8 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioClip _tripleShotLoad;
     [SerializeField] private AudioClip _speedBoostActive;
     [SerializeField] private AudioClip _speedBoostOver;
+    //[SerializeField] private AudioClip _shieldOnPlayerActive;
+    //[SerializeField] private AudioClip _shieldIsOver;
 
 
     //_______Ainmations_______//
@@ -32,12 +34,14 @@ public class Player : MonoBehaviour
     //_______Game Prefabs_______//
     [SerializeField] private GameObject _laserPrefab;
     [SerializeField] private GameObject _tripleShotPrefab;
+    [SerializeField] private GameObject _shieldPrefab;
 
 
     //_______Booleans_______//
     private bool _canFire = true;
     private bool _isTripleShotActive;
     private bool _isSpeedBoostActive;
+    private bool _isShieldActive;
     private bool _isLocked;
     private bool _isPaused;
 
@@ -51,6 +55,8 @@ public class Player : MonoBehaviour
     void Start()
     {
         transform.position = new Vector3(0, 0, 0);
+        
+        _shieldPrefab.SetActive(false);
         AudioSource audio = GetComponent<AudioSource>();
         Animator animation = GetComponent<Animator>();
 
@@ -118,12 +124,22 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P) && _isPaused == false)
         {
             Time.timeScale = 0;
-            _isPaused = true;
+            _isPaused = true;          
         }
-        else if (Input.GetKeyDown(KeyCode.P))
+        else if (Input.GetKeyDown(KeyCode.P) && _isPaused == true)
         {
             Time.timeScale = 1;
             _isPaused = false;
+        }
+
+        if (_isPaused == true)
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
+
+        if (_isPaused == false)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
         }
     }
 
@@ -208,6 +224,14 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void ShieldIsActive()
+    {
+        _isShieldActive = true;
+        _shieldPrefab.SetActive(true);  
+        _audioSource.PlayOneShot(_powerUpCollectedAudioClip);
+        //_audioSource.PlayOneShot(_shieldOnPlayerActive);
+    }
+
 
     IEnumerator LaserCooldown()
     {
@@ -222,14 +246,21 @@ public class Player : MonoBehaviour
 
     public void Damage()
     {
-        _lives--;
-
-        if (_lives < 1)
+        if(_isShieldActive == true)
         {
-            _spawnManager.StopEnemySpawner();
-            _spawnManager.StopPowerUpSpawner();
-            Destroy(this.gameObject);
+            _shieldPrefab.SetActive(false);
+            _isShieldActive =false; //how does this work?
+            return;
         }
+
+            _lives--;
+
+            if (_lives < 1)
+            {
+                _spawnManager.StopEnemySpawner();
+                _spawnManager.StopPowerUpSpawner();
+                Destroy(this.gameObject);
+            }       
     }
 
 }

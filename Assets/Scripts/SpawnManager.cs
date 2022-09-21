@@ -16,7 +16,6 @@ public class SpawnManager : MonoBehaviour
     //__________PowerUp__________//
     [SerializeField] private GameObject[] _powerUps;
     private bool _powerUpActive = true;
-    private bool _speedBoostIsActive = true;
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +30,7 @@ public class SpawnManager : MonoBehaviour
 
         StartCoroutine(EnemySpawnControl());
 
-        StartCoroutine(TripleShotPowerUpSpawner());
+        StartCoroutine(PowerUpSpawner());
 
     }
 
@@ -51,14 +50,14 @@ public class SpawnManager : MonoBehaviour
         _stopSpawn = true;
     }
 
-    IEnumerator TripleShotPowerUpSpawner()
+    IEnumerator PowerUpSpawner()
     {
         while (_powerUpActive)
         {
             Vector3 randomSpawnRange = new Vector3(Random.Range(-9, 9), transform.position.y, 0);
-            int randomPowerUp = Random.Range(0, 2);
+            int randomPowerUp = Random.Range(0, 3);
             Instantiate(_powerUps[randomPowerUp], randomSpawnRange, Quaternion.identity);            
-            yield return new WaitForSeconds(Random.Range(10, 20));
+            yield return new WaitForSeconds(Random.Range(5, 15));
         }
     }
 
@@ -66,6 +65,5 @@ public class SpawnManager : MonoBehaviour
     public void StopPowerUpSpawner()
     {
         _powerUpActive = false;
-        _speedBoostIsActive = false;
     }
 }
