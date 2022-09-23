@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
@@ -12,8 +14,9 @@ public class Player : MonoBehaviour
     [SerializeField] private float _speedBoostTimer = 3.5f;
     [SerializeField] private float _fireRate = 0.5f;
     [SerializeField] private float _tripleShotTimer = 3.5f;
-    [SerializeField] private int _lives = 3;
-    
+    [SerializeField] private int _lives = 4;
+    [SerializeField] private int _score;
+
 
     //_______Audio Components_______//
     [SerializeField] private AudioClip _fireDefaultLaser;
@@ -42,13 +45,13 @@ public class Player : MonoBehaviour
     private bool _isTripleShotActive;
     private bool _isSpeedBoostActive;
     private bool _isShieldActive;
-    private bool _isLocked;
     private bool _isPaused;
 
 
     //_______GetComponents_______//
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private SpawnManager _spawnManager;
+    [SerializeField] private UIManager _uiManager;
 
 
     // Start is called before the first frame update
@@ -66,6 +69,7 @@ public class Player : MonoBehaviour
         }
 
         _spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
+        _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
     }
 
     // Update is called once per frame
@@ -84,7 +88,7 @@ public class Player : MonoBehaviour
         float horizontalInput = Input.GetAxis("Mouse X");
         float verticalInput = Input.GetAxis("Mouse Y");
 
-        Cursor.lockState = CursorLockMode.Locked;
+       Cursor.lockState = CursorLockMode.Locked;
 
         Vector3 direction = new Vector3(horizontalInput, verticalInput, 0);
         transform.Translate(direction * _defaultSpeed * Time.deltaTime);
@@ -142,7 +146,7 @@ public class Player : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
         }
     }
-
+    
     void MouseAmins()
     {
         if (Input.GetAxisRaw("Mouse X") == 0)
@@ -242,6 +246,12 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void AddPointToScore(int points)
+    {
+        _score += points;
+        _uiManager.UpdateScore(_score);
+    }
+
 
 
     public void Damage()
@@ -249,14 +259,17 @@ public class Player : MonoBehaviour
         if(_isShieldActive == true)
         {
             _shieldPrefab.SetActive(false);
-            _isShieldActive =false; //how does this work?
+            _isShieldActive =false;
             return;
         }
-
+            
             _lives--;
+
+        _uiManager.UpdateLives(_lives);
 
             if (_lives < 1)
             {
+                Cursor.lockState = CursorLockMode.None;
                 _spawnManager.StopEnemySpawner();
                 _spawnManager.StopPowerUpSpawner();
                 Destroy(this.gameObject);

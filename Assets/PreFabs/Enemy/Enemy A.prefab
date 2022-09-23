@@ -117,6 +117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemySpeed: 5.5
+  _player: {fileID: 1738078998, guid: ef6c142bcd9813e4b9c2ae96d86eacc4, type: 3}
 --- !u!50 &-7371578308496832536
 Rigidbody2D:
   serializedVersion: 4
