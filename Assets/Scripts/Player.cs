@@ -275,9 +275,15 @@ public class Player : MonoBehaviour
             else if (_lives == 1)
             {
                 _playerHit3Prefab.SetActive(true);
-            }
-            
-        }       
+            }         
+        }
+
+        if (collision.CompareTag("EnemyLaser"))
+        {
+            _lives--;
+            _uiManager.UpdateLives(_lives);
+            Destroy(collision.gameObject);
+        }
     }
 
     public void Damage()

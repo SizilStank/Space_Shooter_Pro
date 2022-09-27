@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEditor;
 
 public class MainMenuUIManager : MonoBehaviour
 {
@@ -43,6 +44,9 @@ public class MainMenuUIManager : MonoBehaviour
     IEnumerator QuitandExitActiveTimer()
     {
         yield return new WaitForSeconds(1);
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+        #endif
         Application.Quit();
     }
 }

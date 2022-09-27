@@ -5,10 +5,13 @@ using UnityEngine;
 public class EnemyBehavior : MonoBehaviour
 {
     [SerializeField] private float _enemySpeed = 5.5f;
-    [SerializeField] private Player _player;
-    [SerializeField] private GameObject _enemyExplosion;
     [SerializeField] private float _enemyExplosionTime = 0.4f;
 
+    [SerializeField] private Player _player;
+
+    [SerializeField] private GameObject _enemyExplosion;
+    [SerializeField] private GameObject _enemyLaser;
+    
     [SerializeField] private AudioManager _audioManager;
 
 
@@ -16,6 +19,7 @@ public class EnemyBehavior : MonoBehaviour
     {
         _player = GameObject.Find("Player").GetComponent<Player>();
         _audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        StartCoroutine(EnemyFireLaser());
     }
 
     // Update is called once per frame
@@ -28,6 +32,15 @@ public class EnemyBehavior : MonoBehaviour
             Vector3 randomRespawn = new Vector3(Random.Range(-9f, 9f), 10, 0);
             transform.position = randomRespawn;
         }
+
+        
+    }
+
+    IEnumerator EnemyFireLaser()
+    {
+        yield return new WaitForSeconds(1);
+        GameObject gameObject = Instantiate(_enemyLaser, transform.position, Quaternion.identity);
+        _audioManager.EnemyShoot();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -43,7 +56,7 @@ public class EnemyBehavior : MonoBehaviour
             }
 
             _audioManager.PlayEnemyExplosionSound();
-            Destroy(explosion,_enemyExplosionTime); 
+            Destroy(explosion,_enemyExplosionTime);
             Destroy(this.gameObject);
         }
         else if (other.CompareTag("PlayerLaser"))

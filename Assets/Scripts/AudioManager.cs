@@ -7,7 +7,6 @@ public class AudioManager : MonoBehaviour
 
 
     [SerializeField] private AudioSource _audioSource;
-    [SerializeField] private AudioClip _enemyExplosion;
     [SerializeField] private AudioClip[] _audioClips;
 
     public AudioClip[] AudioClip =>  _audioClips;
@@ -21,8 +20,8 @@ public class AudioManager : MonoBehaviour
 
     public void PlayEnemyExplosionSound()
     {
-        _audioSource.clip = _audioClips[0];
-        _audioSource.Play();
+        //_audioSource.clip = _audioClips[0];
+        _audioSource.PlayOneShot(_audioClips[0]);
         //_audioSource.PlayOneShot(_enemyExplosion, 0.5f);
     }
 
@@ -30,6 +29,13 @@ public class AudioManager : MonoBehaviour
     {
         _audioSource.clip = _audioClips[1];
         _audioSource.Play();
+    }
+
+    public void EnemyShoot()
+    {
+       // _audioSource.clip = _audioClips[2];
+        _audioSource.PlayOneShot(_audioClips[2]);
+        //_audioSource.Play();
     }
 
 }

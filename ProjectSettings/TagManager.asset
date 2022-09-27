@@ -10,6 +10,7 @@ TagManager:
   - PowerUp
   - SheildOnPlayer
   - PlayerLaser
+  - EnemyLaser
   layers:
   - Default
   - TransparentFX
