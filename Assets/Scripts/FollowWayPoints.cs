@@ -39,12 +39,14 @@ public class FollowWayPoints : MonoBehaviour
         // If enemy reached last waypoint then it stops
         if (waypointIndex <= waypoints.Length - 1)
         {
-
+            //if(waypointIndex == waypoints.Length - 1)
+               // waypointIndex = 0;
             // Move Enemy from current waypoint to the next one
             // using MoveTowards method
             transform.position = Vector2.MoveTowards(transform.position,
                waypoints[waypointIndex].transform.position,
                moveSpeed * Time.deltaTime);
+
 
             // If Enemy reaches position of waypoint he walked towards
             // then waypointIndex is increased by 1
@@ -53,6 +55,7 @@ public class FollowWayPoints : MonoBehaviour
             {
                 waypointIndex += 1;
             }
+            
         }
     }
 }

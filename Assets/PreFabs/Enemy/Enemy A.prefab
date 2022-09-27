@@ -118,6 +118,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemySpeed: 5.5
   _player: {fileID: 1738078998, guid: ef6c142bcd9813e4b9c2ae96d86eacc4, type: 3}
+  _enemyExplosion: {fileID: 4282152767656867292, guid: 269a3aa05f13d554f994b98e67014ee7, type: 3}
+  _enemyExplosionTime: 0.4
+  _enemyExplosionAudio: {fileID: 8300000, guid: b4a13eacc0f9f49798b5be579de2c12c, type: 3}
+  _audioManager: {fileID: 3278301973754518880, guid: c33decf5d910ef14e8ed90b22d9a7318, type: 3}
 --- !u!50 &-7371578308496832536
 Rigidbody2D:
   serializedVersion: 4
@@ -150,7 +154,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

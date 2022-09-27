@@ -11,6 +11,8 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private float _enemySpawnTimer = 1f;
     [SerializeField] private GameObject _enemySpawnerContainer;
     [SerializeField] private Vector3 _initializeSpawmManagerPos = new Vector3(0, 10, 0);
+
+
     private bool _stopSpawn;
 
     //__________PowerUp__________//
@@ -25,13 +27,24 @@ public class SpawnManager : MonoBehaviour
 
         if (_basicEnemyPrefab == null || _enemySpawnerContainer == null)
         {
-            Debug.Log("GAME OBJECT is NULL!");
+            Debug.LogError("GAME OBJECT is NULL!");
         }
 
+        
+
+    }
+
+    IEnumerator WaitForEnenimesToSpawn()
+    {
+        yield return new WaitForSeconds(1.5f);
         StartCoroutine(EnemySpawnControl());
-
         StartCoroutine(PowerUpSpawner());
+    }
 
+    public void StartGameAfterAstroidDestroy()
+    {
+        StartCoroutine(WaitForEnenimesToSpawn());
+       
     }
 
     IEnumerator EnemySpawnControl()

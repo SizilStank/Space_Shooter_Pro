@@ -38,13 +38,16 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject _laserPrefab;
     [SerializeField] private GameObject _tripleShotPrefab;
     [SerializeField] private GameObject _shieldPrefab;
+    [SerializeField] private GameObject _playerHit1Prefab;
+    [SerializeField] private GameObject _playerHit2Prefab;
+    [SerializeField] private GameObject _playerHit3Prefab;
 
 
     //_______Booleans_______//
     private bool _canFire = true;
     private bool _isTripleShotActive;
     private bool _isSpeedBoostActive;
-    private bool _isShieldActive;
+   [SerializeField] private bool _isShieldActive;
     private bool _isPaused;
 
 
@@ -57,9 +60,14 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         transform.position = new Vector3(0, 0, 0);
         
         _shieldPrefab.SetActive(false);
+        _playerHit1Prefab.SetActive(false);
+        _playerHit2Prefab.SetActive(false);
+        _playerHit3Prefab.SetActive(false);
+
         AudioSource audio = GetComponent<AudioSource>();
         Animator animation = GetComponent<Animator>();
 
@@ -252,7 +260,25 @@ public class Player : MonoBehaviour
         _uiManager.UpdateScore(_score);
     }
 
-
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("EnemyA"))
+        {
+            if (_lives == 3)
+            {
+                _playerHit1Prefab.SetActive(true);
+            }
+            else if (_lives == 2)
+            {
+                _playerHit2Prefab.SetActive(true);
+            }
+            else if (_lives == 1)
+            {
+                _playerHit3Prefab.SetActive(true);
+            }
+            
+        }       
+    }
 
     public void Damage()
     {

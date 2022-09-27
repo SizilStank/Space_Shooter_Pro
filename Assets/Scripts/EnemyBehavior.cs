@@ -6,11 +6,16 @@ public class EnemyBehavior : MonoBehaviour
 {
     [SerializeField] private float _enemySpeed = 5.5f;
     [SerializeField] private Player _player;
+    [SerializeField] private GameObject _enemyExplosion;
+    [SerializeField] private float _enemyExplosionTime = 0.4f;
+
+    [SerializeField] private AudioManager _audioManager;
 
 
     private void Start()
     {
         _player = GameObject.Find("Player").GetComponent<Player>();
+        _audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     // Update is called once per frame
@@ -29,24 +34,31 @@ public class EnemyBehavior : MonoBehaviour
     {
 
         if (other.CompareTag("Player"))
-        {   //we are accessing the Player Damage method
-           // Player player = other.transform.GetComponent<Player>();//why did we do this here and not as global var?
+        {
+           GameObject explosion = Instantiate(_enemyExplosion, transform.position, Quaternion.identity);
+
             if (_player != null)
             {
                 _player.Damage(); 
             }
 
+            _audioManager.PlayEnemyExplosionSound();
+            Destroy(explosion,_enemyExplosionTime); 
             Destroy(this.gameObject);
         }
-        else if (other.CompareTag("PlayerBullet1"))
+        else if (other.CompareTag("PlayerLaser"))
         {
             Destroy(other.gameObject);
 
-            if(_player != null)
+            GameObject explosion = Instantiate(_enemyExplosion, transform.position, Quaternion.identity);
+
+            if (_player != null)
             {
                 _player.AddPointToScore(10);
             }
-            
+
+            _audioManager.PlayEnemyExplosionSound();
+            Destroy(explosion, _enemyExplosionTime);
             Destroy(this.gameObject);
         }
     }

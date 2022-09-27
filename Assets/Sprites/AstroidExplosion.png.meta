@@ -1,0 +1,471 @@
+fileFormatVersion: 2
+guid: a7e6c89b4b489a645adfd670113bcaff
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 0
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: AstroidExplosion_0
+      rect:
+        serializedVersion: 2
+        x: 487
+        y: 9
+        width: 80
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4816efd4c87366c458649dfe1a50c182
+      internalID: -206350440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AstroidExplosion_1
+      rect:
+        serializedVersion: 2
+        x: 580
+        y: 12
+        width: 83
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5609be1436fda1c4495613a7b70979b1
+      internalID: -1450445171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AstroidExplosion_11
+      rect:
+        serializedVersion: 2
+        x: 1060
+        y: 33
+        width: 79
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6bb91f9ee8e244f4cb355c35b3c0927a
+      internalID: 1089073639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AstroidExplosion_12
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 11
+        width: 78
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c00726ad1bfd6e24587a0d4d69b5591d
+      internalID: 194699594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AstroidExplosion_25
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 13
+        width: 63
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c363d68a29374049b3043b65a96da23
+      internalID: -1268907385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AstroidExplosion_26
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 14
+        width: 63
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94dfa6e400797224388b6ab7edf8e3be
+      internalID: 1495114964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AstroidExplosion_29
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 19
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6e5d8381d0e8e149b4492e87296efa1
+      internalID: 365518058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AstroidExplosion_46
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 37
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a1cc228cf4a7d3478c753a13e84b098
+      internalID: -1532509290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AstroidExplosion_2
+      rect:
+        serializedVersion: 2
+        x: 868
+        y: 26
+        width: 80
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26fb6d95560a45a43beacee10d7aafa9
+      internalID: -700577680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AstroidExplosion_3
+      rect:
+        serializedVersion: 2
+        x: 964
+        y: 30
+        width: 79
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9128efe8a098a9c41b8195c10e553776
+      internalID: 690946026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AstroidExplosion_4
+      rect:
+        serializedVersion: 2
+        x: 772
+        y: 18
+        width: 81
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37210479b1a304647844a732bb1d6c5c
+      internalID: 1785223588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AstroidExplosion_5
+      rect:
+        serializedVersion: 2
+        x: 677
+        y: 14
+        width: 81
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57c80d3a721f1fe488bf77724d83b937
+      internalID: 2135533834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: d436bf702182b194ea70687c9a09147a
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      AstroidExplosion_13: -1146852065
+      AstroidExplosion_55: 171564148
+      AstroidExplosion_66: -977107742
+      AstroidExplosion_39: -49897525
+      AstroidExplosion_62: -586831288
+      AstroidExplosion_56: 1366851204
+      AstroidExplosion_33: 415087891
+      AstroidExplosion_60: 607882715
+      AstroidExplosion_43: -1356004273
+      AstroidExplosion_63: 742012188
+      AstroidExplosion_67: 954035712
+      AstroidExplosion_64: 1199818980
+      AstroidExplosion_53: 228881618
+      AstroidExplosion_6: -166796889
+      AstroidExplosion_41: -1520472784
+      AstroidExplosion_19: -1361488425
+      AstroidExplosion_11: 1089073639
+      AstroidExplosion_22: -906981274
+      AstroidExplosion_28: 1740662077
+      AstroidExplosion_50: 813028325
+      AstroidExplosion_45: 893686992
+      AstroidExplosion_29: 365518058
+      AstroidExplosion_32: -776289749
+      AstroidExplosion_35: 1213413035
+      AstroidExplosion_31: -2050239155
+      AstroidExplosion_42: 312994976
+      AstroidExplosion_44: 1613313044
+      AstroidExplosion_15: -1900924039
+      AstroidExplosion_52: -2104322138
+      AstroidExplosion_61: -401922229
+      AstroidExplosion_58: 846022337
+      AstroidExplosion_71: 886008288
+      AstroidExplosion_0: -206350440
+      AstroidExplosion_8: 556697168
+      AstroidExplosion_68: -1070369130
+      AstroidExplosion_26: 1495114964
+      AstroidExplosion_14: 1834761631
+      AstroidExplosion_37: -1622226108
+      AstroidExplosion_20: -634740089
+      AstroidExplosion_36: -323349595
+      AstroidExplosion_51: -1748006614
+      AstroidExplosion_12: 194699594
+      AstroidExplosion_24: 1889645569
+      AstroidExplosion_27: 1503468189
+      AstroidExplosion_54: 32799272
+      AstroidExplosion_18: -736179649
+      AstroidExplosion_38: -771613934
+      AstroidExplosion_3: 690946026
+      AstroidExplosion_57: 1837156915
+      AstroidExplosion_70: -591666646
+      AstroidExplosion_59: 1536482365
+      AstroidExplosion_40: 1414962176
+      AstroidExplosion_5: 2135533834
+      AstroidExplosion_10: 992569359
+      AstroidExplosion_46: -1532509290
+      AstroidExplosion_69: 264849160
+      AstroidExplosion_21: 55678048
+      AstroidExplosion_16: -1620917124
+      AstroidExplosion_2: -700577680
+      AstroidExplosion_47: 1448448702
+      AstroidExplosion_48: -542232341
+      AstroidExplosion_25: -1268907385
+      AstroidExplosion_34: 509566696
+      AstroidExplosion_65: -2038894323
+      AstroidExplosion_49: -300575822
+      AstroidExplosion_23: 1238091086
+      AstroidExplosion_7: -1581395246
+      AstroidExplosion_30: -1466941638
+      AstroidExplosion_4: 1785223588
+      AstroidExplosion_1: -1450445171
+      AstroidExplosion_9: 1186723483
+      AstroidExplosion_17: 735573238
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
