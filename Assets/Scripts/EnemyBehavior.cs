@@ -50,10 +50,10 @@ public class EnemyBehavior : MonoBehaviour
         {
            GameObject explosion = Instantiate(_enemyExplosion, transform.position, Quaternion.identity);
 
-            if (_player != null)
-            {
-                _player.Damage(); 
-            }
+            //if (_player != null) we are doing this on the player now...
+            //{
+            //    _player.Damage(); 
+            //}
 
             _audioManager.PlayEnemyExplosionSound();
             Destroy(explosion,_enemyExplosionTime);

@@ -262,8 +262,11 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("EnemyA"))
+        if (collision.CompareTag("EnemyA") || collision.CompareTag("EnemyLaser"))
         {
+            Damage();
+            Destroy(collision.gameObject);
+
             if (_lives == 3)
             {
                 _playerHit1Prefab.SetActive(true);
@@ -276,13 +279,6 @@ public class Player : MonoBehaviour
             {
                 _playerHit3Prefab.SetActive(true);
             }         
-        }
-
-        if (collision.CompareTag("EnemyLaser"))
-        {
-            _lives--;
-            _uiManager.UpdateLives(_lives);
-            Destroy(collision.gameObject);
         }
     }
 

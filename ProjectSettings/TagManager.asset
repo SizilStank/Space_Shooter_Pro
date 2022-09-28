@@ -11,6 +11,7 @@ TagManager:
   - SheildOnPlayer
   - PlayerLaser
   - EnemyLaser
+  - Asteroid
   layers:
   - Default
   - TransparentFX

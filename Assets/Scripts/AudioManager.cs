@@ -21,7 +21,7 @@ public class AudioManager : MonoBehaviour
     public void PlayEnemyExplosionSound()
     {
         //_audioSource.clip = _audioClips[0];
-        _audioSource.PlayOneShot(_audioClips[0]);
+        _audioSource.PlayOneShot(_audioClips[0], 0.5f);
         //_audioSource.PlayOneShot(_enemyExplosion, 0.5f);
     }
 

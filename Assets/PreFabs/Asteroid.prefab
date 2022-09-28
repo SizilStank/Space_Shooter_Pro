@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 8229776347025918009}
   - component: {fileID: 8229776347025917958}
   - component: {fileID: 8229776347025917959}
+  - component: {fileID: 1120927006721954380}
   m_Layer: 0
   m_Name: Asteroid
-  m_TagString: Untagged
+  m_TagString: Asteroid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -119,3 +120,24 @@ MonoBehaviour:
   _audioManager: {fileID: 0}
   _astroidExplod: {fileID: 2322065354771274236, guid: 7ddc5e53d5e315541a56064301f47261, type: 3}
   _spawnManager: {fileID: 0}
+--- !u!50 &1120927006721954380
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8229776347025918010}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
