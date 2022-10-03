@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2771164758746003554}
   - component: {fileID: 7258800984282284756}
   - component: {fileID: 6674888138992969083}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Sprite-0001_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -284,6 +284,8 @@ MonoBehaviour:
   _tripleShotLoad: {fileID: 8300000, guid: 2bd37df2fb96f4d978c1f706701ce87f, type: 3}
   _speedBoostActive: {fileID: 8300000, guid: 32bd1b6b2217f46029379c96340f03b1, type: 3}
   _speedBoostOver: {fileID: 8300000, guid: dc9f34f8f8083485187956f1e0a5df2f, type: 3}
+  _shieldOnPlayerActive: {fileID: 8300000, guid: fadc7d32ef9d6d24ba7623f613804931, type: 3}
+  _shieldIsOver: {fileID: 8300000, guid: 8e4b07dccc579334795ef0363886f6ad, type: 3}
   _anim: {fileID: 8963589937605703471}
   _laserPrefab: {fileID: 1312921614107733225, guid: e514daebdfba6a44aa6dc29a7b822c7f, type: 3}
   _tripleShotPrefab: {fileID: 1184520926179966299, guid: 259de4f00fab9f84ebdc0ab159801718, type: 3}
@@ -291,6 +293,7 @@ MonoBehaviour:
   _playerHit1Prefab: {fileID: 7122356106169941506}
   _playerHit2Prefab: {fileID: 7273571708384338238}
   _playerHit3Prefab: {fileID: 8804309278959163644}
+  _audioManager: {fileID: 3278301973754518880, guid: c33decf5d910ef14e8ed90b22d9a7318, type: 3}
   _isShieldActive: 0
   _audioSource: {fileID: 1972165905}
   _spawnManager: {fileID: 1380212368323552424, guid: 7538121e742593f4caf6889a18731dea, type: 3}
@@ -307,7 +310,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.295
+  m_Volume: 0.388
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -399,8 +402,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 1871757107363987202}
     m_Modifications:
     - target: {fileID: 1372040286346358, guid: 53ebac442b16db64f9177d0c749cbb06, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1372040286346358, guid: 53ebac442b16db64f9177d0c749cbb06, type: 3}
       propertyPath: m_Name
       value: Fire
+      objectReference: {fileID: 0}
+    - target: {fileID: 1372040286346358, guid: 53ebac442b16db64f9177d0c749cbb06, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4294455949784720, guid: 53ebac442b16db64f9177d0c749cbb06, type: 3}
       propertyPath: m_RootOrder
@@ -486,8 +497,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 1871757107363987202}
     m_Modifications:
     - target: {fileID: 1372040286346358, guid: 53ebac442b16db64f9177d0c749cbb06, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1372040286346358, guid: 53ebac442b16db64f9177d0c749cbb06, type: 3}
       propertyPath: m_Name
       value: Fire (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1372040286346358, guid: 53ebac442b16db64f9177d0c749cbb06, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4294455949784720, guid: 53ebac442b16db64f9177d0c749cbb06, type: 3}
       propertyPath: m_RootOrder
@@ -644,8 +663,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 1871757107363987202}
     m_Modifications:
     - target: {fileID: 1372040286346358, guid: 53ebac442b16db64f9177d0c749cbb06, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1372040286346358, guid: 53ebac442b16db64f9177d0c749cbb06, type: 3}
       propertyPath: m_Name
       value: Fire (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1372040286346358, guid: 53ebac442b16db64f9177d0c749cbb06, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4294455949784720, guid: 53ebac442b16db64f9177d0c749cbb06, type: 3}
       propertyPath: m_RootOrder

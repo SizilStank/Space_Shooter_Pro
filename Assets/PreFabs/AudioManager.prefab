@@ -46,11 +46,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 3278301973754518881}
-  _enemyExplosion: {fileID: 8300000, guid: b4a13eacc0f9f49798b5be579de2c12c, type: 3}
   _audioClips:
   - {fileID: 8300000, guid: b4a13eacc0f9f49798b5be579de2c12c, type: 3}
   - {fileID: 8300000, guid: 8beebe9c9b7874912a8bb31db14b3162, type: 3}
   - {fileID: 8300000, guid: bc279c6756ce1a34489db851bd6ce25f, type: 3}
+  - {fileID: 8300000, guid: 0854ecb3d10f1344b96909016698e4c5, type: 3}
 --- !u!82 &3278301973754518881
 AudioSource:
   m_ObjectHideFlags: 0

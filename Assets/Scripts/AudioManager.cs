@@ -27,8 +27,9 @@ public class AudioManager : MonoBehaviour
 
     public void AstroidDestroyed()
     {
-        _audioSource.clip = _audioClips[1];
-        _audioSource.Play();
+        //_audioSource.clip = _audioClips[1];
+        _audioSource.PlayOneShot(_audioClips[1]);
+        //_audioSource.Play();
     }
 
     public void EnemyShoot()
@@ -37,5 +38,11 @@ public class AudioManager : MonoBehaviour
         _audioSource.PlayOneShot(_audioClips[2]);
         //_audioSource.Play();
     }
+
+    public void PlayerHitByEnemyLaser()
+    {
+        _audioSource.PlayOneShot(_audioClips[3]);
+    }
+
 
 }

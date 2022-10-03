@@ -16,9 +16,9 @@ public class EnemyBehavior : MonoBehaviour
 
 
     private void Start()
-    {
-        _player = GameObject.Find("Player").GetComponent<Player>();
+    {       
         _audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        _player = GameObject.Find("Player").GetComponent<Player>();
         StartCoroutine(EnemyFireLaser());
     }
 

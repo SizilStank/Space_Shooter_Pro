@@ -26,8 +26,8 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioClip _tripleShotLoad;
     [SerializeField] private AudioClip _speedBoostActive;
     [SerializeField] private AudioClip _speedBoostOver;
-    //[SerializeField] private AudioClip _shieldOnPlayerActive;
-    //[SerializeField] private AudioClip _shieldIsOver;
+    [SerializeField] private AudioClip _shieldOnPlayerActive;
+    [SerializeField] private AudioClip _shieldIsOver;
 
 
     //_______Ainmations_______//
@@ -41,6 +41,7 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject _playerHit1Prefab;
     [SerializeField] private GameObject _playerHit2Prefab;
     [SerializeField] private GameObject _playerHit3Prefab;
+    [SerializeField] private AudioManager _audioManager;
 
 
     //_______Booleans_______//
@@ -78,6 +79,7 @@ public class Player : MonoBehaviour
 
         _spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
         _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+        _audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     // Update is called once per frame
@@ -120,9 +122,9 @@ public class Player : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x, 0.9f, 0);
         }
-        else if (transform.position.y <= -4.94)
+        else if (transform.position.y <= -5.0)
         {
-            transform.position = new Vector3(transform.position.x, -4.94f, 0);
+            transform.position = new Vector3(transform.position.x, -5.0f, 0);
         }
     }
 
@@ -241,7 +243,9 @@ public class Player : MonoBehaviour
         _isShieldActive = true;
         _shieldPrefab.SetActive(true);  
         _audioSource.PlayOneShot(_powerUpCollectedAudioClip);
-        //_audioSource.PlayOneShot(_shieldOnPlayerActive);
+        _audioSource.loop = true;
+        _audioSource.clip = _shieldOnPlayerActive;
+        _audioSource.Play();
     }
 
 
@@ -263,11 +267,12 @@ public class Player : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("EnemyA") || collision.CompareTag("EnemyLaser"))
-        {
+        {          
             Damage();
+            _audioManager.PlayerHitByEnemyLaser();
             Destroy(collision.gameObject);
 
-            if (_lives == 3)
+            /*if (_lives == 3)
             {
                 _playerHit1Prefab.SetActive(true);
             }
@@ -278,7 +283,17 @@ public class Player : MonoBehaviour
             else if (_lives == 1)
             {
                 _playerHit3Prefab.SetActive(true);
-            }         
+            }*/
+
+            switch (_lives)
+            {
+                case 1: _playerHit1Prefab.SetActive(true);
+                    break;
+                case 2: _playerHit2Prefab.SetActive(true);
+                    break;
+                case 3: _playerHit3Prefab.SetActive(true);
+                    break;
+            }
         }
     }
 
@@ -287,7 +302,11 @@ public class Player : MonoBehaviour
         if(_isShieldActive == true)
         {
             _shieldPrefab.SetActive(false);
-            _isShieldActive =false;
+            _isShieldActive = false;
+            _audioSource.Stop();
+            _audioSource.loop = false;
+            _audioSource.clip = _shieldOnPlayerActive;
+            _audioSource.PlayOneShot(_shieldIsOver, 1);
             return;
         }
             
