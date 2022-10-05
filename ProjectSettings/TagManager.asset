@@ -12,6 +12,7 @@ TagManager:
   - PlayerLaser
   - EnemyLaser
   - Asteroid
+  - Bumper
   layers:
   - Default
   - TransparentFX

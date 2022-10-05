@@ -4,18 +4,21 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SocialPlatforms;
 
 public class Player : MonoBehaviour
 {
 
     //_______float int_______//
     [SerializeField] private float _defaultSpeed = 1f;
+    [SerializeField] private float _moveFromBumperSpeed = 5f;
     [SerializeField] private float _speedBoostPowerUpSpeed = 1f;
     [SerializeField] private float _speedBoostTimer = 3.5f;
     [SerializeField] private float _fireRate = 0.5f;
     [SerializeField] private float _tripleShotTimer = 3.5f;
     [SerializeField] private int _lives = 4;
     [SerializeField] private int _score;
+    //[SerializeField] private float _oldPos;
 
 
     //_______Audio Components_______//
@@ -49,6 +52,7 @@ public class Player : MonoBehaviour
     private bool _isTripleShotActive;
     private bool _isSpeedBoostActive;
    [SerializeField] private bool _isShieldActive;
+    [SerializeField] private bool _startTimer;
     private bool _isPaused;
 
 
@@ -58,12 +62,16 @@ public class Player : MonoBehaviour
     [SerializeField] private UIManager _uiManager;
 
 
+    [SerializeField] private bool _timerStarted;
+    [SerializeField] private float _timer = 0.0f;
+
     // Start is called before the first frame update
     void Start()
     {
         
         transform.position = new Vector3(0, 0, 0);
-        
+         
+
         _shieldPrefab.SetActive(false);
         _playerHit1Prefab.SetActive(false);
         _playerHit2Prefab.SetActive(false);
@@ -89,7 +97,25 @@ public class Player : MonoBehaviour
         LaserInstantiate();
         MouseAmins();
         MouseLockandPause();
-        // print(Input.GetAxisRaw("Mouse X"));
+        // print(Input.GetAxisRaw("Mouse X"));      
+
+        //if the player pos is == -11f for 3 seconds move
+        if (transform.position.x <= -10f)
+        {
+            _timerStarted = true;
+            _timer += Time.deltaTime;
+            if (_timerStarted = true && _timer >= 2)
+            {
+                transform.Translate(Vector3.right * _moveFromBumperSpeed * Time.deltaTime);
+            }
+            Debug.Log("It working");
+        }
+        else if (transform.position.x >= -10f)
+        {
+            _timer = 0.0f;
+            _timerStarted = false;
+        }
+
     }
 
     void CalculateMovement()
@@ -109,13 +135,13 @@ public class Player : MonoBehaviour
         }
 
 
-        if (transform.position.x >= 11.28f)
+        if (transform.position.x >= 11.012f)
         {
-            transform.position = new Vector3(-11.2f, transform.position.y, 0);
+            transform.position = new Vector3(-11.012f, transform.position.y, 0);
         }
-        else if (transform.position.x <= -11.28f)
+        else if (transform.position.x <= -11.012f)
         {
-            transform.position = new Vector3(11.19f, transform.position.y, 0);
+            transform.position = new Vector3(11.012f, transform.position.y, 0);
         }
 
         if (transform.position.y >= 0.9f)
@@ -266,6 +292,7 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        
         if (collision.CompareTag("EnemyA") || collision.CompareTag("EnemyLaser"))
         {          
             Damage();
@@ -295,6 +322,7 @@ public class Player : MonoBehaviour
                     break;
             }
         }
+
     }
 
     public void Damage()
@@ -303,8 +331,7 @@ public class Player : MonoBehaviour
         {
             _shieldPrefab.SetActive(false);
             _isShieldActive = false;
-            _audioSource.Stop();
-            _audioSource.loop = false;
+            _audioSource.Stop();_audioSource.loop = false;
             _audioSource.clip = _shieldOnPlayerActive;
             _audioSource.PlayOneShot(_shieldIsOver, 1);
             return;
