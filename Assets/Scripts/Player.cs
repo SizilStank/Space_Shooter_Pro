@@ -110,12 +110,22 @@ public class Player : MonoBehaviour
             }
             Debug.Log("It working");
         }
+        else if (transform.position.x >= 10f)
+        {
+            _timerStarted = true;
+            _timer += Time.deltaTime;
+            if (_timerStarted = true && _timer >= 2)
+            {
+                transform.Translate(Vector3.left * _moveFromBumperSpeed * Time.deltaTime);
+            }
+            Debug.Log("It working");
+        }
         else if (transform.position.x >= -10f)
         {
             _timer = 0.0f;
             _timerStarted = false;
         }
-
+        
     }
 
     void CalculateMovement()
