@@ -9,11 +9,13 @@ public class UIManager : MonoBehaviour
 {
 
     [SerializeField] private TMP_Text _scoreText;
+    [SerializeField] private TMP_Text _highScore; //setting up HS
     [SerializeField] private Image _imageLives;
     [SerializeField] private GameObject _gameOverImage;
     [SerializeField] private GameObject _gameOverBoarder;
     [SerializeField] private Sprite[] _spriteLives;
     [SerializeField] private float _flashSpeed = 3;
+
     private bool _isGameOver;
 
     [SerializeField] private AudioSource _audioSource;
@@ -34,7 +36,10 @@ public class UIManager : MonoBehaviour
         _quit.gameObject.SetActive(false);
         _gameOverImage.SetActive(false);
         _gameOverBoarder.SetActive(false);
-        _scoreText.text = "Score: " + 0;//what is "Score"?
+        _scoreText.text = "Score: " + 0;//what is "Score"? Score is 0
+        _highScore.text = "High Score " + PlayerPrefs.GetInt("HighScore", 0).ToString(); // setting up HS so we can save it
+
+
     }
 
     private void PlayOnClick()
@@ -61,9 +66,21 @@ public class UIManager : MonoBehaviour
     }
 
     
-    public void UpdateScore(int playerScore)//Player is calling this
+    public void UpdateScore(int playerScore)//Player is calling this. 
     {
-        _scoreText.text = "Score: " + playerScore;  
+        _scoreText.text = "Score: " + playerScore;
+        
+        if (playerScore > PlayerPrefs.GetInt("HighScore", 0))
+        {
+            PlayerPrefs.SetInt("HighScore", playerScore);
+            _highScore.text = _scoreText.text;
+        }
+    }
+
+    public void ResetHighScore()
+    {
+        PlayerPrefs.DeleteKey("HighScore");
+        _highScore.text = "High Score " + 0;
     }
 
     public void UpdateLives(int currentLives)//Player is calling this

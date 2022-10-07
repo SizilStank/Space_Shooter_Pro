@@ -94,38 +94,10 @@ public class Player : MonoBehaviour
     void Update()
     {
         CalculateMovement();
+        MovePlayerIfHiding();
         LaserInstantiate();
         MouseAmins();
         MouseLockandPause();
-        // print(Input.GetAxisRaw("Mouse X"));      
-
-        //if the player pos is == -11f for 3 seconds move
-        if (transform.position.x <= -10f)
-        {
-            _timerStarted = true;
-            _timer += Time.deltaTime;
-            if (_timerStarted = true && _timer >= 2)
-            {
-                transform.Translate(Vector3.right * _moveFromBumperSpeed * Time.deltaTime);
-            }
-            Debug.Log("It working");
-        }
-        else if (transform.position.x >= 10f)
-        {
-            _timerStarted = true;
-            _timer += Time.deltaTime;
-            if (_timerStarted = true && _timer >= 2)
-            {
-                transform.Translate(Vector3.left * _moveFromBumperSpeed * Time.deltaTime);
-            }
-            Debug.Log("It working");
-        }
-        else if (transform.position.x >= -10f)
-        {
-            _timer = 0.0f;
-            _timerStarted = false;
-        }
-        
     }
 
     void CalculateMovement()
@@ -161,6 +133,33 @@ public class Player : MonoBehaviour
         else if (transform.position.y <= -5.0)
         {
             transform.position = new Vector3(transform.position.x, -5.0f, 0);
+        }
+    }
+
+    void MovePlayerIfHiding()
+    {
+        if (transform.position.x <= -10f)
+        {
+            _timerStarted = true;
+            _timer += Time.deltaTime;
+            if (_timerStarted = true && _timer >= 2)
+            {
+                transform.Translate(Vector3.right * _moveFromBumperSpeed * Time.deltaTime);
+            }
+        }
+        else if (transform.position.x >= 10f)
+        {
+            _timerStarted = true;
+            _timer += Time.deltaTime;
+            if (_timerStarted = true && _timer >= 2)
+            {
+                transform.Translate(Vector3.left * _moveFromBumperSpeed * Time.deltaTime);
+            }
+        }
+        else
+        {
+            _timer = 0.0f;
+            _timerStarted = false;
         }
     }
 
