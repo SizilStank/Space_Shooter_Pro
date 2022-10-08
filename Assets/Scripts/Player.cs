@@ -68,7 +68,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
         transform.position = new Vector3(0, 0, 0);
          
 
@@ -184,11 +184,13 @@ public class Player : MonoBehaviour
         if (_isPaused == true)
         {
             Cursor.lockState = CursorLockMode.None;
+            _uiManager.PlayerPausedTheGame();
         }
 
         if (_isPaused == false)
         {
             Cursor.lockState = CursorLockMode.Locked;
+            _uiManager.PlayerUnpausedTheGame();
         }
     }
     

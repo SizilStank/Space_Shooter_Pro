@@ -13,10 +13,14 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image _imageLives;
     [SerializeField] private GameObject _gameOverImage;
     [SerializeField] private GameObject _gameOverBoarder;
+    [SerializeField] private GameObject _gamePausedImage;
+    [SerializeField] private GameObject _gamePausedBoarderImage;
+    
     [SerializeField] private Sprite[] _spriteLives;
     [SerializeField] private float _flashSpeed = 3;
 
     private bool _isGameOver;
+    private bool _isGamePaused; 
 
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private AudioClip _playButtonClick;
@@ -24,6 +28,7 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private Button _play;
     [SerializeField] private Button _quit;
+    [SerializeField] private Button _resetHSImage;
 
 
     // Start is called before the first frame update
@@ -32,15 +37,20 @@ public class UIManager : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
         _play.onClick.AddListener(PlayOnClick);
         _quit.onClick.AddListener(QuitOnClick);
+        _resetHSImage.onClick.AddListener(ResetHighScore);
         _play.gameObject.SetActive(false);
         _quit.gameObject.SetActive(false);
+        _resetHSImage.gameObject.SetActive(false);
         _gameOverImage.SetActive(false);
         _gameOverBoarder.SetActive(false);
+        _gamePausedBoarderImage.SetActive(false);
+        _gamePausedImage.SetActive(false);
         _scoreText.text = "Score: " + 0;//what is "Score"? Score is 0
         _highScore.text = "High Score " + PlayerPrefs.GetInt("HighScore", 0).ToString(); // setting up HS so we can save it
 
 
     }
+
 
     private void PlayOnClick()
     {
@@ -108,5 +118,34 @@ public class UIManager : MonoBehaviour
             yield return new WaitForSeconds(_flashSpeed);
         }
         
+    }
+
+   /* IEnumerator MakingPauseFlash()
+    {
+        while (_isGamePaused == true)
+        {
+            _gamePausedImage.SetActive(true);
+            yield return new WaitForSecondsRealtime(_flashSpeed);
+            _gamePausedImage.SetActive(false);
+            yield return new WaitForSecondsRealtime(_flashSpeed);
+        }
+    }*/
+
+    public void PlayerPausedTheGame()
+    {
+        _isGamePaused = true;
+        Debug.Log("The game is pause " + _isGamePaused);
+        //StartCoroutine(MakingPauseFlash());
+        _gamePausedImage.SetActive(true);
+        _gamePausedBoarderImage.SetActive(true);
+        _resetHSImage.gameObject.SetActive(true);
+    }
+
+    public void PlayerUnpausedTheGame()
+    {
+        _isGamePaused = false;
+        _gamePausedImage.SetActive(false);
+        _gamePausedBoarderImage.SetActive(false);
+        _resetHSImage.gameObject.SetActive(false);
     }
 }
