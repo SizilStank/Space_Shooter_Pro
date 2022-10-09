@@ -20,6 +20,7 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private GameObject _uiKillsOneHundred;
     [SerializeField] private GameObject _uiShieldCollectedFive;
+    [SerializeField] private GameObject _uiKillFiftyEneimesWithoutMissing;
 
     [SerializeField] private Sprite[] _spriteLives;
 
@@ -182,4 +183,15 @@ public class UIManager : MonoBehaviour
         StartCoroutine(FlashShieldAchievement());       
     }
 
+    IEnumerator FlashFifthyKillsAchievement()
+    {
+        _audioManager.Achievement();
+        _uiKillFiftyEneimesWithoutMissing.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        _uiKillFiftyEneimesWithoutMissing.SetActive(false);
+    }
+    public void Killed50Achievement()
+    {
+        StartCoroutine(FlashFifthyKillsAchievement());
+    }
 }

@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &14507797 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 14507797, guid: 80dffcb39f507d54784bd490e2823311, type: 3}
+  m_PrefabInstance: {fileID: 5697955072016133859}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &63276761 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1380212368323552424, guid: 7538121e742593f4caf6889a18731dea, type: 3}
@@ -309,37 +314,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1345122825 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7802548290343070735, guid: 80dffcb39f507d54784bd490e2823311, type: 3}
-  m_PrefabInstance: {fileID: 5697955072016133859}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1345122829
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1345122825}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f19b7e2285c104f6ca47d583f3e5444f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectFactor: 0.5
-  m_Width: 0.25
-  m_Rotation: 135
-  m_Softness: 1
-  m_Brightness: 1
-  m_Gloss: 1
-  m_EffectArea: 0
-  m_Player:
-    play: 1
-    initialPlayDelay: 0
-    duration: 1
-    loop: 1
-    loopDelay: 0
-    updateMode: 0
 --- !u!114 &1607127732 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3278301973754518880, guid: c33decf5d910ef14e8ed90b22d9a7318, type: 3}
@@ -351,37 +325,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c66d97810720ff4693f21d9455e14b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1761641990 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6639881567773911071, guid: 80dffcb39f507d54784bd490e2823311, type: 3}
-  m_PrefabInstance: {fileID: 5697955072016133859}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1761641994
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1761641990}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f19b7e2285c104f6ca47d583f3e5444f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectFactor: 0.5
-  m_Width: 0.25
-  m_Rotation: 135
-  m_Softness: 1
-  m_Brightness: 1
-  m_Gloss: 1
-  m_EffectArea: 0
-  m_Player:
-    play: 1
-    initialPlayDelay: 0
-    duration: 1
-    loop: 1
-    loopDelay: 0
-    updateMode: 0
 --- !u!1001 &2000888131
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -604,15 +547,7 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 687892110319371881, guid: 80dffcb39f507d54784bd490e2823311, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3052627542387838137, guid: 80dffcb39f507d54784bd490e2823311, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3774242159630550204, guid: 80dffcb39f507d54784bd490e2823311, type: 3}
+    - target: {fileID: 14507797, guid: 80dffcb39f507d54784bd490e2823311, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -624,6 +559,10 @@ PrefabInstance:
       propertyPath: _audioManager
       value: 
       objectReference: {fileID: 1607127732}
+    - target: {fileID: 5697955071698962524, guid: 80dffcb39f507d54784bd490e2823311, type: 3}
+      propertyPath: _uiKillFiftyEneimesWithoutMissing
+      value: 
+      objectReference: {fileID: 14507797}
     - target: {fileID: 5697955071698962525, guid: 80dffcb39f507d54784bd490e2823311, type: 3}
       propertyPath: m_Pivot.x
       value: 0

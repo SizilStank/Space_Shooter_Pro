@@ -359,6 +359,12 @@ public class Player : MonoBehaviour
     {
         _laserHitEnemy.Add(_laserToCollect);//We are adding to the list if the laser hits an enemy (this is for an achievement)
         Debug.Log("WeCollectedTheLaser");
+
+        if (_laserHitEnemy.Count == 50)
+        {
+            _uiManager.Killed50Achievement();
+            Debug.Log("Achievement");
+        }
     }
 
     void SubtractLaserCollected()//Subing to the EventManager
