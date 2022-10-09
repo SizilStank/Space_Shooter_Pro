@@ -65,6 +65,13 @@ public class Player : MonoBehaviour
     [SerializeField] private bool _timerStarted;
     [SerializeField] private float _timer = 0.0f;
 
+    [SerializeField] private List<GameObject> _shieldCollected = new List<GameObject>();
+    [SerializeField] private GameObject _shieldToAdd;
+
+    [SerializeField] private List<GameObject> _laserHitEnemy = new List<GameObject>();
+    [SerializeField] private GameObject _laserToCollect;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -98,6 +105,20 @@ public class Player : MonoBehaviour
         LaserInstantiate();
         MouseAmins();
         MouseLockandPause();
+    }
+
+    private void OnEnable()
+    {
+        EventManager.LaserCollected += LaserCollected;
+
+        EventManager.SubtractLaserCollected += SubtractLaserCollected;
+    }
+
+    private void OnDisable()
+    {
+        EventManager.LaserCollected -= LaserCollected;
+
+        EventManager.SubtractLaserCollected -= SubtractLaserCollected;
     }
 
     void CalculateMovement()
@@ -299,6 +320,11 @@ public class Player : MonoBehaviour
     {
         _score += points;
         _uiManager.UpdateScore(_score);
+
+        if (_score == 1000f)
+        {
+            _uiManager.Achievements();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -309,19 +335,6 @@ public class Player : MonoBehaviour
             Damage();
             _audioManager.PlayerHitByEnemyLaser();
             Destroy(collision.gameObject);
-
-            /*if (_lives == 3)
-            {
-                _playerHit1Prefab.SetActive(true);
-            }
-            else if (_lives == 2)
-            {
-                _playerHit2Prefab.SetActive(true);
-            }
-            else if (_lives == 1)
-            {
-                _playerHit3Prefab.SetActive(true);
-            }*/
 
             switch (_lives)
             {
@@ -334,7 +347,34 @@ public class Player : MonoBehaviour
             }
         }
 
+        if (collision.CompareTag("PowerUp"))//---Achievement Action---//
+        {
+            _shieldCollected.Add(_shieldToAdd);
+            Debug.Log("weCollided");
+            ShieldAchievement();
+        }      
     }
+
+    void LaserCollected()//Subing to the EventManager
+    {
+        _laserHitEnemy.Add(_laserToCollect);//We are adding to the list if the laser hits an enemy (this is for an achievement)
+        Debug.Log("WeCollectedTheLaser");
+    }
+
+    void SubtractLaserCollected()//Subing to the EventManager
+    {
+        _laserHitEnemy.Clear();//We clear the list if the player missis an enemy (this is for an achievement)
+        Debug.Log("WeRemovedTheLaser");
+    }
+
+    private void ShieldAchievement()//---Achievement Action---//
+    {
+        if (_shieldCollected.Count == 5)
+        {
+            _uiManager.ShieldAchievement();
+        }
+    }
+
 
     public void Damage()
     {

@@ -13,6 +13,7 @@ TagManager:
   - EnemyLaser
   - Asteroid
   - Bumper
+  - ResetLaserCount
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - PostProcess
   - Water
   - UI
-  - 
+  - SubUI
   - 
   - 
   - 

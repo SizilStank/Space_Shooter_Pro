@@ -14,6 +14,7 @@ public class EnemyBehavior : MonoBehaviour
     
     [SerializeField] private AudioManager _audioManager;
 
+    
 
     private void Start()
     {       
@@ -39,7 +40,8 @@ public class EnemyBehavior : MonoBehaviour
     IEnumerator EnemyFireLaser()
     {
         yield return new WaitForSeconds(1);
-        GameObject gameObject = Instantiate(_enemyLaser, transform.position, Quaternion.identity);
+        Vector3 laserPos = new Vector3(transform.position.x, transform.position.y + -0.5f,  0);
+        GameObject gameObject = Instantiate(_enemyLaser, laserPos, Quaternion.identity);
         _audioManager.EnemyShoot();
     }
 
@@ -61,6 +63,7 @@ public class EnemyBehavior : MonoBehaviour
         }
         else if (other.CompareTag("PlayerLaser"))
         {
+           
             Destroy(other.gameObject);
 
             GameObject explosion = Instantiate(_enemyExplosion, transform.position, Quaternion.identity);

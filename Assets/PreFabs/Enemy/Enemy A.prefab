@@ -122,6 +122,8 @@ MonoBehaviour:
   _enemyExplosion: {fileID: 4282152767656867292, guid: 269a3aa05f13d554f994b98e67014ee7, type: 3}
   _enemyLaser: {fileID: 2565421679195334700, guid: b25cd242a8e856d449dbd447c631d683, type: 3}
   _audioManager: {fileID: 3278301973754518880, guid: c33decf5d910ef14e8ed90b22d9a7318, type: 3}
+  _laserHitEnemy: []
+  _laserToCollect: {fileID: 1312921614107733225, guid: e514daebdfba6a44aa6dc29a7b822c7f, type: 3}
 --- !u!50 &-7371578308496832536
 Rigidbody2D:
   serializedVersion: 4

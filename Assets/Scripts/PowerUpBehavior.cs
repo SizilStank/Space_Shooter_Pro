@@ -10,6 +10,8 @@ public class PowerUpBehavior : MonoBehaviour
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private float destroyGameObejectAtYPos = -9f;
     [SerializeField] private int _powerUpID;
+
+    
     /*  _powerUpID 0 is triple shot
         _powerUpID 1 is speed bost
         _powerUpID 2 is shield
@@ -48,7 +50,7 @@ public class PowerUpBehavior : MonoBehaviour
                         player.SpeedBoostActive();
                         break;
                     case 2:
-                        player.ShieldIsActive();
+                        player.ShieldIsActive();                      
                         break;
                 }
 

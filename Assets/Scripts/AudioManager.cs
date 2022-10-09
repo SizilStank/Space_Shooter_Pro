@@ -44,5 +44,8 @@ public class AudioManager : MonoBehaviour
         _audioSource.PlayOneShot(_audioClips[3]);
     }
 
-
+    public void Achievement()
+    {
+        _audioSource.PlayOneShot(_audioClips[4]);
+    }
 }

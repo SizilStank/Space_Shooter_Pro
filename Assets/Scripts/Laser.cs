@@ -6,7 +6,8 @@ public class Laser : MonoBehaviour
 {
 
     [SerializeField] private float _laserSpeed = 1f;
-    [SerializeField] private float destroyGameObejectAtYPos = 8f;
+    [SerializeField] private float destroyGameObejectAtYPos = 6.8f;
+
 
     // Update is called once per frame
     void Update()
@@ -30,6 +31,16 @@ public class Laser : MonoBehaviour
         if (collision.CompareTag("Asteroid"))
         {
             Destroy(this.gameObject);
+        }
+
+        if (collision.CompareTag("EnemyA"))//Subing to the EventManager
+        {
+            EventManager.OnLaserCollected();
+        }
+
+        if (collision.CompareTag("ResetLaserCount"))//Subing to the EventManager
+        {
+            EventManager.OnSubtractLaserCollected();
         }
     }
 

@@ -10,18 +10,25 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private TMP_Text _scoreText;
     [SerializeField] private TMP_Text _highScore; //setting up HS
+
     [SerializeField] private Image _imageLives;
+
     [SerializeField] private GameObject _gameOverImage;
     [SerializeField] private GameObject _gameOverBoarder;
     [SerializeField] private GameObject _gamePausedImage;
     [SerializeField] private GameObject _gamePausedBoarderImage;
-    
+
+    [SerializeField] private GameObject _uiKillsOneHundred;
+    [SerializeField] private GameObject _uiShieldCollectedFive;
+
     [SerializeField] private Sprite[] _spriteLives;
+
     [SerializeField] private float _flashSpeed = 3;
 
     private bool _isGameOver;
-    private bool _isGamePaused; 
+    private bool _isGamePaused;
 
+    [SerializeField] private AudioManager _audioManager;
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private AudioClip _playButtonClick;
     [SerializeField] private AudioClip _quitButtonClick;
@@ -31,9 +38,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Button _resetHSImage;
 
 
+
     // Start is called before the first frame update
     void Start()
     {
+        _audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         _audioSource = GetComponent<AudioSource>();
         _play.onClick.AddListener(PlayOnClick);
         _quit.onClick.AddListener(QuitOnClick);
@@ -148,4 +157,29 @@ public class UIManager : MonoBehaviour
         _gamePausedBoarderImage.SetActive(false);
         _resetHSImage.gameObject.SetActive(false);
     }
+
+    IEnumerator FlashAchievement()
+    {
+        _audioManager.Achievement();
+        _uiKillsOneHundred.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        _uiKillsOneHundred.SetActive(false);
+    }
+    public void Achievements()
+    {
+        StartCoroutine(FlashAchievement());          
+    }
+
+    IEnumerator FlashShieldAchievement()
+    {
+        _audioManager.Achievement();
+        _uiShieldCollectedFive.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        _uiShieldCollectedFive.SetActive(false);
+    }
+    public void ShieldAchievement()
+    {
+        StartCoroutine(FlashShieldAchievement());       
+    }
+
 }

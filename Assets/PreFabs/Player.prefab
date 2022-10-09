@@ -303,6 +303,10 @@ MonoBehaviour:
   _uiManager: {fileID: 5697955071698962524, guid: 80dffcb39f507d54784bd490e2823311, type: 3}
   _timerStarted: 0
   _timer: 0
+  _shieldCollected: []
+  _shieldToAdd: {fileID: 5787096984372237109, guid: f8a5800cccf93e84c9ab609355a6a049, type: 3}
+  _laserHitEnemy: []
+  _laserToCollect: {fileID: 1312921614107733225, guid: e514daebdfba6a44aa6dc29a7b822c7f, type: 3}
 --- !u!82 &1972165905
 AudioSource:
   m_ObjectHideFlags: 0
