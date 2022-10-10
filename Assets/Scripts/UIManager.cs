@@ -18,6 +18,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject _gamePausedImage;
     [SerializeField] private GameObject _gamePausedBoarderImage;
 
+    [SerializeField] private GameObject _badge01, _badge02, _badge03;
+
     [SerializeField] private GameObject _uiKillsOneHundred;
     [SerializeField] private GameObject _uiShieldCollectedFive;
     [SerializeField] private GameObject _uiKillFiftyEneimesWithoutMissing;
@@ -28,6 +30,7 @@ public class UIManager : MonoBehaviour
 
     private bool _isGameOver;
     private bool _isGamePaused;
+    private bool _isBadgeActive01, _isBadgeActive02, _isBadgeActive03;
 
     [SerializeField] private AudioManager _audioManager;
     [SerializeField] private AudioSource _audioSource;
@@ -168,7 +171,17 @@ public class UIManager : MonoBehaviour
     }
     public void Achievements()
     {
-        StartCoroutine(FlashAchievement());          
+        _isBadgeActive01 = true;
+        StartCoroutine(FlashAchievement());
+
+        if (_isBadgeActive01 == true)
+        {
+            _badge01.SetActive(true);
+        }
+        else
+        {
+            _badge01.SetActive(false);
+        }
     }
 
     IEnumerator FlashShieldAchievement()
@@ -180,7 +193,17 @@ public class UIManager : MonoBehaviour
     }
     public void ShieldAchievement()
     {
-        StartCoroutine(FlashShieldAchievement());       
+        _isBadgeActive02 = true;
+        StartCoroutine(FlashShieldAchievement());     
+        
+        if (_isBadgeActive02 == true)
+        {
+            _badge02.SetActive(true);
+        }
+        else
+        {
+            _badge02.SetActive(false);
+        }
     }
 
     IEnumerator FlashFifthyKillsAchievement()
@@ -192,6 +215,16 @@ public class UIManager : MonoBehaviour
     }
     public void Killed50Achievement()
     {
+        _isBadgeActive03 = true;
         StartCoroutine(FlashFifthyKillsAchievement());
+
+        if (_isBadgeActive03 == true)
+        {
+            _badge03.SetActive(true);
+        }
+        else
+        {
+            _badge03.SetActive(false);
+        }
     }
 }

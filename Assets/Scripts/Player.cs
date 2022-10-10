@@ -107,14 +107,14 @@ public class Player : MonoBehaviour
         MouseLockandPause();
     }
 
-    private void OnEnable()
+    private void OnEnable()//Subing to the EventManager
     {
         EventManager.LaserCollected += LaserCollected;
 
         EventManager.SubtractLaserCollected += SubtractLaserCollected;
     }
 
-    private void OnDisable()
+    private void OnDisable()//Subing to the EventManager
     {
         EventManager.LaserCollected -= LaserCollected;
 

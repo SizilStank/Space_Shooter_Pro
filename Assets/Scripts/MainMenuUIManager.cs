@@ -11,6 +11,7 @@ public class MainMenuUIManager : MonoBehaviour
 
     [SerializeField] private Button _play;
     [SerializeField] private Button _exit;
+    [SerializeField] private Button _achievements;
     [SerializeField] private AudioClip _palyButtonAudio;
     [SerializeField] private AudioClip _exitButtonAudio;
     [SerializeField] private AudioSource _audioSource;
@@ -20,6 +21,7 @@ public class MainMenuUIManager : MonoBehaviour
     {
         _play.onClick.AddListener(PlayGameScene);
         _exit.onClick.AddListener(QuitandExitGame);
+        _achievements.onClick.AddListener(PlayAcievementMenu);
     }
 
 
@@ -48,6 +50,18 @@ public class MainMenuUIManager : MonoBehaviour
         UnityEditor.EditorApplication.isPlaying = false;
         #endif
         Application.Quit();
+    }
+
+    IEnumerator WaitToLoadAcievementsMenu()
+    {
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene(2);
+    }
+
+    private void PlayAcievementMenu()
+    {
+        _audioSource.PlayOneShot(_palyButtonAudio);
+        StartCoroutine(WaitToLoadAcievementsMenu());
     }
 }
 

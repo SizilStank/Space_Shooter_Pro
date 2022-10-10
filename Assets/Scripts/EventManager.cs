@@ -9,6 +9,15 @@ public class EventManager : MonoBehaviour
     public static event UnityAction LaserCollected;
     public static void OnLaserCollected() => LaserCollected?.Invoke();
 
+    /*
+        public static void OnLaserCollected() => LaserCollected?.Invoke();
+
+            is the same as writing if (LaserCollected != null)
+                                    {
+                                        OnLaserCollected();
+                                    {
+     */
+
 
     public static event UnityAction SubtractLaserCollected;
     public static void OnSubtractLaserCollected() => SubtractLaserCollected?.Invoke();
