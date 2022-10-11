@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
 
     //_______float int_______//
     [SerializeField] private float _defaultSpeed = 1f;
+    [SerializeField] private float _leftShiftSpeed = 40f;
     [SerializeField] private float _moveFromBumperSpeed = 5f;
     [SerializeField] private float _speedBoostPowerUpSpeed = 1f;
     [SerializeField] private float _speedBoostTimer = 3.5f;
@@ -18,7 +19,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float _tripleShotTimer = 3.5f;
     [SerializeField] private int _lives = 4;
     [SerializeField] private int _score;
-    //[SerializeField] private float _oldPos;
+
 
 
     //_______Audio Components_______//
@@ -44,22 +45,26 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject _playerHit1Prefab;
     [SerializeField] private GameObject _playerHit2Prefab;
     [SerializeField] private GameObject _playerHit3Prefab;
-    [SerializeField] private AudioManager _audioManager;
+    [SerializeField] private GameObject _playerExplosion;
+
+    
 
 
     //_______Booleans_______//
     private bool _canFire = true;
     private bool _isTripleShotActive;
     private bool _isSpeedBoostActive;
-   [SerializeField] private bool _isShieldActive;
+    [SerializeField] private bool _isShieldActive;
     [SerializeField] private bool _startTimer;
     private bool _isPaused;
 
 
     //_______GetComponents_______//
+    [SerializeField] private AudioManager _audioManager;
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private SpawnManager _spawnManager;
     [SerializeField] private UIManager _uiManager;
+    [SerializeField] private SpriteRenderer _shieldSpriteRenderer;
 
 
     [SerializeField] private bool _timerStarted;
@@ -71,6 +76,8 @@ public class Player : MonoBehaviour
     [SerializeField] private List<GameObject> _laserHitEnemy = new List<GameObject>();
     [SerializeField] private GameObject _laserToCollect;
 
+    [SerializeField] private List<int> _countTimesHit = new List<int>();
+    private int _intToAdd;
 
     // Start is called before the first frame update
     void Start()
@@ -86,6 +93,7 @@ public class Player : MonoBehaviour
 
         AudioSource audio = GetComponent<AudioSource>();
         Animator animation = GetComponent<Animator>();
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
 
         if (_laserPrefab == null || _spawnManager == null)
         {
@@ -135,6 +143,16 @@ public class Player : MonoBehaviour
         if (_isSpeedBoostActive == true)
         {
             transform.Translate(direction * _speedBoostPowerUpSpeed * Time.deltaTime);
+        }
+
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            transform.Translate(direction * _leftShiftSpeed * _defaultSpeed * Time.deltaTime);
+            Debug.Log("LSDown");
+        }
+        else
+        {
+            transform.Translate(direction * _defaultSpeed * Time.deltaTime);
         }
 
 
@@ -245,7 +263,7 @@ public class Player : MonoBehaviour
             Vector3 laserOffset = _laserPrefab.transform.position = new Vector3(transform.position.x, transform.position.y + 1.16f, 0);
             Instantiate(_laserPrefab, laserOffset, Quaternion.identity);
             _canFire = false;
-            StartCoroutine(LaserCooldown());
+            StartCoroutine(LaserCoolDown());
         }
         else if (Input.GetMouseButtonDown(0) && _canFire == true && _isPaused == false && _isTripleShotActive == true)
         {
@@ -253,7 +271,7 @@ public class Player : MonoBehaviour
             Vector3 laserOffset = _tripleShotPrefab.transform.position = new Vector3(transform.position.x, transform.position.y + 1.16f, 0);
             Instantiate(_tripleShotPrefab, laserOffset, Quaternion.identity);
             _canFire = false;
-            StartCoroutine(LaserCooldown());
+            StartCoroutine(LaserCoolDown());
         }
     }
 
@@ -307,7 +325,7 @@ public class Player : MonoBehaviour
     }
 
 
-    IEnumerator LaserCooldown()
+    IEnumerator LaserCoolDown()
     {
         if (_canFire == false)
         {
@@ -331,8 +349,38 @@ public class Player : MonoBehaviour
     {
         
         if (collision.CompareTag("EnemyA") || collision.CompareTag("EnemyLaser"))
-        {          
-            Damage();
+        {     
+            if (_isShieldActive == false)
+            {
+                Damage();
+            }
+
+            if (_isShieldActive == true)
+            {
+                _countTimesHit.Add(_intToAdd++);
+
+
+                if (_isShieldActive == true && _countTimesHit.Count == 1)
+                {
+                    _shieldSpriteRenderer.color = Color.red;
+                }
+                else if (_isShieldActive == true && _countTimesHit.Count == 2)
+                {
+                    _shieldSpriteRenderer.color = Color.black;
+                }
+                else
+                {
+                    _shieldSpriteRenderer.color = Color.white;
+                    _isShieldActive = false;
+                    _shieldPrefab.SetActive(false);
+                    _countTimesHit.Clear();
+                    _audioSource.Stop(); _audioSource.loop = false;
+                    _audioSource.clip = _shieldOnPlayerActive;
+                    _audioSource.PlayOneShot(_shieldIsOver, 3);
+                   // return;
+                }
+            }
+
             _audioManager.PlayerHitByEnemyLaser();
             Destroy(collision.gameObject);
 
@@ -384,15 +432,10 @@ public class Player : MonoBehaviour
 
     public void Damage()
     {
-        if(_isShieldActive == true)
-        {
-            _shieldPrefab.SetActive(false);
-            _isShieldActive = false;
-            _audioSource.Stop();_audioSource.loop = false;
-            _audioSource.clip = _shieldOnPlayerActive;
-            _audioSource.PlayOneShot(_shieldIsOver, 1);
-            return;
-        }
+       /* if(_isShieldActive == true && _countTimesHit.Count >= 2)
+        {           
+            
+        }*/
             
             _lives--;
 
@@ -403,6 +446,7 @@ public class Player : MonoBehaviour
                 Cursor.lockState = CursorLockMode.None;
                 _spawnManager.StopEnemySpawner();
                 _spawnManager.StopPowerUpSpawner();
+                Instantiate(_playerExplosion, transform.position, Quaternion.identity);
                 Destroy(this.gameObject);
             }       
     }

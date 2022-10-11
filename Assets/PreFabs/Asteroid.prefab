@@ -116,7 +116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rotationSpeed: 4.4
-  zAngle: 5.16
+  _zAngle: 8
   _audioManager: {fileID: 0}
   _astroidExplod: {fileID: 2322065354771274236, guid: 7ddc5e53d5e315541a56064301f47261, type: 3}
   _spawnManager: {fileID: 0}

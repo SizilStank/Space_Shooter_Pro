@@ -316,6 +316,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1738078998, guid: ef6c142bcd9813e4b9c2ae96d86eacc4, type: 3}
+      propertyPath: _shieldSpriteRenderer
+      value: 
+      objectReference: {fileID: 1545379173}
     - target: {fileID: 1871757107363987202, guid: ef6c142bcd9813e4b9c2ae96d86eacc4, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -360,12 +364,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6897550909341798936, guid: ef6c142bcd9813e4b9c2ae96d86eacc4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7056199026757302509, guid: ef6c142bcd9813e4b9c2ae96d86eacc4, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef6c142bcd9813e4b9c2ae96d86eacc4, type: 3}
+--- !u!212 &1545379173 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 1152996292, guid: ef6c142bcd9813e4b9c2ae96d86eacc4, type: 3}
+  m_PrefabInstance: {fileID: 990940831}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1607127732 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3278301973754518880, guid: c33decf5d910ef14e8ed90b22d9a7318, type: 3}

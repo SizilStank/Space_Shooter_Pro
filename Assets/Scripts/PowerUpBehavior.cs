@@ -6,9 +6,9 @@ public class PowerUpBehavior : MonoBehaviour
 {
 
     [SerializeField] float _speed;
-    [SerializeField] private Player player;
+    [SerializeField] private Player _player;
     [SerializeField] private AudioSource _audioSource;
-    [SerializeField] private float destroyGameObejectAtYPos = -9f;
+    [SerializeField] private float _destroyGameObejectAtYPos = -9f;
     [SerializeField] private int _powerUpID;
 
     
@@ -21,7 +21,7 @@ public class PowerUpBehavior : MonoBehaviour
     private void Start()
     {
         AudioSource audioSource = GetComponent<AudioSource>();
-        player = GameObject.Find("Player").GetComponent<Player>();
+        _player = GameObject.Find("Player").GetComponent<Player>();
     }
 
     // Update is called once per frame
@@ -29,7 +29,7 @@ public class PowerUpBehavior : MonoBehaviour
     {
         transform.Translate(Vector3.down * _speed * Time.deltaTime);
 
-        if (transform.position.y <= destroyGameObejectAtYPos)
+        if (transform.position.y <= _destroyGameObejectAtYPos)
         {
             Destroy(this.gameObject);
         }
@@ -37,20 +37,20 @@ public class PowerUpBehavior : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (player != null && _audioSource != null)
+        if (_player != null && _audioSource != null)
         {
             if (other.CompareTag("Player"))
             {
                 switch (_powerUpID)
                 {
                     case 0:
-                        player.TripleShotActive();
+                        _player.TripleShotActive();
                         break;
                     case 1:
-                        player.SpeedBoostActive();
+                        _player.SpeedBoostActive();
                         break;
                     case 2:
-                        player.ShieldIsActive();                      
+                        _player.ShieldIsActive();                      
                         break;
                 }
 

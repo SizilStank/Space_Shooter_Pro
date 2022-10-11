@@ -8,7 +8,7 @@ public class Asteroid : MonoBehaviour
 {
 
     [SerializeField] private float _rotationSpeed;
-    [SerializeField] private float zAngle;
+    [SerializeField] private float _zAngle;
     [SerializeField] private AudioManager _audioManager;
     [SerializeField] private GameObject _astroidExplod;
     [SerializeField] private SpawnManager _spawnManager;
@@ -29,7 +29,7 @@ public class Asteroid : MonoBehaviour
 
     private void AsteroidRotation()
     {
-        transform.Rotate(0, 0, zAngle * _rotationSpeed * Time.deltaTime);
+        transform.Rotate(0, 0, _zAngle * _rotationSpeed * Time.deltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

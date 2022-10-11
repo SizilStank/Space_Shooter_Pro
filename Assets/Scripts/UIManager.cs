@@ -60,8 +60,6 @@ public class UIManager : MonoBehaviour
         _gamePausedImage.SetActive(false);
         _scoreText.text = "Score: " + 0;//what is "Score"? Score is 0
         _highScore.text = "High Score " + PlayerPrefs.GetInt("HighScore", 0).ToString(); // setting up HS so we can save it
-
-
     }
 
 
