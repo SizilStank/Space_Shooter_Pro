@@ -19,6 +19,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private GameObject[] _powerUps;
     private bool _powerUpActive = true;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -68,9 +69,9 @@ public class SpawnManager : MonoBehaviour
         while (_powerUpActive)
         {
             Vector3 randomSpawnRange = new Vector3(Random.Range(-9, 9), transform.position.y, 0);
-            int randomPowerUp = Random.Range(0, 3);
-            Instantiate(_powerUps[randomPowerUp], randomSpawnRange, Quaternion.identity);            
-            yield return new WaitForSeconds(Random.Range(5, 15));
+            int randomPowerUp = Random.Range(0, 6);
+            Instantiate(_powerUps[randomPowerUp], randomSpawnRange, Quaternion.identity);
+            yield return new WaitForSeconds(Random.Range(3, 13));
         }
     }
 

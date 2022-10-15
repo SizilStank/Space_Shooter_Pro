@@ -52,10 +52,16 @@ public class PowerUpBehavior : MonoBehaviour
                     case 2:
                         _player.ShieldIsActive();                      
                         break;
+                    case 3:
+                        _player.AddAmmoToPlayer();
+                        break;
+                    case 4:
+                        _player.AddHealth();
+                        break;
+                    case 5:
+                        _player.BeamOfDeathActive();
+                        break;
                 }
-
-
-
                 Destroy(this.gameObject);
             }
         }

@@ -17,10 +17,12 @@ public class EventManager : MonoBehaviour
                                         OnLaserCollected();
                                     {
      */
-
-
     public static event UnityAction SubtractLaserCollected;
     public static void OnSubtractLaserCollected() => SubtractLaserCollected?.Invoke();
+
+
+    public static event UnityAction StartGameAudio; //the Audio Manager and the Asteroid are listining for this event
+    public static void OnStartGameAudio() => StartGameAudio?.Invoke();
 }
 
 

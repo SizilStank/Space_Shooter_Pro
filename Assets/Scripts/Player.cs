@@ -17,8 +17,12 @@ public class Player : MonoBehaviour
     [SerializeField] private float _speedBoostTimer = 3.5f;
     [SerializeField] private float _fireRate = 0.5f;
     [SerializeField] private float _tripleShotTimer = 3.5f;
-    [SerializeField] private int _lives = 4;
+    [SerializeField] private float _beamOfDeathTimer = 5f;
+    [SerializeField] private int _lives = 0;
     [SerializeField] private int _score;
+    [SerializeField] private int _countShots = 14;
+    [SerializeField] private float _thrusterPercentage = 100;
+    [SerializeField] private float _thrustMultiplyer;
 
 
 
@@ -32,6 +36,9 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioClip _speedBoostOver;
     [SerializeField] private AudioClip _shieldOnPlayerActive;
     [SerializeField] private AudioClip _shieldIsOver;
+    [SerializeField] private AudioClip _ammoColection;
+    [SerializeField] private AudioClip _healthCollection;
+    [SerializeField] private AudioClip _beamOfDeathClip;
 
 
     //_______Ainmations_______//
@@ -46,17 +53,22 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject _playerHit2Prefab;
     [SerializeField] private GameObject _playerHit3Prefab;
     [SerializeField] private GameObject _playerExplosion;
+    [SerializeField] private GameObject _ekgBlue;
+    [SerializeField] private GameObject _ekgRed;
+    [SerializeField] private GameObject _beamOfDeath;
 
     
 
 
     //_______Booleans_______//
-    private bool _canFire = true;
-    private bool _isTripleShotActive;
+    [SerializeField] private bool _canFire = true;
+    [SerializeField] private bool _isTripleShotActive;
     private bool _isSpeedBoostActive;
-    [SerializeField] private bool _isShieldActive;
-    [SerializeField] private bool _startTimer;
+    private bool _isShieldActive;
+    [SerializeField] private bool _isBeamOfDeathActive;
+    private bool _startTimer;
     private bool _isPaused;
+    private bool _thrusterActive;
 
 
     //_______GetComponents_______//
@@ -65,6 +77,8 @@ public class Player : MonoBehaviour
     [SerializeField] private SpawnManager _spawnManager;
     [SerializeField] private UIManager _uiManager;
     [SerializeField] private SpriteRenderer _shieldSpriteRenderer;
+    [SerializeField] private LaserSlider _laserSlider;
+    [SerializeField] private Thruster _thruster;
 
 
     [SerializeField] private bool _timerStarted;
@@ -77,14 +91,17 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject _laserToCollect;
 
     [SerializeField] private List<int> _countTimesHit = new List<int>();
-    private int _intToAdd;
+    private int _countTimesHitAddToList;
+
+
 
     // Start is called before the first frame update
     void Start()
     {
 
         transform.position = new Vector3(0, 0, 0);
-         
+
+        _lives = 4;
 
         _shieldPrefab.SetActive(false);
         _playerHit1Prefab.SetActive(false);
@@ -94,6 +111,7 @@ public class Player : MonoBehaviour
         AudioSource audio = GetComponent<AudioSource>();
         Animator animation = GetComponent<Animator>();
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        
 
         if (_laserPrefab == null || _spawnManager == null)
         {
@@ -103,6 +121,8 @@ public class Player : MonoBehaviour
         _spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
         _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
         _audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        _laserSlider = GameObject.Find("LaserSlider").GetComponent<LaserSlider>();
+        _thruster = GameObject.Find("Thruster").GetComponent<Thruster>();
     }
 
     // Update is called once per frame
@@ -113,6 +133,8 @@ public class Player : MonoBehaviour
         LaserInstantiate();
         MouseAmins();
         MouseLockandPause();
+
+        
     }
 
     private void OnEnable()//Subing to the EventManager
@@ -147,12 +169,17 @@ public class Player : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            transform.Translate(direction * _leftShiftSpeed * _defaultSpeed * Time.deltaTime);
-            Debug.Log("LSDown");
-        }
-        else
-        {
-            transform.Translate(direction * _defaultSpeed * Time.deltaTime);
+            _thruster.SetThruster(_thrusterPercentage);
+            if (_thrusterPercentage >= 0)
+            {
+                _thruster.SetThruster(_thrusterPercentage -= 0.2f);
+                transform.Translate(direction * _leftShiftSpeed * _defaultSpeed * Time.deltaTime);
+                Debug.Log("LSDown");
+            }
+            else
+            {
+                return;
+            }   
         }
 
 
@@ -255,23 +282,52 @@ public class Player : MonoBehaviour
         }
     }
 
+
+
     void LaserInstantiate()
     {
-        if (Input.GetMouseButtonDown(0) && _canFire == true && _isPaused == false && _isTripleShotActive == false)
+        if (Input.GetMouseButtonDown(0) && _canFire == true && _isPaused == false)
         {
-            _audioSource.PlayOneShot(_fireDefaultLaser);
-            Vector3 laserOffset = _laserPrefab.transform.position = new Vector3(transform.position.x, transform.position.y + 1.16f, 0);
-            Instantiate(_laserPrefab, laserOffset, Quaternion.identity);
-            _canFire = false;
-            StartCoroutine(LaserCoolDown());
+            if (_isTripleShotActive == false && _countShots >= 0)
+            {
+                _laserSlider.SetShots(_countShots);
+                _countShots--;
+
+                _audioSource.PlayOneShot(_fireDefaultLaser);
+
+                Vector3 laserOffset = _laserPrefab.transform.position = new Vector3(transform.position.x, transform.position.y + 1.16f, 0);
+                Instantiate(_laserPrefab, laserOffset, Quaternion.identity);
+
+                _canFire = false;
+
+                StartCoroutine(LaserCoolDown());
+            }
+            else if (Input.GetMouseButtonDown(0) && _canFire == true && _isPaused == false && _isTripleShotActive == true) //&& _countShots >= 0)
+            {
+                _isTripleShotActive = true;
+                //_laserSlider.SetShots(_countShots);
+                //_countShots--;
+                _audioSource.PlayOneShot(_tripleShotShooting);
+
+                Vector3 laserOffset = _tripleShotPrefab.transform.position = new Vector3(transform.position.x, transform.position.y + 1.16f, 0);
+                Instantiate(_tripleShotPrefab, laserOffset, Quaternion.identity);
+
+                _canFire = false;
+
+                StartCoroutine(LaserCoolDown());
+
+            }
+
         }
-        else if (Input.GetMouseButtonDown(0) && _canFire == true && _isPaused == false && _isTripleShotActive == true)
+        
+    }
+
+    IEnumerator LaserCoolDown()
+    {
+        if (_canFire == false)
         {
-            _audioSource.PlayOneShot(_tripleShotShooting);
-            Vector3 laserOffset = _tripleShotPrefab.transform.position = new Vector3(transform.position.x, transform.position.y + 1.16f, 0);
-            Instantiate(_tripleShotPrefab, laserOffset, Quaternion.identity);
-            _canFire = false;
-            StartCoroutine(LaserCoolDown());
+            yield return new WaitForSeconds(_fireRate);
+            _canFire = true;
         }
     }
 
@@ -293,6 +349,17 @@ public class Player : MonoBehaviour
             _isTripleShotActive = false;
 
         }
+    }
+
+    public void AddAmmoToPlayer()
+    {
+        if (_countShots != 14)
+        {
+            _countShots = 15;
+        }
+
+        _laserSlider.SetShots(_countShots);
+        _audioSource.PlayOneShot(_ammoColection, 1);
     }
 
     public void SpeedBoostActive()
@@ -324,16 +391,6 @@ public class Player : MonoBehaviour
         _audioSource.Play();
     }
 
-
-    IEnumerator LaserCoolDown()
-    {
-        if (_canFire == false)
-        {
-            yield return new WaitForSeconds(_fireRate);
-            _canFire = true;
-        }
-    }
-
     public void AddPointToScore(int points)
     {
         _score += points;
@@ -357,14 +414,14 @@ public class Player : MonoBehaviour
 
             if (_isShieldActive == true)
             {
-                _countTimesHit.Add(_intToAdd++);
+                _countTimesHit.Add(_countTimesHitAddToList++);
 
 
-                if (_isShieldActive == true && _countTimesHit.Count == 1)
+                if (_countTimesHit.Count == 1)
                 {
                     _shieldSpriteRenderer.color = Color.red;
                 }
-                else if (_isShieldActive == true && _countTimesHit.Count == 2)
+                else if (_countTimesHit.Count == 2)
                 {
                     _shieldSpriteRenderer.color = Color.black;
                 }
@@ -398,27 +455,23 @@ public class Player : MonoBehaviour
         if (collision.CompareTag("PowerUp"))//---Achievement Action---//
         {
             _shieldCollected.Add(_shieldToAdd);
-            Debug.Log("weCollided");
             ShieldAchievement();
-        }      
+        }          
     }
 
     void LaserCollected()//Subing to the EventManager
     {
         _laserHitEnemy.Add(_laserToCollect);//We are adding to the list if the laser hits an enemy (this is for an achievement)
-        Debug.Log("WeCollectedTheLaser");
 
         if (_laserHitEnemy.Count == 50)
         {
             _uiManager.Killed50Achievement();
-            Debug.Log("Achievement");
         }
     }
 
     void SubtractLaserCollected()//Subing to the EventManager
     {
         _laserHitEnemy.Clear();//We clear the list if the player missis an enemy (this is for an achievement)
-        Debug.Log("WeRemovedTheLaser");
     }
 
     private void ShieldAchievement()//---Achievement Action---//
@@ -429,13 +482,41 @@ public class Player : MonoBehaviour
         }
     }
 
+    IEnumerator BeamOfDeathTimerActive()
+    {
+        if (_isBeamOfDeathActive == true)
+        {
+            yield return new WaitForSeconds(_beamOfDeathTimer);
+            _isBeamOfDeathActive = false;
+            _beamOfDeath.SetActive(false);
+        }
+        
+    }
+
+    public void BeamOfDeathActive()
+    {
+        _isBeamOfDeathActive = true;
+        _beamOfDeath.SetActive(true);
+        _audioSource.loop = true;
+        _audioSource.clip = _beamOfDeathClip;
+        _audioSource.Play();
+
+        StartCoroutine(BeamOfDeathTimerActive());
+    }
+
 
     public void Damage()
     {
-       /* if(_isShieldActive == true && _countTimesHit.Count >= 2)
-        {           
-            
-        }*/
+        if (_lives <= 3)
+        {
+            _ekgBlue.SetActive(false);
+            _ekgRed.SetActive(true);
+        }
+        else
+        {
+            _ekgBlue.SetActive(true);
+            _ekgRed.SetActive(false);
+        }
             
             _lives--;
 
@@ -449,6 +530,16 @@ public class Player : MonoBehaviour
                 Instantiate(_playerExplosion, transform.position, Quaternion.identity);
                 Destroy(this.gameObject);
             }       
+    }
+
+    public void AddHealth()
+    {
+        _audioSource.PlayOneShot(_healthCollection);
+        if (_lives != 4)
+        {
+            _lives++;
+            _uiManager.UpdateLives(_lives);
+        }
     }
 
 }

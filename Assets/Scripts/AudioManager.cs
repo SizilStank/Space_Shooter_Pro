@@ -18,6 +18,23 @@ public class AudioManager : MonoBehaviour
         
     }
 
+    private void OnEnable()
+    {
+        EventManager.StartGameAudio += StartGameAudio;
+    }
+
+    private void OnDisable()
+    {
+        EventManager.StartGameAudio -= StartGameAudio;
+    }
+
+    private void StartGameAudio()
+    {
+        _audioSource.loop = true;
+        _audioSource.clip = _audioClips[5];
+        _audioSource.Play();
+    }
+
     public void PlayEnemyExplosionSound()
     {
         //_audioSource.clip = _audioClips[0];

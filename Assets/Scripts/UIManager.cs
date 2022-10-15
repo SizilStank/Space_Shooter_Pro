@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 public class UIManager : MonoBehaviour
 {
@@ -106,7 +107,15 @@ public class UIManager : MonoBehaviour
 
     public void UpdateLives(int currentLives)//Player is calling this
     {
-        _imageLives.sprite = _spriteLives[currentLives];
+        
+        if (currentLives != 4)
+        {
+            _imageLives.sprite = _spriteLives[currentLives];
+        }
+        else if (currentLives == 4)
+        {
+            _imageLives.sprite = _spriteLives[currentLives];
+        }
 
         if(currentLives == 0)
         {
@@ -117,6 +126,7 @@ public class UIManager : MonoBehaviour
             _gameOverBoarder.SetActive(true);
             StartCoroutine(MakingGameOverFlash());
         }
+
     }
 
     IEnumerator MakingGameOverFlash()

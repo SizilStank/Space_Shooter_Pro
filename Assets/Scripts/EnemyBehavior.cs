@@ -77,5 +77,19 @@ public class EnemyBehavior : MonoBehaviour
             Destroy(explosion, _enemyExplosionTime);
             Destroy(this.gameObject);
         }
+        else if (other.CompareTag("BeamOfDeath"))
+        {
+
+            GameObject explosion = Instantiate(_enemyExplosion, transform.position, Quaternion.identity);
+
+            if (_player != null)
+            {
+                _player.AddPointToScore(10);
+            }
+
+            _audioManager.PlayEnemyExplosionSound();
+            Destroy(explosion, _enemyExplosionTime);
+            Destroy(this.gameObject);
+        }
     }
 }

@@ -35,12 +35,12 @@ public class Laser : MonoBehaviour
 
         if (collision.CompareTag("EnemyA"))//Subing to the EventManager
         {
-            EventManager.OnLaserCollected();
+            EventManager.OnLaserCollected();//this is the event that the event manager is listining for
         }
 
         if (collision.CompareTag("ResetLaserCount"))//Subing to the EventManager
         {
-            EventManager.OnSubtractLaserCollected();
+            EventManager.OnSubtractLaserCollected();//this is the event that the event manager is listining for
         }
     }
 

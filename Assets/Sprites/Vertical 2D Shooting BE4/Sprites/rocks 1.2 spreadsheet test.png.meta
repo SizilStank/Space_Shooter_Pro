@@ -133,11 +133,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 348
-        width: 1728
-        height: 1608
+        y: 1725
+        width: 577
+        height: 191
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
       - - {x: -862, y: 561}
@@ -296,7 +296,7 @@ TextureImporter:
         width: 305
         height: 286
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 5, w: 3}
       outline: []
       physicsShape: []
@@ -317,7 +317,7 @@ TextureImporter:
         width: 157
         height: 286
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -325,6 +325,48 @@ TextureImporter:
       bones: []
       spriteID: 8bae8f328458ebe459d0f280b2b277f4
       internalID: 635743530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rocks 1.2 spreadsheet test_9
+      rect:
+        serializedVersion: 2
+        x: 610
+        y: 1724
+        width: 159
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a0829a585387934f8ed6cedce7ccedb
+      internalID: 873211153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rocks 1.2 spreadsheet test_10
+      rect:
+        serializedVersion: 2
+        x: 1158
+        y: 631
+        width: 561
+        height: 233
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8dbf71757b958154b9d8552f73777c09
+      internalID: 1331940111
       vertices: []
       indices: 
       edges: []
@@ -348,6 +390,8 @@ TextureImporter:
       rocks 1.2 spreadsheet test_3: 290439738
       rocks 1.2 spreadsheet test_5: -964997604
       rocks 1.2 spreadsheet test_1: 820918027
+      rocks 1.2 spreadsheet test_9: 873211153
+      rocks 1.2 spreadsheet test_10: 1331940111
       rocks 1.2 spreadsheet test_0: 1662038596
   spritePackingTag: 
   pSDRemoveMatte: 0

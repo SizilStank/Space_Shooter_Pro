@@ -38,6 +38,7 @@ public class Asteroid : MonoBehaviour
 
         if (collision.CompareTag("PlayerLaser"))
         {
+            EventManager.OnStartGameAudio();
             _audioManager.AstroidDestroyed();
             GameObject astroidExplod = Instantiate(_astroidExplod, transform.position, Quaternion.identity);
             _spawnManager.StartGameAfterAstroidDestroy();
