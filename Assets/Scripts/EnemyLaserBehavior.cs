@@ -20,7 +20,7 @@ public class EnemyLaserBehavior : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("BeamOfDeath"))
+        if (collision.CompareTag("BallsOfDeath"))
         {
             Destroy(this.gameObject);
         }

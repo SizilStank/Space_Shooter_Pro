@@ -11,7 +11,10 @@ GameObject:
   - component: {fileID: 1780173102879063516}
   - component: {fileID: 1780173102879063517}
   - component: {fileID: 1780173102879063518}
-  - component: {fileID: 3149661780947738470}
+  - component: {fileID: 1262742579373692877}
+  - component: {fileID: 8493901892512776671}
+  - component: {fileID: 560859927294481112}
+  - component: {fileID: 9029559683965890538}
   m_Layer: 0
   m_Name: UFO_0
   m_TagString: Player
@@ -106,7 +109,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &3149661780947738470
+--- !u!114 &1262742579373692877
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -119,13 +122,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _defaultSpeed: 30
+  _leftShiftSpeed: 5
   _moveFromBumperSpeed: 5
   _speedBoostPowerUpSpeed: 60
   _speedBoostTimer: 6.5
   _fireRate: 0.3
   _tripleShotTimer: 5
-  _lives: 4
+  _beamOfDeathTimer: 5
+  _lives: 0
   _score: 0
+  _countShots: 14
+  _thrusterPercentage: 100
+  _thrustMultiplyer: 2
   _fireDefaultLaser: {fileID: 8300000, guid: 16c25250151e04a37b489a3f056c8314, type: 3}
   _tripleShotShooting: {fileID: 8300000, guid: aeff979cceb2c4e8598eeb0500112a13, type: 3}
   _tripleShotOver: {fileID: 8300000, guid: 16458abe8d5a64f7a8082f0de46d643f, type: 3}
@@ -135,22 +143,167 @@ MonoBehaviour:
   _speedBoostOver: {fileID: 8300000, guid: dc9f34f8f8083485187956f1e0a5df2f, type: 3}
   _shieldOnPlayerActive: {fileID: 8300000, guid: fadc7d32ef9d6d24ba7623f613804931, type: 3}
   _shieldIsOver: {fileID: 8300000, guid: 8e4b07dccc579334795ef0363886f6ad, type: 3}
+  _ammoColection: {fileID: 8300000, guid: 552e1ee9826bb42fe83505a9defb673d, type: 3}
+  _healthCollection: {fileID: 8300000, guid: bee4874a94de90b4d838cafa4050c442, type: 3}
+  _ballsOfDeathClip: {fileID: 0}
   _anim: {fileID: 8963589937605703471, guid: ef6c142bcd9813e4b9c2ae96d86eacc4, type: 3}
   _laserPrefab: {fileID: 1312921614107733225, guid: e514daebdfba6a44aa6dc29a7b822c7f, type: 3}
   _tripleShotPrefab: {fileID: 1184520926179966299, guid: 259de4f00fab9f84ebdc0ab159801718, type: 3}
-  _shieldPrefab: {fileID: 6113685999040018744, guid: ef6c142bcd9813e4b9c2ae96d86eacc4, type: 3}
+  _shieldPrefab: {fileID: 1152996290, guid: ef6c142bcd9813e4b9c2ae96d86eacc4, type: 3}
   _playerHit1Prefab: {fileID: 7122356106169941506, guid: ef6c142bcd9813e4b9c2ae96d86eacc4, type: 3}
   _playerHit2Prefab: {fileID: 7273571708384338238, guid: ef6c142bcd9813e4b9c2ae96d86eacc4, type: 3}
   _playerHit3Prefab: {fileID: 8804309278959163644, guid: ef6c142bcd9813e4b9c2ae96d86eacc4, type: 3}
+  _playerExplosion: {fileID: 7869020759670746073, guid: 0c657dd98fcaa0a47b9ade34d32a0813, type: 3}
+  _ekgBlue: {fileID: 0}
+  _ekgRed: {fileID: 0}
+  _ballsOfDeath: {fileID: 1756985536680039616, guid: ef6c142bcd9813e4b9c2ae96d86eacc4, type: 3}
+  _canFire: 1
+  _isTripleShotActive: 0
+  _isBallsOfDeathActive: 0
   _audioManager: {fileID: 3278301973754518880, guid: c33decf5d910ef14e8ed90b22d9a7318, type: 3}
-  _isShieldActive: 0
-  _startTimer: 0
   _audioSource: {fileID: 1972165905, guid: ef6c142bcd9813e4b9c2ae96d86eacc4, type: 3}
   _spawnManager: {fileID: 1380212368323552424, guid: 7538121e742593f4caf6889a18731dea, type: 3}
   _uiManager: {fileID: 5697955071698962524, guid: 80dffcb39f507d54784bd490e2823311, type: 3}
+  _shieldSpriteRenderer: {fileID: 1152996292, guid: ef6c142bcd9813e4b9c2ae96d86eacc4, type: 3}
+  _laserSlider: {fileID: 0}
+  _thruster: {fileID: 0}
   _timerStarted: 0
   _timer: 0
   _shieldCollected: []
   _shieldToAdd: {fileID: 5787096984372237109, guid: f8a5800cccf93e84c9ab609355a6a049, type: 3}
   _laserHitEnemy: []
   _laserToCollect: {fileID: 1312921614107733225, guid: e514daebdfba6a44aa6dc29a7b822c7f, type: 3}
+  _countTimesHit: 
+--- !u!50 &8493901892512776671
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1780173102879063519}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!58 &560859927294481112
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1780173102879063519}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.40625
+--- !u!82 &9029559683965890538
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1780173102879063519}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

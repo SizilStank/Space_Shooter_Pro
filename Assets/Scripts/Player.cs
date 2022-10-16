@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioClip _shieldIsOver;
     [SerializeField] private AudioClip _ammoColection;
     [SerializeField] private AudioClip _healthCollection;
-    [SerializeField] private AudioClip _beamOfDeathClip;
+    [SerializeField] private AudioClip _ballsOfDeathClip;
 
 
     //_______Ainmations_______//
@@ -55,7 +55,7 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject _playerExplosion;
     [SerializeField] private GameObject _ekgBlue;
     [SerializeField] private GameObject _ekgRed;
-    [SerializeField] private GameObject _beamOfDeath;
+    [SerializeField] private GameObject _ballsOfDeath;
 
     
 
@@ -65,7 +65,7 @@ public class Player : MonoBehaviour
     [SerializeField] private bool _isTripleShotActive;
     private bool _isSpeedBoostActive;
     private bool _isShieldActive;
-    [SerializeField] private bool _isBeamOfDeathActive;
+    [SerializeField] private bool _isBallsOfDeathActive;
     private bool _startTimer;
     private bool _isPaused;
     private bool _thrusterActive;
@@ -107,6 +107,7 @@ public class Player : MonoBehaviour
         _playerHit1Prefab.SetActive(false);
         _playerHit2Prefab.SetActive(false);
         _playerHit3Prefab.SetActive(false);
+        _ekgRed.SetActive(false);
 
         AudioSource audio = GetComponent<AudioSource>();
         Animator animation = GetComponent<Animator>();
@@ -484,21 +485,24 @@ public class Player : MonoBehaviour
 
     IEnumerator BeamOfDeathTimerActive()
     {
-        if (_isBeamOfDeathActive == true)
+        if (_isBallsOfDeathActive == true)
         {
             yield return new WaitForSeconds(_beamOfDeathTimer);
-            _isBeamOfDeathActive = false;
-            _beamOfDeath.SetActive(false);
+            _isBallsOfDeathActive = false;
+            _ballsOfDeath.SetActive(false);
+            _audioSource.loop = false;
+            _audioSource.clip = _ballsOfDeathClip;
+            _audioSource.Stop();
         }
         
     }
 
     public void BeamOfDeathActive()
     {
-        _isBeamOfDeathActive = true;
-        _beamOfDeath.SetActive(true);
+        _isBallsOfDeathActive = true;
+        _ballsOfDeath.SetActive(true);
         _audioSource.loop = true;
-        _audioSource.clip = _beamOfDeathClip;
+        _audioSource.clip = _ballsOfDeathClip;
         _audioSource.Play();
 
         StartCoroutine(BeamOfDeathTimerActive());

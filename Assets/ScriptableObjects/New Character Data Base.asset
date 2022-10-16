@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55dcc742e4f06e84db279d0121c4f9f5, type: 3}
+  m_Name: New Character Data Base
+  m_EditorClassIdentifier: 
+  characterSelect:
+  - charSprite: {fileID: -2311659948842064771, guid: 6520dda4a70dfbf40a55b7af39ecda4e, type: 3}
+    charName: Char 1
+    gameObjectPrefab: {fileID: 8637521662089215331, guid: 3c3788e90e0650645ad1caed944f0636, type: 3}
+  - charSprite: {fileID: 1003154404, guid: 8a9619cb99f3f3d428cc8252b3f47886, type: 3}
+    charName: Char 2
+    gameObjectPrefab: {fileID: 7473031799393434298, guid: 886c6c2eb673cbe4da8c50bbb08fa628, type: 3}
+  - charSprite: {fileID: -1523564562, guid: 7a22612e07f2a2840ac480892eaa8103, type: 3}
+    charName: Char 3
+    gameObjectPrefab: {fileID: 5240942066384436230, guid: f0a5e1c592056c045b4c4dd1f884ce0b, type: 3}
+  - charSprite: {fileID: 442464843, guid: 61e32f1aec124ab4dad63741904ebe83, type: 3}
+    charName: Char 4
+    gameObjectPrefab: {fileID: 4501484828431435944, guid: 2bc629795baa28c4e9448f184c61c104, type: 3}
+  - charSprite: {fileID: 1173488698, guid: ea43ef06791e84a48b65dcf564d06b42, type: 3}
+    charName: Char 5
+    gameObjectPrefab: {fileID: 7669140359693401561, guid: ceba953bddaa5cf40b5d4188b1935dc5, type: 3}
+  - charSprite: {fileID: 74316438, guid: bc09ef3a5e6a361489b7c021c65f3abe, type: 3}
+    charName: Char 6
+    gameObjectPrefab: {fileID: 306396489667716592, guid: 673e557e10b60d24e89f68ec2634486e, type: 3}
+  - charSprite: {fileID: -1060551731, guid: 1cd925e594cbe1c428221e779b8061ee, type: 3}
+    charName: Char 7
+    gameObjectPrefab: {fileID: 8872086947542395468, guid: ef6d23354e473c64fb01a9b2279eab76, type: 3}
+  - charSprite: {fileID: 300582985, guid: e1bbed7f94bacec4a9c7112f4e41aaa2, type: 3}
+    charName: Char 8
+    gameObjectPrefab: {fileID: 1780173102879063519, guid: 08df0a182dcb23c46af0d422cc87dcbf, type: 3}

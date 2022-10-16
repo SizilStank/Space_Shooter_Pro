@@ -20,12 +20,12 @@ public class AudioManager : MonoBehaviour
 
     private void OnEnable()
     {
-        EventManager.StartGameAudio += StartGameAudio;
+        EventManager.StartGameAudio += StartGameAudio;//Is triggered when the player destroys the Asteroid
     }
 
     private void OnDisable()
     {
-        EventManager.StartGameAudio -= StartGameAudio;
+        EventManager.StartGameAudio -= StartGameAudio;//Is triggered when the player destroys the Asteroid
     }
 
     private void StartGameAudio()
