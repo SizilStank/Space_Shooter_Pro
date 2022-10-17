@@ -46,7 +46,7 @@ public class CharacterSelection : MonoBehaviour
 	{
 		
 		PlayerPrefs.SetInt("selectedCharacter", selectedAnimator);
-		SceneManager.LoadScene(1, LoadSceneMode.Single);
+		SceneManager.LoadScene(2, LoadSceneMode.Single);
 	}
 
 	public void ClearPlayerSelection()

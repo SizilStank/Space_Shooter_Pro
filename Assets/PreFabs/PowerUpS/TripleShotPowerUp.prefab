@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 8970415479087487708}
   m_Layer: 0
   m_Name: TripleShotPowerUp
-  m_TagString: Untagged
+  m_TagString: TrippleShotReset
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -102,9 +102,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 7
-  player: {fileID: 1738078998, guid: ef6c142bcd9813e4b9c2ae96d86eacc4, type: 3}
+  _player: {fileID: 0}
   _audioSource: {fileID: 5857578298055873550, guid: eec349a95195381408b59286d66408aa, type: 3}
-  destroyGameObejectAtYPos: -9
+  _destroyGameObejectAtYPos: -9
   _powerUpID: 0
 --- !u!82 &175921790548797854
 AudioSource:

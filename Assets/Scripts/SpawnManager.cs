@@ -8,17 +8,20 @@ public class SpawnManager : MonoBehaviour
 
     //__________BasicEnemyType__________//
     [SerializeField] private GameObject _basicEnemyPrefab;
-    [SerializeField] private float _enemySpawnTimer = 1f;
     [SerializeField] private GameObject _enemySpawnerContainer;
     [SerializeField] private Vector3 _initializeSpawmManagerPos = new Vector3(0, 10, 0);
 
+    [SerializeField] private float _enemySpawnTimer = 1f;
 
     private bool _stopSpawn;
 
     //__________PowerUp__________//
     [SerializeField] private GameObject[] _powerUps;
+    [SerializeField] private GameObject _ammoDrop;
     private bool _powerUpActive = true;
 
+
+    [SerializeField] private Player _player;
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +34,7 @@ public class SpawnManager : MonoBehaviour
             Debug.LogError("GAME OBJECT is NULL!");
         }
 
-        
+        _player = GameObject.Find("Player").GetComponent<Player>();
 
     }
 
@@ -71,10 +74,23 @@ public class SpawnManager : MonoBehaviour
             Vector3 randomSpawnRange = new Vector3(Random.Range(-9, 9), transform.position.y, 0);
             int randomPowerUp = Random.Range(0, 6);
             Instantiate(_powerUps[randomPowerUp], randomSpawnRange, Quaternion.identity);
-            yield return new WaitForSeconds(Random.Range(3, 13));
+            yield return new WaitForSeconds(Random.Range(1, 10));
         }
     }
 
+    IEnumerator WaitToDropAmmo()
+    {
+        yield return new WaitForSeconds(3);
+        Debug.Log("AmmoDROP!!!");
+        Vector3 randomPos = new Vector3(Random.Range(-9, 9), transform.position.y, 0);
+        GameObject newAmmoDrop = Instantiate(_ammoDrop, randomPos, Quaternion.identity);
+        newAmmoDrop.transform.parent = _enemySpawnerContainer.transform;
+    }
+
+    public void SpwanAmmoPowerUp()
+    {
+        StartCoroutine(WaitToDropAmmo());
+    }
 
     public void StopPowerUpSpawner()
     {

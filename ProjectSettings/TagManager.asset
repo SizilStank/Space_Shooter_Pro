@@ -17,6 +17,7 @@ TagManager:
   - HealthPowerUp
   - BeamOfDeath
   - BallsOfDeath
+  - TrippleShotReset
   layers:
   - Default
   - TransparentFX
@@ -28,8 +29,8 @@ TagManager:
   - BeamOfDeath
   - 
   - 
-  - 
-  - 
+  - RedEKG
+  - BlueEKG
   - 
   - 
   - 

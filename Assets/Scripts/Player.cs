@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
     [SerializeField] private int _lives = 0;
     [SerializeField] private int _score;
     [SerializeField] private int _countShots = 14;
-    [SerializeField] private float _thrusterPercentage = 100;
+    [SerializeField] private float _thrusterPercentage = 100f;
     [SerializeField] private float _thrustMultiplyer;
 
 
@@ -39,6 +39,7 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioClip _ammoColection;
     [SerializeField] private AudioClip _healthCollection;
     [SerializeField] private AudioClip _ballsOfDeathClip;
+    [SerializeField] private AudioClip _ballsOfDeathOver;
 
 
     //_______Ainmations_______//
@@ -91,7 +92,7 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject _laserToCollect;
 
     [SerializeField] private List<int> _countTimesHit = new List<int>();
-    private int _countTimesHitAddToList;
+    [SerializeField] private int _countTimesHitAddToList;
 
 
 
@@ -104,15 +105,14 @@ public class Player : MonoBehaviour
         _lives = 4;
 
         _shieldPrefab.SetActive(false);
-        _playerHit1Prefab.SetActive(false);
+        /*_playerHit1Prefab.SetActive(false);
         _playerHit2Prefab.SetActive(false);
-        _playerHit3Prefab.SetActive(false);
-        _ekgRed.SetActive(false);
+        _playerHit3Prefab.SetActive(false);*/
 
-        AudioSource audio = GetComponent<AudioSource>();
-        Animator animation = GetComponent<Animator>();
-        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-        
+        //AudioSource audio = GetComponent<AudioSource>();
+        //Animator animation = GetComponent<Animator>();
+        //SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+
 
         if (_laserPrefab == null || _spawnManager == null)
         {
@@ -134,8 +134,8 @@ public class Player : MonoBehaviour
         LaserInstantiate();
         MouseAmins();
         MouseLockandPause();
-
-        
+        CheckLivesForEKG();
+        CheckForHealthForPlayerHitPrefab();
     }
 
     private void OnEnable()//Subing to the EventManager
@@ -283,8 +283,6 @@ public class Player : MonoBehaviour
         }
     }
 
-
-
     void LaserInstantiate()
     {
         if (Input.GetMouseButtonDown(0) && _canFire == true && _isPaused == false)
@@ -293,7 +291,7 @@ public class Player : MonoBehaviour
             {
                 _laserSlider.SetShots(_countShots);
                 _countShots--;
-
+                SpawnAmmo();
                 _audioSource.PlayOneShot(_fireDefaultLaser);
 
                 Vector3 laserOffset = _laserPrefab.transform.position = new Vector3(transform.position.x, transform.position.y + 1.16f, 0);
@@ -337,9 +335,9 @@ public class Player : MonoBehaviour
         _isTripleShotActive = true;
         _audioSource.PlayOneShot(_powerUpCollectedAudioClip);
         _audioSource.PlayOneShot(_tripleShotLoad);
+
         StartCoroutine(TripleShotActiveWithTimer());
     }
-
 
     IEnumerator TripleShotActiveWithTimer()
     {
@@ -417,8 +415,11 @@ public class Player : MonoBehaviour
             {
                 _countTimesHit.Add(_countTimesHitAddToList++);
 
-
-                if (_countTimesHit.Count == 1)
+                if (_countTimesHit.Count == 0)
+                {
+                    _shieldSpriteRenderer.color = Color.white;
+                }
+                else if (_countTimesHit.Count == 1)
                 {
                     _shieldSpriteRenderer.color = Color.red;
                 }
@@ -428,36 +429,64 @@ public class Player : MonoBehaviour
                 }
                 else
                 {
-                    _shieldSpriteRenderer.color = Color.white;
                     _isShieldActive = false;
-                    _shieldPrefab.SetActive(false);
+                }
+
+                if (_isShieldActive == false)
+                {
                     _countTimesHit.Clear();
+                    _countTimesHitAddToList = 0;
+                    _shieldSpriteRenderer.color = Color.white;
+                    _shieldPrefab.SetActive(false);
                     _audioSource.Stop(); _audioSource.loop = false;
                     _audioSource.clip = _shieldOnPlayerActive;
                     _audioSource.PlayOneShot(_shieldIsOver, 3);
-                   // return;
                 }
             }
 
             _audioManager.PlayerHitByEnemyLaser();
             Destroy(collision.gameObject);
-
-            switch (_lives)
-            {
-                case 1: _playerHit1Prefab.SetActive(true);
-                    break;
-                case 2: _playerHit2Prefab.SetActive(true);
-                    break;
-                case 3: _playerHit3Prefab.SetActive(true);
-                    break;
-            }
+            
         }
 
         if (collision.CompareTag("PowerUp"))//---Achievement Action---//
         {
+
+            if (_isShieldActive == true)
+            {
+                _shieldSpriteRenderer.color = Color.white;
+                _countTimesHitAddToList = 0;
+                _countTimesHit.Clear();
+            }
+            
             _shieldCollected.Add(_shieldToAdd);
             ShieldAchievement();
         }          
+    }
+
+    private void CheckForHealthForPlayerHitPrefab()
+    {
+        if (_lives == 4)
+        {
+            _playerHit1Prefab.SetActive(false);
+            _playerHit2Prefab.SetActive(false);
+            _playerHit3Prefab.SetActive(false);
+        }
+        else if (_lives == 3)
+        {
+            _playerHit1Prefab.SetActive(true);
+            _playerHit2Prefab.SetActive(false);
+            _playerHit3Prefab.SetActive(false);
+        }
+        else if (_lives == 2)
+        {
+            _playerHit2Prefab.SetActive(true);
+            _playerHit3Prefab.SetActive(false);
+        }
+        else if (_lives == 1)
+        {
+            _playerHit3Prefab.SetActive(true);
+        }
     }
 
     void LaserCollected()//Subing to the EventManager
@@ -492,7 +521,7 @@ public class Player : MonoBehaviour
             _ballsOfDeath.SetActive(false);
             _audioSource.loop = false;
             _audioSource.clip = _ballsOfDeathClip;
-            _audioSource.Stop();
+            _audioSource.PlayOneShot(_ballsOfDeathOver);
         }
         
     }
@@ -508,20 +537,24 @@ public class Player : MonoBehaviour
         StartCoroutine(BeamOfDeathTimerActive());
     }
 
+    private void CheckLivesForEKG()
+    {
+        if (_lives >= 3)
+        {
+            _ekgBlue.GetComponent<SpriteRenderer>().sortingOrder = 11;
+            _ekgRed.GetComponent<SpriteRenderer>().sortingOrder = 10;
+        }
+        if (_lives <= 2)
+        {
+            _ekgBlue.GetComponent<SpriteRenderer>().sortingOrder = 10;
+            _ekgRed.GetComponent<SpriteRenderer>().sortingOrder = 11;
+        }
+        
+    }
 
     public void Damage()
     {
-        if (_lives <= 3)
-        {
-            _ekgBlue.SetActive(false);
-            _ekgRed.SetActive(true);
-        }
-        else
-        {
-            _ekgBlue.SetActive(true);
-            _ekgRed.SetActive(false);
-        }
-            
+             
             _lives--;
 
         _uiManager.UpdateLives(_lives);
@@ -546,4 +579,12 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void SpawnAmmo()
+    {
+        if (_countShots == 0)
+        {
+            _spawnManager.SpwanAmmoPowerUp();
+        }
+        
+    }
 }

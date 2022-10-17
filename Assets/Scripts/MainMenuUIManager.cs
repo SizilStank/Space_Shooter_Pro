@@ -55,7 +55,7 @@ public class MainMenuUIManager : MonoBehaviour
     IEnumerator WaitToLoadAcievementsMenu()
     {
         yield return new WaitForSeconds(1);
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(3);
     }
 
     private void PlayAcievementMenu()

@@ -964,6 +964,7 @@ GameObject:
   - component: {fileID: 1738078998}
   - component: {fileID: 1972165905}
   - component: {fileID: 3968730691188032026}
+  - component: {fileID: 1973338751}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -981,7 +982,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.06, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2771164758746003554}
   - {fileID: 1152996293}
@@ -1142,6 +1143,7 @@ MonoBehaviour:
   _ammoColection: {fileID: 8300000, guid: 552e1ee9826bb42fe83505a9defb673d, type: 3}
   _healthCollection: {fileID: 8300000, guid: bee4874a94de90b4d838cafa4050c442, type: 3}
   _ballsOfDeathClip: {fileID: 8300000, guid: 9bd47279e275744f599128e083469f8d, type: 3}
+  _ballsOfDeathOver: {fileID: 8300000, guid: 0761756d9eefc4892b3c0c4fb26d94db, type: 3}
   _anim: {fileID: 8963589937605703471}
   _laserPrefab: {fileID: 1312921614107733225, guid: e514daebdfba6a44aa6dc29a7b822c7f, type: 3}
   _tripleShotPrefab: {fileID: 1184520926179966299, guid: 259de4f00fab9f84ebdc0ab159801718, type: 3}
@@ -1170,6 +1172,7 @@ MonoBehaviour:
   _laserHitEnemy: []
   _laserToCollect: {fileID: 1312921614107733225, guid: e514daebdfba6a44aa6dc29a7b822c7f, type: 3}
   _countTimesHit: 
+  _countTimesHitAddToList: 0
 --- !u!82 &1972165905
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1287,6 +1290,30 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1973338751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7056199026757302509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c46a8f98d638d44195ed591c1473e64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skins:
+  - {fileID: 9100000, guid: 96ff64e3709ab5245b496b71918fc8be, type: 2}
+  - {fileID: 9100000, guid: 1eee142027993f649a4657c19cadf34d, type: 2}
+  - {fileID: 9100000, guid: 74564f79cd204194990b7aee33877d2a, type: 2}
+  - {fileID: 9100000, guid: 79e253cc61fa1344e8e16abd398e1297, type: 2}
+  - {fileID: 9100000, guid: 758123a8d8935ef4585148fac136af0a, type: 2}
+  - {fileID: 9100000, guid: 09ae1e16babd05b4a9e700c8c728b53a, type: 2}
+  - {fileID: 9100000, guid: dc49dbef0e2e00c4885de9b231e28afb, type: 2}
+  - {fileID: 9100000, guid: f11f6055749ad5343b6698e81d87eb5c, type: 2}
+  selectedSkin: {fileID: 7056199026757302509}
+  player: {fileID: 7056199026757302509}
+  selectedAnimator: {fileID: 8963589937605703471}
 --- !u!1 &7082754889167275857
 GameObject:
   m_ObjectHideFlags: 0
@@ -1344,7 +1371,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7122356106169941506}
   m_LocalRotation: {x: 0.0031780193, y: -0.7070996, z: 0.70709974, w: -0.0031780202}
-  m_LocalPosition: {x: -0.42266667, y: -0.28933334, z: 0}
+  m_LocalPosition: {x: -0.306, y: -0.288, z: 0}
   m_LocalScale: {x: 0.12666667, y: 0.12666668, z: 0.12666665}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -6177,7 +6204,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7273571708384338238}
   m_LocalRotation: {x: 0.0031780193, y: -0.7070996, z: 0.70709974, w: -0.0031780202}
-  m_LocalPosition: {x: 0.44000003, y: -0.28, z: 0}
+  m_LocalPosition: {x: 0.355, y: -0.123, z: -0}
   m_LocalScale: {x: 0.12666667, y: 0.12666668, z: 0.12666665}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -11010,7 +11037,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8804309278959163644}
   m_LocalRotation: {x: 0.0031780193, y: -0.7070996, z: 0.70709974, w: -0.0031780202}
-  m_LocalPosition: {x: 0.175, y: 0.421, z: 0}
+  m_LocalPosition: {x: 0.096, y: 0.337, z: 0}
   m_LocalScale: {x: 0.10000001, y: 0.10000001, z: 0.10000001}
   m_ConstrainProportionsScale: 1
   m_Children: []

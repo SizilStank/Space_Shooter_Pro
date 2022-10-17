@@ -465,30 +465,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7056199026757302509, guid: ef6c142bcd9813e4b9c2ae96d86eacc4, type: 3}
   m_PrefabInstance: {fileID: 990940831}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1973338751
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1973338748}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c46a8f98d638d44195ed591c1473e64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skins:
-  - {fileID: 9100000, guid: 96ff64e3709ab5245b496b71918fc8be, type: 2}
-  - {fileID: 9100000, guid: 1eee142027993f649a4657c19cadf34d, type: 2}
-  - {fileID: 9100000, guid: 74564f79cd204194990b7aee33877d2a, type: 2}
-  - {fileID: 9100000, guid: 79e253cc61fa1344e8e16abd398e1297, type: 2}
-  - {fileID: 9100000, guid: 758123a8d8935ef4585148fac136af0a, type: 2}
-  - {fileID: 9100000, guid: 09ae1e16babd05b4a9e700c8c728b53a, type: 2}
-  - {fileID: 9100000, guid: dc49dbef0e2e00c4885de9b231e28afb, type: 2}
-  - {fileID: 9100000, guid: f11f6055749ad5343b6698e81d87eb5c, type: 2}
-  selectedSkin: {fileID: 1973338748}
-  player: {fileID: 1973338748}
-  selectedAnimator: {fileID: 990940833}
 --- !u!1 &2015297936
 GameObject:
   m_ObjectHideFlags: 0
