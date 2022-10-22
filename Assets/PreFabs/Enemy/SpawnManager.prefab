@@ -51,12 +51,13 @@ MonoBehaviour:
   _enemySpawnTimer: 1
   _powerUps:
   - {fileID: 4954854661842003942, guid: aebf7fad86b88e942adca76c1dee296f, type: 3}
+  - {fileID: 2052027366121755739, guid: aad08e0c75c42574ca703e855a22bba1, type: 3}
   - {fileID: 39842288954593576, guid: eec349a95195381408b59286d66408aa, type: 3}
   - {fileID: 5787096984372237109, guid: f8a5800cccf93e84c9ab609355a6a049, type: 3}
-  - {fileID: 2052027366121755739, guid: aad08e0c75c42574ca703e855a22bba1, type: 3}
   - {fileID: 2163829806425149769, guid: b5624187ae29216469a058addcbc104d, type: 3}
   - {fileID: 7945619597431905179, guid: 88e5cd7da2144454f8d48a58d602379c, type: 3}
   _ammoDrop: {fileID: 2052027366121755739, guid: aad08e0c75c42574ca703e855a22bba1, type: 3}
+  _player: {fileID: 0}
 --- !u!1 &6663599436850760792
 GameObject:
   m_ObjectHideFlags: 0

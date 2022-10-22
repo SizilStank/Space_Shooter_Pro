@@ -5,33 +5,35 @@ using UnityEngine.UI;
 
 public class Thruster : MonoBehaviour
 {
-    [SerializeField] Player _player;
-    [SerializeField] Image _sliderImage;
-    [SerializeField] Slider _slider;
+    [SerializeField] private Player _player;
+    [SerializeField] private Image _sliderImage;
+    [SerializeField] private Slider _slider;
+
+
 
     private void Start()
     {
+        _player = GameObject.Find("Player").GetComponent<Player>();
         _slider = GetComponent<Slider>();
-    }
 
-    public void SetMaxThruster(float maxThrusters)
-    {
-        _slider.maxValue = maxThrusters;
-        _slider.value = maxThrusters;
+        _slider.minValue = 0f;
+        _slider.maxValue = 100f;
+        _slider.value = 100f;
     }
 
 
     public void SetThruster(float thrusters)
     {
         _slider.value = thrusters;
+    }
 
-        if (thrusters <= 0)
-        {
-            _sliderImage.gameObject.SetActive(false);
-        }
-        else
-        {
-            _sliderImage.gameObject.SetActive(true);
-        }
+    public void ResetThrusters(float resetThruster)
+    {
+
+        _slider.value = resetThruster;
+
+        /*_slider.value = Mathf.Lerp(_slider.minValue, _slider.maxValue, _fillTime);
+
+        _fillTime += 0.375f * Time.deltaTime;*/
     }
 }

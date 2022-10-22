@@ -19,10 +19,5 @@ public class LoadCharacter : MonoBehaviour
         selectedAnimator = selectedSkin.GetComponent<Animator>();
 
         player.GetComponent<Animator>().runtimeAnimatorController = skins[selectedCharacter];
-
-        //PlayerPrefs.GetInt("selectedCharacter");
-        Debug.Log("Loaded " + PlayerPrefs.GetInt("selectedCharacter"));
-
-		//label.text = prefab.name;*/
 	}
 }

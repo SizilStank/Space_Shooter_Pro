@@ -1165,6 +1165,7 @@ MonoBehaviour:
   _shieldSpriteRenderer: {fileID: 1152996292}
   _laserSlider: {fileID: 0}
   _thruster: {fileID: 0}
+  _camera: {fileID: 0}
   _timerStarted: 0
   _timer: 0
   _shieldCollected: []
@@ -1173,6 +1174,8 @@ MonoBehaviour:
   _laserToCollect: {fileID: 1312921614107733225, guid: e514daebdfba6a44aa6dc29a7b822c7f, type: 3}
   _countTimesHit: 
   _countTimesHitAddToList: 0
+  _countTimer: 0
+  _isCounterStarted: 0
 --- !u!82 &1972165905
 AudioSource:
   m_ObjectHideFlags: 0

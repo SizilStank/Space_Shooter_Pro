@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
-
+using UnityEngine.PlayerLoop;
 
 public class SpawnManager : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private Vector3 _initializeSpawmManagerPos = new Vector3(0, 10, 0);
 
     [SerializeField] private float _enemySpawnTimer = 1f;
+
+    private float _dropChance;
 
     private bool _stopSpawn;
 
@@ -26,6 +29,7 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
 
         transform.position = _initializeSpawmManagerPos;
 
@@ -36,6 +40,11 @@ public class SpawnManager : MonoBehaviour
 
         _player = GameObject.Find("Player").GetComponent<Player>();
 
+    }
+
+    private void Update()
+    {
+        _dropChance = Random.Range(0f, 101f);
     }
 
     IEnumerator WaitForEnenimesToSpawn()
@@ -69,12 +78,21 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator PowerUpSpawner()
     {
-        while (_powerUpActive)
+        while (_powerUpActive == true)
         {
-            Vector3 randomSpawnRange = new Vector3(Random.Range(-9, 9), transform.position.y, 0);
-            int randomPowerUp = Random.Range(0, 6);
-            Instantiate(_powerUps[randomPowerUp], randomSpawnRange, Quaternion.identity);
-            yield return new WaitForSeconds(Random.Range(1, 10));
+            if (_dropChance < 0.7f)
+            {
+                Vector3 NewrandomSpawnRange = new Vector3(Random.Range(-9, 9), transform.position.y, 0);
+                //int randomPowerUp = Random.Range(0, 6);
+                Instantiate(_powerUps[5], NewrandomSpawnRange, Quaternion.identity);
+                yield return new WaitForSeconds(Random.Range(10, 16));
+            }
+            
+            
+                Vector3 randomSpawnRange = new Vector3(Random.Range(-9, 9), transform.position.y, 0);
+                int randomPowerUp = Random.Range(0, 6);
+                Instantiate(_powerUps[randomPowerUp], randomSpawnRange, Quaternion.identity);
+                yield return new WaitForSeconds(Random.Range(3, 11));       
         }
     }
 

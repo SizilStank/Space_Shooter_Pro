@@ -1,10 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
-using UnityEngine.SocialPlatforms;
 
 public class Player : MonoBehaviour
 {
@@ -21,9 +17,9 @@ public class Player : MonoBehaviour
     [SerializeField] private int _lives = 0;
     [SerializeField] private int _score;
     [SerializeField] private int _countShots = 14;
-    [SerializeField] private float _thrusterPercentage = 100f;
     [SerializeField] private float _thrustMultiplyer;
-
+    [SerializeField] private float _thrustMax = 100f;
+    [SerializeField] private float _thrustMin = 0f;
 
 
     //_______Audio Components_______//
@@ -62,14 +58,15 @@ public class Player : MonoBehaviour
 
 
     //_______Booleans_______//
-    [SerializeField] private bool _canFire = true;
-    [SerializeField] private bool _isTripleShotActive;
+    private bool _canFire = true;
+    private bool _canThrust;
+    private bool _isTripleShotActive;
     private bool _isSpeedBoostActive;
     private bool _isShieldActive;
-    [SerializeField] private bool _isBallsOfDeathActive;
-    private bool _startTimer;
+    private bool _isBallsOfDeathActive;
     private bool _isPaused;
     private bool _thrusterActive;
+    private bool _timerStarted;
 
 
     //_______GetComponents_______//
@@ -80,9 +77,9 @@ public class Player : MonoBehaviour
     [SerializeField] private SpriteRenderer _shieldSpriteRenderer;
     [SerializeField] private LaserSlider _laserSlider;
     [SerializeField] private Thruster _thruster;
+    [SerializeField] private CameraShake _camera;
 
 
-    [SerializeField] private bool _timerStarted;
     [SerializeField] private float _timer = 0.0f;
 
     [SerializeField] private List<GameObject> _shieldCollected = new List<GameObject>();
@@ -96,22 +93,15 @@ public class Player : MonoBehaviour
 
 
 
+
     // Start is called before the first frame update
     void Start()
     {
-
         transform.position = new Vector3(0, 0, 0);
 
         _lives = 4;
-
+        _canThrust = true;
         _shieldPrefab.SetActive(false);
-        /*_playerHit1Prefab.SetActive(false);
-        _playerHit2Prefab.SetActive(false);
-        _playerHit3Prefab.SetActive(false);*/
-
-        //AudioSource audio = GetComponent<AudioSource>();
-        //Animator animation = GetComponent<Animator>();
-        //SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
 
 
         if (_laserPrefab == null || _spawnManager == null)
@@ -124,6 +114,7 @@ public class Player : MonoBehaviour
         _audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         _laserSlider = GameObject.Find("LaserSlider").GetComponent<LaserSlider>();
         _thruster = GameObject.Find("Thruster").GetComponent<Thruster>();
+        _camera = GameObject.Find("Main Camera").GetComponent<CameraShake>();
     }
 
     // Update is called once per frame
@@ -136,6 +127,7 @@ public class Player : MonoBehaviour
         MouseLockandPause();
         CheckLivesForEKG();
         CheckForHealthForPlayerHitPrefab();
+        ThrusterCheck();
     }
 
     private void OnEnable()//Subing to the EventManager
@@ -158,7 +150,7 @@ public class Player : MonoBehaviour
         float horizontalInput = Input.GetAxis("Mouse X");
         float verticalInput = Input.GetAxis("Mouse Y");
 
-       Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Locked;
 
         Vector3 direction = new Vector3(horizontalInput, verticalInput, 0);
         transform.Translate(direction * _defaultSpeed * Time.deltaTime);
@@ -168,20 +160,14 @@ public class Player : MonoBehaviour
             transform.Translate(direction * _speedBoostPowerUpSpeed * Time.deltaTime);
         }
 
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) && _canThrust == true)
         {
-            _thruster.SetThruster(_thrusterPercentage);
-            if (_thrusterPercentage >= 0)
-            {
-                _thruster.SetThruster(_thrusterPercentage -= 0.2f);
-                transform.Translate(direction * _leftShiftSpeed * _defaultSpeed * Time.deltaTime);
-                Debug.Log("LSDown");
-            }
-            else
-            {
-                return;
-            }   
+            _thruster.SetThruster(_thrustMax);
+            _thruster.SetThruster(_thrustMax -= 15 * 2 * Time.deltaTime);
+            _thrustMin += 15 * 2 * Time.deltaTime;  
+            transform.Translate(direction * _leftShiftSpeed * _defaultSpeed * Time.deltaTime); 
         }
+
 
 
         if (transform.position.x >= 11.012f)
@@ -202,6 +188,59 @@ public class Player : MonoBehaviour
             transform.position = new Vector3(transform.position.x, -5.0f, 0);
         }
     }
+
+    private void ThrusterCheck()
+    {
+        if (_thrustMax <= 0)
+        {
+            _canThrust = false;
+
+            _thrustMax = 0;
+            
+            if (_thrustMin >= 98)
+            {
+                StartCoroutine(ResettingThruster());              
+            }
+        }
+    }
+
+    IEnumerator ResettingThruster()
+    {
+        yield return new WaitForSeconds(3);
+        _thruster.ResetThrusters(_thrustMax += 15 * 2 * Time.deltaTime);
+        _canThrust = true;
+        _thrustMin = 0;
+        _thrustMax += 2 * 2 * Time.deltaTime;
+
+        if (_thrustMax >= 100)
+        {
+            _thrustMax = 100;
+        }
+    }
+
+    /*private void ThrusterCheck()
+    {
+        if (_thrustMax <= _thrustMin)
+        {
+            _thrustMax = _thrustMin;
+            _canThrust = false;
+
+            if (_thrustMin == _thrustMax)
+            {
+                StartCoroutine(ResettingThruster());
+            }
+        }
+    }
+
+    IEnumerator ResettingThruster()
+    {
+        yield return new WaitForSeconds(5);
+        _thruster.ResetThrusters(_thrustMax = Mathf.Lerp(_min, _max, _fillTime));
+        _fillTime += 0.375f * Time.deltaTime;
+        _canThrust = true;
+        _thrustMin = 0;
+    }*/
+
 
     void MovePlayerIfHiding()
     {
@@ -405,7 +444,9 @@ public class Player : MonoBehaviour
     {
         
         if (collision.CompareTag("EnemyA") || collision.CompareTag("EnemyLaser"))
-        {     
+        {
+            _camera.ShakeIt();
+
             if (_isShieldActive == false)
             {
                 Damage();
