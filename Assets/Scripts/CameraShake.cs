@@ -10,7 +10,7 @@ public class CameraShake : MonoBehaviour {
 
 	public void ShakeIt()
 	{
-		cameraInitialPosition = mainCamera.transform.position;
+		cameraInitialPosition = mainCamera.transform.position = new Vector3(0, 0, -10);
 		InvokeRepeating ("StartCameraShaking", 0f, 0.005f);
 		Invoke ("StopCameraShaking", shakeTime);
 	}

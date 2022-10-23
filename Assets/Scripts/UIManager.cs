@@ -1,10 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
-using Unity.VisualScripting;
 
 public class UIManager : MonoBehaviour
 {
@@ -47,8 +45,19 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        if (!GameObject.Find("AudioManager").TryGetComponent<AudioManager>(out _audioManager)) 
+        { 
+            _audioManager.enabled = false;
+            Debug.LogError("_adioManager is Null");
+        }
+        
         _audioSource = GetComponent<AudioSource>();
+        if (!TryGetComponent<AudioSource>(out _audioSource))
+        {
+            Debug.LogError("Slider is Null");
+            _audioSource.enabled = false;
+        }
+
         _play.onClick.AddListener(PlayOnClick);
         _quit.onClick.AddListener(QuitOnClick);
         _resetHSImage.onClick.AddListener(ResetHighScore);
@@ -141,22 +150,9 @@ public class UIManager : MonoBehaviour
         
     }
 
-   /* IEnumerator MakingPauseFlash()
-    {
-        while (_isGamePaused == true)
-        {
-            _gamePausedImage.SetActive(true);
-            yield return new WaitForSecondsRealtime(_flashSpeed);
-            _gamePausedImage.SetActive(false);
-            yield return new WaitForSecondsRealtime(_flashSpeed);
-        }
-    }*/
-
     public void PlayerPausedTheGame()
     {
         _isGamePaused = true;
-        Debug.Log("The game is pause " + _isGamePaused);
-        //StartCoroutine(MakingPauseFlash());
         _gamePausedImage.SetActive(true);
         _gamePausedBoarderImage.SetActive(true);
         _resetHSImage.gameObject.SetActive(true);

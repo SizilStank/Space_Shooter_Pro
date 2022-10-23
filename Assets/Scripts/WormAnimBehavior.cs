@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Animator))]
 public class WormAnimBehavior : MonoBehaviour
 {
 
@@ -15,7 +16,12 @@ public class WormAnimBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (!TryGetComponent<Animator>(out _animator))
+        {
+            Debug.LogError("Slider is Null");
+            _animator.enabled = false;
+        }
+
         _canAnimRun = false;
         _animator.SetBool("CanAnimRun", false);
            

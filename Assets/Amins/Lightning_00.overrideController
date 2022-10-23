@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Lightning_00
+  m_Controller: {fileID: 9100000, guid: 79e253cc61fa1344e8e16abd398e1297, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: d44cf882748fcdc48ade13db9e9e22c0, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: d44cf882748fcdc48ade13db9e9e22c0, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 2679362e2effdb047954aade08b66f64, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 2679362e2effdb047954aade08b66f64, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 09b60bcfd6c11db479df10045cb2888e, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 09b60bcfd6c11db479df10045cb2888e, type: 2}

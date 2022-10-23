@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class AudioManager : MonoBehaviour
 {
 
@@ -15,6 +16,10 @@ public class AudioManager : MonoBehaviour
     void Start()
     {
         _audioSource = GetComponent<AudioSource>();
+        if (_audioSource == null)
+        {
+            Debug.LogError("_audioSource is Null");
+        }
         
     }
 

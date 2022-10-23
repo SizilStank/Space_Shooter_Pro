@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Ligher_00
+  m_Controller: {fileID: 9100000, guid: 74564f79cd204194990b7aee33877d2a, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 3f0654868d6a81340bd4a23a9e458214, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 3f0654868d6a81340bd4a23a9e458214, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 74661d915af04a84f8cff902c7d3a818, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 74661d915af04a84f8cff902c7d3a818, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 0ff00d37763fda64b85cd789c0042b4d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 0ff00d37763fda64b85cd789c0042b4d, type: 2}

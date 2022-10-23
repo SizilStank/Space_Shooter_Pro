@@ -13,8 +13,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private Vector3 _initializeSpawmManagerPos = new Vector3(0, 10, 0);
 
     [SerializeField] private float _enemySpawnTimer = 1f;
-
-    private float _dropChance;
+    [SerializeField] private float _dropChance;
 
     private bool _stopSpawn;
 
@@ -39,7 +38,11 @@ public class SpawnManager : MonoBehaviour
         }
 
         _player = GameObject.Find("Player").GetComponent<Player>();
-
+        if (!GameObject.Find("Player").TryGetComponent<Player>(out _player))
+        {
+            _player.enabled = false;
+            Debug.LogError("Player is Null");
+        }
     }
 
     private void Update()
@@ -99,7 +102,6 @@ public class SpawnManager : MonoBehaviour
     IEnumerator WaitToDropAmmo()
     {
         yield return new WaitForSeconds(3);
-        Debug.Log("AmmoDROP!!!");
         Vector3 randomPos = new Vector3(Random.Range(-9, 9), transform.position.y, 0);
         GameObject newAmmoDrop = Instantiate(_ammoDrop, randomPos, Quaternion.identity);
         newAmmoDrop.transform.parent = _enemySpawnerContainer.transform;

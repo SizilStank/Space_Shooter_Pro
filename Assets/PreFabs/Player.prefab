@@ -1129,8 +1129,10 @@ MonoBehaviour:
   _lives: 0
   _score: 130
   _countShots: 14
-  _thrusterPercentage: 100
-  _thrustMultiplyer: 2
+  _thrustMultiplyer: 50
+  _thrustMax: 100
+  _thrustMin: 0
+  _thrusterFuel: 100
   _fireDefaultLaser: {fileID: 8300000, guid: 16c25250151e04a37b489a3f056c8314, type: 3}
   _tripleShotShooting: {fileID: 8300000, guid: aeff979cceb2c4e8598eeb0500112a13, type: 3}
   _tripleShotOver: {fileID: 8300000, guid: 16458abe8d5a64f7a8082f0de46d643f, type: 3}
@@ -1155,9 +1157,6 @@ MonoBehaviour:
   _ekgBlue: {fileID: 0}
   _ekgRed: {fileID: 0}
   _ballsOfDeath: {fileID: 1756985536680039616}
-  _canFire: 1
-  _isTripleShotActive: 0
-  _isBallsOfDeathActive: 0
   _audioManager: {fileID: 3278301973754518880, guid: c33decf5d910ef14e8ed90b22d9a7318, type: 3}
   _audioSource: {fileID: 1972165905}
   _spawnManager: {fileID: 1380212368323552424, guid: 7538121e742593f4caf6889a18731dea, type: 3}
@@ -1166,7 +1165,6 @@ MonoBehaviour:
   _laserSlider: {fileID: 0}
   _thruster: {fileID: 0}
   _camera: {fileID: 0}
-  _timerStarted: 0
   _timer: 0
   _shieldCollected: []
   _shieldToAdd: {fileID: 5787096984372237109, guid: f8a5800cccf93e84c9ab609355a6a049, type: 3}
@@ -1174,8 +1172,6 @@ MonoBehaviour:
   _laserToCollect: {fileID: 1312921614107733225, guid: e514daebdfba6a44aa6dc29a7b822c7f, type: 3}
   _countTimesHit: 
   _countTimesHitAddToList: 0
-  _countTimer: 0
-  _isCounterStarted: 0
 --- !u!82 &1972165905
 AudioSource:
   m_ObjectHideFlags: 0

@@ -11,17 +11,15 @@ public class PowerUpBehavior : MonoBehaviour
     [SerializeField] private float _destroyGameObejectAtYPos = -9f;
     [SerializeField] private int _powerUpID;
 
-    
-    /*  _powerUpID 0 is triple shot
-        _powerUpID 1 is speed bost
-        _powerUpID 2 is shield
-        _powerUpID 3 is radious
-
-    */
     private void Start()
     {
         AudioSource audioSource = GetComponent<AudioSource>();
-        _player = GameObject.Find("Player").GetComponent<Player>();
+
+        if (!GameObject.Find("Player").TryGetComponent<Player>(out _player))//null error on death fix
+        {
+            _player.enabled = false;
+            Debug.LogError("Player is Null");
+        }
     }
 
     // Update is called once per frame

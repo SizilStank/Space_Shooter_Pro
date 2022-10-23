@@ -49,6 +49,7 @@ MonoBehaviour:
   _enemySpawnerContainer: {fileID: 6663599436850760792}
   _initializeSpawmManagerPos: {x: 0, y: 10, z: 0}
   _enemySpawnTimer: 1
+  _dropChance: 0
   _powerUps:
   - {fileID: 4954854661842003942, guid: aebf7fad86b88e942adca76c1dee296f, type: 3}
   - {fileID: 2052027366121755739, guid: aad08e0c75c42574ca703e855a22bba1, type: 3}

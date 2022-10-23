@@ -38,10 +38,28 @@ public class Asteroid : MonoBehaviour
 
         if (collision.CompareTag("PlayerLaser"))
         {
+            if (_audioManager != null)
+            {
+                _audioManager.AstroidDestroyed();
+            }
+            else
+            {
+                _audioManager.enabled = false;
+                Debug.LogError("_audioManager is Null");
+            }
+
+            if (_spawnManager != null)
+            { 
+                _spawnManager.StartGameAfterAstroidDestroy();
+            }
+            else
+            {
+                _spawnManager.enabled = false;
+                Debug.LogError("_spawnManager is Null");
+            }
+
             EventManager.OnStartGameAudio();
-            _audioManager.AstroidDestroyed();
             GameObject astroidExplod = Instantiate(_astroidExplod, transform.position, Quaternion.identity);
-            _spawnManager.StartGameAfterAstroidDestroy();
             Destroy(this.gameObject);
             Destroy(astroidExplod, 1);
         }

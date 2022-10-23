@@ -38,7 +38,7 @@ public class Laser : MonoBehaviour
             EventManager.OnLaserCollected();//this is the event that the event manager is listining for
         }
 
-        if (collision.CompareTag("ResetLaserCount"))//Subing to the EventManager
+        if (collision.CompareTag("ResetLaserCount"))//Subing to the EventManager this is a tag on the box collider 
         {
             EventManager.OnSubtractLaserCollected();//this is the event that the event manager is listining for
         }

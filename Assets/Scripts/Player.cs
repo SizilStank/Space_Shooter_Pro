@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float _thrustMultiplyer;
     [SerializeField] private float _thrustMax = 100f;
     [SerializeField] private float _thrustMin = 0f;
+    [SerializeField] private float _thrusterFuel;
 
 
     //_______Audio Components_______//
@@ -58,8 +59,8 @@ public class Player : MonoBehaviour
 
 
     //_______Booleans_______//
-    private bool _canFire = true;
-    private bool _canThrust;
+    private bool _canFire;// setting true in start
+    private bool _canThrust;// setting true in start
     private bool _isTripleShotActive;
     private bool _isSpeedBoostActive;
     private bool _isShieldActive;
@@ -67,6 +68,7 @@ public class Player : MonoBehaviour
     private bool _isPaused;
     private bool _thrusterActive;
     private bool _timerStarted;
+    private bool _isRefueling;
 
 
     //_______GetComponents_______//
@@ -101,20 +103,50 @@ public class Player : MonoBehaviour
 
         _lives = 4;
         _canThrust = true;
+        _canFire = true;
         _shieldPrefab.SetActive(false);
+        _thrusterFuel = _thrustMax;
+        _thruster.ThrusterSetup(_thrustMax);
 
 
-        if (_laserPrefab == null || _spawnManager == null)
+        #region Find GameObjects and Components
+        if (!GameObject.Find("SpawnManager").TryGetComponent<SpawnManager>(out _spawnManager))
         {
-            Debug.Log("Get Component NULL!");
+            _spawnManager.enabled = false;
+            Debug.LogError("_spawnManager is Null");
         }
 
-        _spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
-        _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
-        _audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
-        _laserSlider = GameObject.Find("LaserSlider").GetComponent<LaserSlider>();
-        _thruster = GameObject.Find("Thruster").GetComponent<Thruster>();
-        _camera = GameObject.Find("Main Camera").GetComponent<CameraShake>();
+        if (!GameObject.Find("Canvas").TryGetComponent<UIManager>(out _uiManager))
+        {
+            _uiManager.enabled = false;
+            Debug.LogError("_uiManager is Null");
+        }
+
+        if (!GameObject.Find("AudioManager").TryGetComponent<AudioManager>(out _audioManager))
+        {
+            _audioManager.enabled = false;
+            Debug.LogError("_audioManager is Null");
+        }
+
+        if (!GameObject.Find("LaserSlider").TryGetComponent<LaserSlider>(out _laserSlider))
+        {
+            _laserSlider.enabled = false;
+            Debug.LogError("_laserSlider is Null");
+        }
+
+        if (!GameObject.Find("Thruster").TryGetComponent<Thruster>(out _thruster))
+        {
+            _thruster.enabled = false;
+            Debug.LogError("_thruster is Null");
+        }
+
+        if (!GameObject.Find("Main Camera").TryGetComponent<CameraShake>(out _camera))
+        {
+            _camera.enabled = false;
+            Debug.LogError("_camera is Null");
+        }
+        #endregion
+
     }
 
     // Update is called once per frame
@@ -128,6 +160,7 @@ public class Player : MonoBehaviour
         CheckLivesForEKG();
         CheckForHealthForPlayerHitPrefab();
         ThrusterCheck();
+        
     }
 
     private void OnEnable()//Subing to the EventManager
@@ -153,22 +186,22 @@ public class Player : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         Vector3 direction = new Vector3(horizontalInput, verticalInput, 0);
-        transform.Translate(direction * _defaultSpeed * Time.deltaTime);
+        
 
         if (_isSpeedBoostActive == true)
         {
             transform.Translate(direction * _speedBoostPowerUpSpeed * Time.deltaTime);
         }
-
-        if (Input.GetKey(KeyCode.LeftShift) && _canThrust == true)
+        else if (_thrusterActive == true)
         {
-            _thruster.SetThruster(_thrustMax);
-            _thruster.SetThruster(_thrustMax -= 15 * 2 * Time.deltaTime);
-            _thrustMin += 15 * 2 * Time.deltaTime;  
-            transform.Translate(direction * _leftShiftSpeed * _defaultSpeed * Time.deltaTime); 
+           
+            transform.Translate(direction * _leftShiftSpeed * _defaultSpeed * Time.deltaTime);
         }
-
-
+        else
+        {
+            transform.Translate(direction * _defaultSpeed * Time.deltaTime);
+        }
+        
 
         if (transform.position.x >= 11.012f)
         {
@@ -191,55 +224,54 @@ public class Player : MonoBehaviour
 
     private void ThrusterCheck()
     {
-        if (_thrustMax <= 0)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && _canThrust == true)
         {
-            _canThrust = false;
-
-            _thrustMax = 0;
+            _thrusterActive = true;
             
-            if (_thrustMin >= 98)
-            {
-                StartCoroutine(ResettingThruster());              
-            }
         }
-    }
-
-    IEnumerator ResettingThruster()
-    {
-        yield return new WaitForSeconds(3);
-        _thruster.ResetThrusters(_thrustMax += 15 * 2 * Time.deltaTime);
-        _canThrust = true;
-        _thrustMin = 0;
-        _thrustMax += 2 * 2 * Time.deltaTime;
-
-        if (_thrustMax >= 100)
+        if (Input.GetKeyUp(KeyCode.LeftShift))
         {
-            _thrustMax = 100;
+            _thrusterActive = false;
         }
-    }
-
-    /*private void ThrusterCheck()
-    {
-        if (_thrustMax <= _thrustMin)
+        if (_thrusterActive == true)
         {
-            _thrustMax = _thrustMin;
+            _thrusterFuel -= _thrustMultiplyer * Time.deltaTime;
+            _thruster.SetThruster(_thrusterFuel);
+        }
+        
+        if (_thrusterFuel <= 0)
+        {
             _canThrust = false;
+            _thrusterActive = false;
+            _thrusterFuel = 0;
 
-            if (_thrustMin == _thrustMax)
+            _thruster.SetThruster(_thrusterFuel);
+
+            if (_isRefueling == false)
             {
                 StartCoroutine(ResettingThruster());
             }
+            
         }
     }
 
     IEnumerator ResettingThruster()
     {
-        yield return new WaitForSeconds(5);
-        _thruster.ResetThrusters(_thrustMax = Mathf.Lerp(_min, _max, _fillTime));
-        _fillTime += 0.375f * Time.deltaTime;
+        _isRefueling = true;
+
+        yield return new WaitForSeconds(3);
+        while (_thrusterFuel <= _thrustMax)
+        {
+            yield return null;
+            _thrusterFuel += _thrustMultiplyer * Time.deltaTime;
+            _thruster.SetThruster(_thrusterFuel);
+        }
+
+        _thrusterFuel = _thrustMax;
+        _thruster.SetThruster(_thrusterFuel);
+        _isRefueling = false;
         _canThrust = true;
-        _thrustMin = 0;
-    }*/
+    }
 
 
     void MovePlayerIfHiding()
@@ -248,7 +280,7 @@ public class Player : MonoBehaviour
         {
             _timerStarted = true;
             _timer += Time.deltaTime;
-            if (_timerStarted = true && _timer >= 2)
+            if (_timerStarted == true && _timer >= 2)
             {
                 transform.Translate(Vector3.right * _moveFromBumperSpeed * Time.deltaTime);
             }
@@ -257,7 +289,7 @@ public class Player : MonoBehaviour
         {
             _timerStarted = true;
             _timer += Time.deltaTime;
-            if (_timerStarted = true && _timer >= 2)
+            if (_timerStarted == true && _timer >= 2)
             {
                 transform.Translate(Vector3.left * _moveFromBumperSpeed * Time.deltaTime);
             }

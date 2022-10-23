@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static System.Net.Mime.MediaTypeNames;
 
+[RequireComponent(typeof(AudioSource))]
 public class LoadMainMenu : MonoBehaviour
 {
 
