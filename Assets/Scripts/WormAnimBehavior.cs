@@ -18,7 +18,7 @@ public class WormAnimBehavior : MonoBehaviour
     {
         if (!TryGetComponent<Animator>(out _animator))
         {
-            Debug.LogError("Slider is Null");
+            Debug.LogError("_animator is Null");
             _animator.enabled = false;
         }
 

@@ -333,9 +333,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1098798452}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 15
+  m_MaxValue: 100
   m_WholeNumbers: 1
-  m_Value: 15
+  m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2647,6 +2647,9 @@ MonoBehaviour:
   _gameOverBoarder: {fileID: 4104147110588916031}
   _gamePausedImage: {fileID: 1700054676}
   _gamePausedBoarderImage: {fileID: 1046339838}
+  _player: {fileID: 0}
+  _sliderImage: {fileID: 4451509076551678098}
+  _slider: {fileID: 993890698294567750}
   _badge01: {fileID: 1186028225}
   _badge02: {fileID: 26854531}
   _badge03: {fileID: 1714802461}

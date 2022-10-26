@@ -37,6 +37,7 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioClip _healthCollection;
     [SerializeField] private AudioClip _ballsOfDeathClip;
     [SerializeField] private AudioClip _ballsOfDeathOver;
+    [SerializeField] private AudioClip _glyphHalloween;
 
 
     //_______Ainmations_______//
@@ -54,6 +55,7 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject _ekgBlue;
     [SerializeField] private GameObject _ekgRed;
     [SerializeField] private GameObject _ballsOfDeath;
+    [SerializeField] private GameObject _evilEyePlayer;
 
     
 
@@ -80,6 +82,7 @@ public class Player : MonoBehaviour
     [SerializeField] private LaserSlider _laserSlider;
     [SerializeField] private Thruster _thruster;
     [SerializeField] private CameraShake _camera;
+    [SerializeField] private SpriteRenderer _spriteRenderer;
 
 
     [SerializeField] private float _timer = 0.0f;
@@ -102,9 +105,10 @@ public class Player : MonoBehaviour
         transform.position = new Vector3(0, 0, 0);
 
         _lives = 4;
-        _canThrust = true;
         _canFire = true;
         _shieldPrefab.SetActive(false);
+
+        _canThrust = true;
         _thrusterFuel = _thrustMax;
         _thruster.ThrusterSetup(_thrustMax);
 
@@ -535,6 +539,14 @@ public class Player : MonoBehaviour
             _shieldCollected.Add(_shieldToAdd);
             ShieldAchievement();
         }          
+
+        if (collision.CompareTag("EvilEye"))
+        {
+            _spriteRenderer.enabled = false;
+            _evilEyePlayer.SetActive(true);
+            _audioSource.PlayOneShot(_glyphHalloween, 2);
+            Destroy(collision.gameObject);
+        }
     }
 
     private void CheckForHealthForPlayerHitPrefab()
@@ -660,4 +672,5 @@ public class Player : MonoBehaviour
         }
         
     }
+
 }

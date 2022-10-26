@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class Thruster : MonoBehaviour
 {
     [SerializeField] private Image _sliderImage;

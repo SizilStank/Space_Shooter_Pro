@@ -933,6 +933,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rocks
       objectReference: {fileID: 0}
+    - target: {fileID: 5883110627223971034, guid: fb2578e41f564ca4bb3a23bee4317dad, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5883110627223971037, guid: fb2578e41f564ca4bb3a23bee4317dad, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -983,6 +987,63 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb2578e41f564ca4bb3a23bee4317dad, type: 3}
+--- !u!1001 &1166056510
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 91572153377528977, guid: e871e41eb545a3a408c12e615286bdbd, type: 3}
+      propertyPath: m_Name
+      value: Halloween
+      objectReference: {fileID: 0}
+    - target: {fileID: 5250678383521621087, guid: e871e41eb545a3a408c12e615286bdbd, type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5250678383521621087, guid: e871e41eb545a3a408c12e615286bdbd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.446207
+      objectReference: {fileID: 0}
+    - target: {fileID: 5250678383521621087, guid: e871e41eb545a3a408c12e615286bdbd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.757736
+      objectReference: {fileID: 0}
+    - target: {fileID: 5250678383521621087, guid: e871e41eb545a3a408c12e615286bdbd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.2089147
+      objectReference: {fileID: 0}
+    - target: {fileID: 5250678383521621087, guid: e871e41eb545a3a408c12e615286bdbd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5250678383521621087, guid: e871e41eb545a3a408c12e615286bdbd, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5250678383521621087, guid: e871e41eb545a3a408c12e615286bdbd, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5250678383521621087, guid: e871e41eb545a3a408c12e615286bdbd, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5250678383521621087, guid: e871e41eb545a3a408c12e615286bdbd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5250678383521621087, guid: e871e41eb545a3a408c12e615286bdbd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5250678383521621087, guid: e871e41eb545a3a408c12e615286bdbd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e871e41eb545a3a408c12e615286bdbd, type: 3}
 --- !u!1 &1215213561
 GameObject:
   m_ObjectHideFlags: 0
@@ -1392,6 +1453,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 909381672819449055, guid: 8ccd976d10ae5774984aeced6468f053, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 3644856f448228e4aa70ee4835276baa, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ccd976d10ae5774984aeced6468f053, type: 3}
 --- !u!1 &1483500831
@@ -1759,6 +1824,7 @@ MonoBehaviour:
   _ekgBlue: {fileID: 7101004587944514695, guid: 230da8baf0371244caf62a85eee5bd10, type: 3}
   _ekgRed: {fileID: 1797186293561556733, guid: 5f558af6ff761b64d911f64732f3d6ec, type: 3}
   _ballsOfDeath: {fileID: 1756985536765881458}
+  _evilEyePlayer: {fileID: 0}
   _audioManager: {fileID: 3278301973754518880, guid: c33decf5d910ef14e8ed90b22d9a7318, type: 3}
   _audioSource: {fileID: 2058429859}
   _spawnManager: {fileID: 1380212368323552424, guid: 7538121e742593f4caf6889a18731dea, type: 3}
@@ -1767,6 +1833,7 @@ MonoBehaviour:
   _laserSlider: {fileID: 0}
   _thruster: {fileID: 0}
   _camera: {fileID: 0}
+  _spriteRenderer: {fileID: 0}
   _timer: 0
   _shieldCollected: []
   _shieldToAdd: {fileID: 5787096984372237109, guid: f8a5800cccf93e84c9ab609355a6a049, type: 3}

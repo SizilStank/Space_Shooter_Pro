@@ -18,6 +18,7 @@ TagManager:
   - BeamOfDeath
   - BallsOfDeath
   - TrippleShotReset
+  - EvilEye
   layers:
   - Default
   - TransparentFX
