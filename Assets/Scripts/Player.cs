@@ -111,8 +111,7 @@ public class Player : MonoBehaviour
         _canThrust = true;
         _thrusterFuel = _thrustMax;
         _thruster.ThrusterSetup(_thrustMax);
-
-
+        
         #region Find GameObjects and Components
         if (!GameObject.Find("SpawnManager").TryGetComponent<SpawnManager>(out _spawnManager))
         {
@@ -647,8 +646,8 @@ public class Player : MonoBehaviour
             if (_lives < 1)
             {
                 Cursor.lockState = CursorLockMode.None;
-                _spawnManager.StopEnemySpawner();
-                _spawnManager.StopPowerUpSpawner();
+                _spawnManager.StopFirstEnemyWaveSpawnControl();
+                _spawnManager.StopPowerUpSpawnControl();
                 Instantiate(_playerExplosion, transform.position, Quaternion.identity);
                 Destroy(this.gameObject);
             }       

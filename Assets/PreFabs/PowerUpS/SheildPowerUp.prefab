@@ -159,12 +159,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 7
-  player: {fileID: 1738078998, guid: ef6c142bcd9813e4b9c2ae96d86eacc4, type: 3}
+  _player: {fileID: 1738078998, guid: ef6c142bcd9813e4b9c2ae96d86eacc4, type: 3}
   _audioSource: {fileID: 331860690633521945}
-  destroyGameObejectAtYPos: -9
+  _destroyGameObejectAtYPos: -9
   _powerUpID: 2
-  _addGameObject: {fileID: 5787096984372237109}
-  _shieldCollected: []
 --- !u!82 &331860690633521945
 AudioSource:
   m_ObjectHideFlags: 0

@@ -51,10 +51,10 @@ public class UIManager : MonoBehaviour
             Debug.LogError("_adioManager is Null");
         }
         
-        _audioSource = GetComponent<AudioSource>();
+        
         if (!TryGetComponent<AudioSource>(out _audioSource))
         {
-            Debug.LogError("Slider is Null");
+            Debug.LogError("_audioSource is Null");
             _audioSource.enabled = false;
         }
 

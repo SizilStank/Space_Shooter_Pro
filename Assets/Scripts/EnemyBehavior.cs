@@ -51,7 +51,9 @@ public class EnemyBehavior : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-           GameObject explosion = Instantiate(_enemyExplosion, transform.position, Quaternion.identity);
+            EventManager.OnEnemyA1RemoveFromList ();//Events////Events//
+
+            GameObject explosion = Instantiate(_enemyExplosion, transform.position, Quaternion.identity);
 
             if (_audioManager != null)
             {
@@ -68,7 +70,8 @@ public class EnemyBehavior : MonoBehaviour
         }
         else if (other.CompareTag("PlayerLaser"))
         {
-           
+            EventManager.OnEnemyA1RemoveFromList();//Events////Events//
+
             Destroy(other.gameObject);
 
             GameObject explosion = Instantiate(_enemyExplosion, transform.position, Quaternion.identity);

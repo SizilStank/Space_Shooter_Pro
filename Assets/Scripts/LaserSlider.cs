@@ -12,12 +12,8 @@ public class LaserSlider : MonoBehaviour
     private void Start()
     {
         _slider = GetComponent<Slider>();
-    }
-
-    public void SetMaxLaser(int maxShots)
-    {
-        _slider.maxValue = maxShots;
-        _slider.value = maxShots;
+        _slider.maxValue = 15;
+        _slider.value = 15;
     }
 
 

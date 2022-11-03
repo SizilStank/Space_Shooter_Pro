@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: -7371578308496832536}
   - component: {fileID: -5210893528267657015}
   - component: {fileID: 483755122}
-  - component: {fileID: -5769933744543656946}
+  - component: {fileID: 7559369374888773153}
+  - component: {fileID: 9130331507175606906}
   m_Layer: 0
   m_Name: Enemy A 1
   m_TagString: EnemyA
@@ -238,7 +239,7 @@ MonoBehaviour:
   normalStrength: 5
   normalSmoothing: 1
   computingNormal: 0
---- !u!114 &-5769933744543656946
+--- !u!114 &7559369374888773153
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -247,8 +248,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 7259805120509512308}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd4c9e1ba56c00b40a4679ca68cc6602, type: 3}
+  m_Script: {fileID: 11500000, guid: 9e9e541d455b06c46b90d7c043ab778c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemySpeed: 2
-  _spawnOnWayPoints: {fileID: 3377989322439149984, guid: 11fa1cd9a21289c4ab8ebeb6c51e7a61, type: 3}
+  speed: 3
+  range: 2
+  moveSpeed: 2
+  rangeMotion: 1
+  counter: 0
+  _spawn: {fileID: 7259805120509512308}
+--- !u!114 &9130331507175606906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7259805120509512308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a66baa4764adb3488c5c241283eeba4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyExplosionTime: 0.4
+  _player: {fileID: 1738078998, guid: ef6c142bcd9813e4b9c2ae96d86eacc4, type: 3}
+  _enemyExplosion: {fileID: 4282152767656867292, guid: 269a3aa05f13d554f994b98e67014ee7, type: 3}
+  _enemyLaser: {fileID: 2565421679195334700, guid: b25cd242a8e856d449dbd447c631d683, type: 3}
+  _audioManager: {fileID: 3278301973754518880, guid: c33decf5d910ef14e8ed90b22d9a7318, type: 3}

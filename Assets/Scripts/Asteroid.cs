@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Asteroid : MonoBehaviour
 {
@@ -12,6 +8,7 @@ public class Asteroid : MonoBehaviour
     [SerializeField] private AudioManager _audioManager;
     [SerializeField] private GameObject _astroidExplod;
     [SerializeField] private SpawnManager _spawnManager;
+
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +28,7 @@ public class Asteroid : MonoBehaviour
     {
         transform.Rotate(0, 0, _zAngle * _rotationSpeed * Time.deltaTime);
     }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

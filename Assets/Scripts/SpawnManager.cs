@@ -1,8 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 
 public class SpawnManager : MonoBehaviour
 {
@@ -10,12 +7,17 @@ public class SpawnManager : MonoBehaviour
     //__________BasicEnemyType__________//
     [SerializeField] private GameObject _basicEnemyPrefab;
     [SerializeField] private GameObject _enemySpawnerContainer;
+    [SerializeField] private GameObject _centaSpawner;
+    
     [SerializeField] private Vector3 _initializeSpawmManagerPos = new Vector3(0, 10, 0);
 
     [SerializeField] private float _enemySpawnTimer = 1f;
     [SerializeField] private float _dropChance;
 
-    private bool _stopSpawn;
+    private bool _stopFirstEnemySpawn;
+    private bool _stopSecondEnemySpawn;
+    private bool _stopThirdEnemySpawn;
+    private bool _stopBOSSSpawn;
 
     //__________PowerUp__________//
     [SerializeField] private GameObject[] _powerUps;
@@ -50,23 +52,23 @@ public class SpawnManager : MonoBehaviour
         _dropChance = Random.Range(0f, 101f);
     }
 
-    IEnumerator WaitForEnenimesToSpawn()
+    IEnumerator WaitForEnenimesandPowerUpsToSpawn()
     {
         yield return new WaitForSeconds(1.5f);
-        StartCoroutine(EnemySpawnControl());
-        StartCoroutine(PowerUpSpawner());
+        StartCoroutine(FirstEnemyWaveSpawnControl());
+        StartCoroutine(PowerUpSpawnControl());
     }
 
     public void StartGameAfterAstroidDestroy()
     {
-        StartCoroutine(WaitForEnenimesToSpawn());
-       
+        StartCoroutine(WaitForEnenimesandPowerUpsToSpawn());
     }
 
-    IEnumerator EnemySpawnControl()
+    IEnumerator FirstEnemyWaveSpawnControl()
     {
-        while (_stopSpawn == false)
+        while (_stopFirstEnemySpawn == false)
         {
+            EventManager.OnEnemyAAddToList();
             Vector3 randomPos = new Vector3(Random.Range(-9, 9), transform.position.y, 0);
             GameObject newEnemy = Instantiate(_basicEnemyPrefab, randomPos, Quaternion.identity);
             newEnemy.transform.parent = _enemySpawnerContainer.transform;
@@ -74,12 +76,16 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    public void StopEnemySpawner()
+    public void StopFirstEnemyWaveSpawnControl()
     {
-        _stopSpawn = true;
+        _stopFirstEnemySpawn = true;
+        _centaSpawner.SetActive(true);
     }
 
-    IEnumerator PowerUpSpawner()
+
+    
+
+    IEnumerator PowerUpSpawnControl()
     {
         while (_powerUpActive == true)
         {
@@ -99,6 +105,11 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
+    public void StopPowerUpSpawnControl()
+    {
+        _powerUpActive = false;
+    }
+
     IEnumerator WaitToDropAmmo()
     {
         yield return new WaitForSeconds(3);
@@ -112,8 +123,5 @@ public class SpawnManager : MonoBehaviour
         StartCoroutine(WaitToDropAmmo());
     }
 
-    public void StopPowerUpSpawner()
-    {
-        _powerUpActive = false;
-    }
+   
 }

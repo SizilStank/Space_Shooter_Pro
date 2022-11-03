@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 7
-  _player: {fileID: 0}
+  _player: {fileID: 1738078998, guid: ef6c142bcd9813e4b9c2ae96d86eacc4, type: 3}
   _audioSource: {fileID: 5857578298055873550, guid: eec349a95195381408b59286d66408aa, type: 3}
   _destroyGameObejectAtYPos: -9
   _powerUpID: 0

@@ -1129,7 +1129,7 @@ MonoBehaviour:
   _beamOfDeathTimer: 5
   _lives: 0
   _score: 130
-  _countShots: 14
+  _countShots: 15
   _thrustMultiplyer: 50
   _thrustMax: 100
   _thrustMin: 0
