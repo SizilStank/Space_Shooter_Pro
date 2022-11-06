@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.PostProcessing;
 
 public class Player : MonoBehaviour
 {
@@ -96,7 +98,9 @@ public class Player : MonoBehaviour
     [SerializeField] private List<int> _countTimesHit = new List<int>();
     [SerializeField] private int _countTimesHitAddToList;
 
-
+    [SerializeField] private PostProcessVolume _volume;
+    [SerializeField] private CanvasGroup _canvasGroupAlpha;
+    [SerializeField] private bool _isFlashBangOn;
 
 
     // Start is called before the first frame update
@@ -152,10 +156,15 @@ public class Player : MonoBehaviour
 
     }
 
+    private void FixedUpdate()
+    {
+        CalculateMovement();
+    }
+
     // Update is called once per frame
     void Update()
     {
-        CalculateMovement();
+        
         MovePlayerIfHiding();
         LaserInstantiate();
         MouseAmins();
@@ -163,7 +172,34 @@ public class Player : MonoBehaviour
         CheckLivesForEKG();
         CheckForHealthForPlayerHitPrefab();
         ThrusterCheck();
-        
+        FlashBang();
+    }
+
+    public void FlashBanged()
+    {
+        _volume.GetComponent<PostProcessVolume>().weight = 1;
+        _isFlashBangOn = true;
+        _audioManager.FlashBangAudio();
+        _canvasGroupAlpha.alpha = 1;
+
+    }
+
+    private void FlashBang()
+    {
+        if (_isFlashBangOn == true)
+        {
+            Time.timeScale = 0.09f;
+            _canvasGroupAlpha.alpha = _canvasGroupAlpha.alpha - Time.deltaTime * 2;
+            _volume.GetComponent<PostProcessVolume>().weight = _volume.GetComponent<PostProcessVolume>().weight - Time.deltaTime * 1;
+
+            if (_canvasGroupAlpha.alpha <= 0)
+            {
+                _volume.GetComponent<PostProcessVolume>().weight = 0;
+                _canvasGroupAlpha.alpha = 0;
+                Time.timeScale = 1;
+                _isFlashBangOn = false;
+            }
+        }
     }
 
     private void OnEnable()//Subing to the EventManager
@@ -378,8 +414,6 @@ public class Player : MonoBehaviour
             else if (Input.GetMouseButtonDown(0) && _canFire == true && _isPaused == false && _isTripleShotActive == true) //&& _countShots >= 0)
             {
                 _isTripleShotActive = true;
-                //_laserSlider.SetShots(_countShots);
-                //_countShots--;
                 _audioSource.PlayOneShot(_tripleShotShooting);
 
                 Vector3 laserOffset = _tripleShotPrefab.transform.position = new Vector3(transform.position.x, transform.position.y + 1.16f, 0);
@@ -546,6 +580,11 @@ public class Player : MonoBehaviour
             _audioSource.PlayOneShot(_glyphHalloween, 2);
             Destroy(collision.gameObject);
         }
+
+        if (collision.CompareTag("FlashBang"))
+        {
+            _isFlashBangOn = true;
+        }
     }
 
     private void CheckForHealthForPlayerHitPrefab()
@@ -667,7 +706,7 @@ public class Player : MonoBehaviour
     {
         if (_countShots == 0)
         {
-            _spawnManager.SpwanAmmoPowerUp();
+            _spawnManager.SpwanAmmoPowerUp();       
         }
         
     }

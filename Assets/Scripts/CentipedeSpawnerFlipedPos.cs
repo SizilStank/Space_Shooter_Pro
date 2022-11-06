@@ -1,10 +1,9 @@
 using System.Collections;
 using UnityEngine;
 
-public class CentipedeSpawner : MonoBehaviour // this is on the Centa Spawner that spawns the Centa Wave
+public class CentipedeSpawnerFlipedPos : MonoBehaviour
 {
-
-    [SerializeField] private  GameObject _spawn;
+    [SerializeField] private GameObject _spawn;
     [SerializeField][Range(0, 10)] float wait = 1f;
     [SerializeField] private int _spawnCounter = 0;
     [SerializeField] private float _timeCounter;
@@ -13,9 +12,9 @@ public class CentipedeSpawner : MonoBehaviour // this is on the Centa Spawner th
     private void Start()
     {
         StartCoroutine(SpawnDelay());
-        
+
         if (!GameObject.Find("Player").TryGetComponent<Player>(out _player))
-        {    
+        {
             Debug.LogError("_player is NULL");
         }
     }
@@ -38,13 +37,14 @@ public class CentipedeSpawner : MonoBehaviour // this is on the Centa Spawner th
 
 
     IEnumerator SpawnDelay()
-    {     
-            while (_spawnCounter <= 6)
-            {
-                yield return new WaitForSeconds(wait);
-                GameObject spawn = Instantiate(_spawn, transform.position, Quaternion.identity);
-                spawn.transform.GetComponent<MovementTest>().SetWaitMotion(_spawnCounter);
-                _spawnCounter++;
-            }
+    {
+        while (_spawnCounter <= 6)
+        {
+            yield return new WaitForSeconds(wait);
+            //Vector3 pos = new Vector3(-11, 3, 0);
+            GameObject spawn = Instantiate(_spawn, transform.position, Quaternion.identity);
+            spawn.transform.GetComponent<MovementTest>().SetWaitMotion(_spawnCounter);
+            _spawnCounter++;
+        }
     }
 }

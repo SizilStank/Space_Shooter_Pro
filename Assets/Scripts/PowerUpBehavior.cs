@@ -59,6 +59,9 @@ public class PowerUpBehavior : MonoBehaviour
                     case 5:
                         _player.BeamOfDeathActive();
                         break;
+                    case 6:
+                        _player.FlashBanged();
+                        break;
                 }
                 Destroy(this.gameObject);
             }

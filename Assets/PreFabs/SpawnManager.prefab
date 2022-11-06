@@ -48,6 +48,14 @@ MonoBehaviour:
   _basicEnemyPrefab: {fileID: 7259805120509512308, guid: 5cb44bd09b9fdba49b1669837eca2031, type: 3}
   _enemySpawnerContainer: {fileID: 6663599436850760792}
   _centaSpawner: {fileID: 0}
+  _bgWaveOne: {fileID: 0}
+  _bgWaveTwo: {fileID: 0}
+  _bgWaveThree: {fileID: 0}
+  _bgBOSS: {fileID: 0}
+  _addEnemyAToList: []
+  _enemyAToAdd: {fileID: 7259805120509512308, guid: 5cb44bd09b9fdba49b1669837eca2031, type: 3}
+  _addCentaSpawnToList: 
+  _centaActiveBehavior: {fileID: 0}
   _initializeSpawmManagerPos: {x: 0, y: 10, z: 0}
   _enemySpawnTimer: 1
   _dropChance: 0
@@ -58,6 +66,7 @@ MonoBehaviour:
   - {fileID: 5787096984372237109, guid: f8a5800cccf93e84c9ab609355a6a049, type: 3}
   - {fileID: 2163829806425149769, guid: b5624187ae29216469a058addcbc104d, type: 3}
   - {fileID: 7945619597431905179, guid: 88e5cd7da2144454f8d48a58d602379c, type: 3}
+  - {fileID: 7045116824378274839, guid: c38e78ee25b6a5a42aa87899f7cc5607, type: 3}
   _ammoDrop: {fileID: 2052027366121755739, guid: aad08e0c75c42574ca703e855a22bba1, type: 3}
   _player: {fileID: 0}
 --- !u!1 &6663599436850760792

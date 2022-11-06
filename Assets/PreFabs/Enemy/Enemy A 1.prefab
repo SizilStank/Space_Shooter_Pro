@@ -251,11 +251,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e9e541d455b06c46b90d7c043ab778c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 2
   speed: 3
   range: 2
-  moveSpeed: 2
   rangeMotion: 1
   counter: 0
+  _leftORright: {x: -1, y: 0, z: 0}
+  _startPos: {x: 0, y: 0, z: 0}
   _spawn: {fileID: 7259805120509512308}
 --- !u!114 &9130331507175606906
 MonoBehaviour:

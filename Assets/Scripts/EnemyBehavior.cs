@@ -24,10 +24,10 @@ public class EnemyBehavior : MonoBehaviour
         StartCoroutine(EnemyFireLaser());
     }
 
-    // Update is called once per frame
+
     void Update()
     {
-        transform.Translate(Vector3.down * _enemySpeed * Time.deltaTime);
+        transform.Translate(Vector3.down * _enemySpeed * Time.unscaledDeltaTime);//!!!!we changed this to unscaled but breaks Pause game
 
         if (transform.position.y <= -9.01)
         {
@@ -51,8 +51,6 @@ public class EnemyBehavior : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-            EventManager.OnEnemyA1RemoveFromList ();//Events////Events//
-
             GameObject explosion = Instantiate(_enemyExplosion, transform.position, Quaternion.identity);
 
             if (_audioManager != null)
@@ -70,8 +68,6 @@ public class EnemyBehavior : MonoBehaviour
         }
         else if (other.CompareTag("PlayerLaser"))
         {
-            EventManager.OnEnemyA1RemoveFromList();//Events////Events//
-
             Destroy(other.gameObject);
 
             GameObject explosion = Instantiate(_enemyExplosion, transform.position, Quaternion.identity);

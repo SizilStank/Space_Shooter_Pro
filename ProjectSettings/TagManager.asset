@@ -19,6 +19,8 @@ TagManager:
   - BallsOfDeath
   - TrippleShotReset
   - EvilEye
+  - DeathRocks
+  - FlashBang
   layers:
   - Default
   - TransparentFX
@@ -28,7 +30,7 @@ TagManager:
   - UI
   - SubUI
   - BeamOfDeath
-  - 
+  - Rocks
   - 
   - RedEKG
   - BlueEKG

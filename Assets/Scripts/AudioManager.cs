@@ -70,4 +70,9 @@ public class AudioManager : MonoBehaviour
     {
         _audioSource.PlayOneShot(_audioClips[4]);
     }
+
+    public void FlashBangAudio()
+    {
+        _audioSource.PlayOneShot(_audioClips[6], 2);
+    }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CentaEnemyA1Behavior : MonoBehaviour
+public class CentaEnemyA1Behavior : MonoBehaviour //This is the Logical Brain for the Centa and is on the EnemyA1 and EnemyA2 GameObject
 {
     [SerializeField] private float _enemyExplosionTime = 0.4f;
 
@@ -58,7 +58,6 @@ public class CentaEnemyA1Behavior : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-            EventManager.OnEnemyA1RemoveFromList();//Events////Events//
 
             GameObject explosion = Instantiate(_enemyExplosion, transform.position, Quaternion.identity);
 
@@ -77,7 +76,6 @@ public class CentaEnemyA1Behavior : MonoBehaviour
         }
         else if (other.CompareTag("PlayerLaser"))
         {
-            EventManager.OnEnemyA1RemoveFromList();//Events////Events//
 
             Destroy(other.gameObject);
 

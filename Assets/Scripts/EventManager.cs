@@ -10,7 +10,8 @@ public class EventManager : MonoBehaviour
     public static event UnityAction LaserCollected;
     public static void OnLaserCollected() => LaserCollected?.Invoke();
 
-     
+    //*********************************************************//
+
     public static event UnityAction SubtractLaserCollected;
     public static void OnSubtractLaserCollected() => SubtractLaserCollected?.Invoke();
 
@@ -21,26 +22,13 @@ public class EventManager : MonoBehaviour
 
     //*********************************************************//
 
-    public static event UnityAction StartNewCentaSpawner;
-    public static void OnStartNewCentaSpawner() => StartNewCentaSpawner?.Invoke();//adding on the eventmanager
-
-    //*********************************************************//
-
-    public static event UnityAction EnemyA1AddToList;
-    public static void OnEnemyA1AddToList() => EnemyA1AddToList?.Invoke();//adding on the eventmanager
-
-
-    public static event UnityAction EnemyA1RemoveFromList;
-    public static void OnEnemyA1RemoveFromList() => EnemyA1RemoveFromList?.Invoke();//adding on the eventmanager
-
-    //*********************************************************//
-
     public static event UnityAction EnemyAAddToList;
     public static void OnEnemyAAddToList() => EnemyAAddToList?.Invoke();//adding on the eventmanager
 
+    //*********************************************************//
 
-    public static event UnityAction EnemyARemoveFromList;
-    public static void OnEnemyARemoveFromList() => EnemyARemoveFromList?.Invoke();//adding on the eventmanager
+    public static event UnityAction CentaAddToList;
+    public static void OnCentaAddToList() => CentaAddToList?.Invoke();//adding on the eventmanager
 
 
 }
