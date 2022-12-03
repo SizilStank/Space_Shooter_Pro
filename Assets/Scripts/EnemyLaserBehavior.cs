@@ -10,7 +10,7 @@ public class EnemyLaserBehavior : MonoBehaviour
 
     private void Update()
     {
-        transform.Translate(Vector3.down * _speed * Time.unscaledDeltaTime);//!!!!we changed this to unscaled but breaks Pause game
+        transform.Translate(Vector3.down * _speed * Time.deltaTime);
 
         if (transform.position.y <= -7f)
         {

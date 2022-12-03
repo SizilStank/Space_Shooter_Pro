@@ -6,6 +6,7 @@ public class EnemyBehavior : MonoBehaviour
 {
     [SerializeField] private float _enemySpeed = 5.5f;
     [SerializeField] private float _enemyExplosionTime = 0.4f;
+    [SerializeField] private float _rayCastLength = 8;
 
     [SerializeField] private Player _player;
 
@@ -14,12 +15,14 @@ public class EnemyBehavior : MonoBehaviour
     
     [SerializeField] private AudioManager _audioManager;
 
-    
+    private bool _canFire;
+
 
     private void Start()
     {       
+        _canFire = true;
         _audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
-        _player = GameObject.Find("Player").GetComponent<Player>();
+        //_player = GameObject.Find("Player").GetComponent<Player>();
 
         StartCoroutine(EnemyFireLaser());
     }
@@ -27,7 +30,7 @@ public class EnemyBehavior : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(Vector3.down * _enemySpeed * Time.unscaledDeltaTime);//!!!!we changed this to unscaled but breaks Pause game
+        transform.Translate(Vector3.down * _enemySpeed * Time.deltaTime);
 
         if (transform.position.y <= -9.01)
         {
@@ -35,7 +38,32 @@ public class EnemyBehavior : MonoBehaviour
             transform.position = randomRespawn;
         }
 
-        
+        ShootPowerUps();
+    }
+
+    private void ShootPowerUps()
+    {
+        RaycastHit2D shootPowerUps = Physics2D.Raycast(transform.position, Vector2.down, _rayCastLength, LayerMask.GetMask("PowerUps"));
+        Debug.DrawRay(transform.position, Vector2.down * _rayCastLength, Color.red);
+
+        if (shootPowerUps.collider != null)
+        {
+            if (shootPowerUps.collider.CompareTag("Player") && _canFire == true)
+            {
+                _canFire = false;
+                Debug.Log("Ray Hit Player");
+                StartCoroutine(EnemyFireLaserAtPowerUps());
+            }
+        }
+    }
+
+    IEnumerator EnemyFireLaserAtPowerUps()
+    {
+        yield return new WaitForSeconds(0.5f);
+        _canFire = true;
+        Vector3 laserPos = new Vector3(transform.position.x, transform.position.y + -0.5f, 0);
+        GameObject gameObject = Instantiate(_enemyLaser, laserPos, Quaternion.identity);
+        _audioManager.EnemyShoot();
     }
 
     IEnumerator EnemyFireLaser()
@@ -51,6 +79,7 @@ public class EnemyBehavior : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
+            EventManager.OnRemoveEnemyAFromList();//Remove from SpawnManager List Event
             GameObject explosion = Instantiate(_enemyExplosion, transform.position, Quaternion.identity);
 
             if (_audioManager != null)
@@ -68,6 +97,7 @@ public class EnemyBehavior : MonoBehaviour
         }
         else if (other.CompareTag("PlayerLaser"))
         {
+            EventManager.OnRemoveEnemyAFromList();//Remove from SpawnManager List Event
             Destroy(other.gameObject);
 
             GameObject explosion = Instantiate(_enemyExplosion, transform.position, Quaternion.identity);
@@ -97,7 +127,7 @@ public class EnemyBehavior : MonoBehaviour
         }
         else if (other.CompareTag("BallsOfDeath"))
         {
-
+            EventManager.OnRemoveEnemyAFromList();//Remove from SpawnManager List Event
             GameObject explosion = Instantiate(_enemyExplosion, transform.position, Quaternion.identity);
 
             if (_player != null)

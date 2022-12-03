@@ -45,28 +45,80 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78ca36d5774078349b802dcc77d79b28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _basicEnemyPrefab: {fileID: 7259805120509512308, guid: 5cb44bd09b9fdba49b1669837eca2031, type: 3}
+  _basicEnemyPrefab:
+  - {fileID: 475166376169606258, guid: dee5b79afb0a289428d55a2953afb711, type: 3}
+  - {fileID: 7259805120509512308, guid: 5cb44bd09b9fdba49b1669837eca2031, type: 3}
   _enemySpawnerContainer: {fileID: 6663599436850760792}
   _centaSpawner: {fileID: 0}
+  _thirdWaveSpawnerActive: {fileID: 0}
+  _enemyBItExplodes: {fileID: 1261392355050576922, guid: 2a7b23c973aef17469b8ee7f7e22260f, type: 3}
   _bgWaveOne: {fileID: 0}
   _bgWaveTwo: {fileID: 0}
   _bgWaveThree: {fileID: 0}
   _bgBOSS: {fileID: 0}
-  _addEnemyAToList: []
+  _addEnemyAToList:
+  - {fileID: 7259805120509512308, guid: 5cb44bd09b9fdba49b1669837eca2031, type: 3}
+  - {fileID: 7259805120509512308, guid: 5cb44bd09b9fdba49b1669837eca2031, type: 3}
+  - {fileID: 7259805120509512308, guid: 5cb44bd09b9fdba49b1669837eca2031, type: 3}
+  - {fileID: 7259805120509512308, guid: 5cb44bd09b9fdba49b1669837eca2031, type: 3}
+  - {fileID: 7259805120509512308, guid: 5cb44bd09b9fdba49b1669837eca2031, type: 3}
+  - {fileID: 7259805120509512308, guid: 5cb44bd09b9fdba49b1669837eca2031, type: 3}
+  - {fileID: 7259805120509512308, guid: 5cb44bd09b9fdba49b1669837eca2031, type: 3}
+  - {fileID: 7259805120509512308, guid: 5cb44bd09b9fdba49b1669837eca2031, type: 3}
+  - {fileID: 7259805120509512308, guid: 5cb44bd09b9fdba49b1669837eca2031, type: 3}
+  - {fileID: 7259805120509512308, guid: 5cb44bd09b9fdba49b1669837eca2031, type: 3}
   _enemyAToAdd: {fileID: 7259805120509512308, guid: 5cb44bd09b9fdba49b1669837eca2031, type: 3}
-  _addCentaSpawnToList: 
+  _addCentaSpawnToList:
+  - {fileID: 7259805120509512308, guid: 78cfc479157ee4448bf095149eb9cf2f, type: 3}
+  - {fileID: 7259805120509512308, guid: 78cfc479157ee4448bf095149eb9cf2f, type: 3}
+  - {fileID: 7259805120509512308, guid: 78cfc479157ee4448bf095149eb9cf2f, type: 3}
+  - {fileID: 7259805120509512308, guid: 78cfc479157ee4448bf095149eb9cf2f, type: 3}
+  - {fileID: 7259805120509512308, guid: 78cfc479157ee4448bf095149eb9cf2f, type: 3}
+  - {fileID: 7259805120509512308, guid: 78cfc479157ee4448bf095149eb9cf2f, type: 3}
+  - {fileID: 7259805120509512308, guid: 78cfc479157ee4448bf095149eb9cf2f, type: 3}
+  - {fileID: 7259805120509512308, guid: 78cfc479157ee4448bf095149eb9cf2f, type: 3}
+  - {fileID: 7259805120509512308, guid: 78cfc479157ee4448bf095149eb9cf2f, type: 3}
+  - {fileID: 7259805120509512308, guid: 78cfc479157ee4448bf095149eb9cf2f, type: 3}
+  - {fileID: 7259805120509512308, guid: 78cfc479157ee4448bf095149eb9cf2f, type: 3}
+  - {fileID: 7259805120509512308, guid: 78cfc479157ee4448bf095149eb9cf2f, type: 3}
+  - {fileID: 7259805120509512308, guid: 78cfc479157ee4448bf095149eb9cf2f, type: 3}
+  - {fileID: 7259805120509512308, guid: 78cfc479157ee4448bf095149eb9cf2f, type: 3}
+  - {fileID: 7259805120509512308, guid: 78cfc479157ee4448bf095149eb9cf2f, type: 3}
+  - {fileID: 7259805120509512308, guid: 78cfc479157ee4448bf095149eb9cf2f, type: 3}
+  - {fileID: 7259805120509512308, guid: 78cfc479157ee4448bf095149eb9cf2f, type: 3}
+  - {fileID: 7259805120509512308, guid: 78cfc479157ee4448bf095149eb9cf2f, type: 3}
+  - {fileID: 7259805120509512308, guid: 78cfc479157ee4448bf095149eb9cf2f, type: 3}
+  - {fileID: 7259805120509512308, guid: 78cfc479157ee4448bf095149eb9cf2f, type: 3}
+  - {fileID: 7259805120509512308, guid: 78cfc479157ee4448bf095149eb9cf2f, type: 3}
+  - {fileID: 7259805120509512308, guid: 78cfc479157ee4448bf095149eb9cf2f, type: 3}
+  - {fileID: 7259805120509512308, guid: 78cfc479157ee4448bf095149eb9cf2f, type: 3}
+  - {fileID: 7259805120509512308, guid: 78cfc479157ee4448bf095149eb9cf2f, type: 3}
+  - {fileID: 7259805120509512308, guid: 78cfc479157ee4448bf095149eb9cf2f, type: 3}
+  - {fileID: 7259805120509512308, guid: 78cfc479157ee4448bf095149eb9cf2f, type: 3}
+  - {fileID: 7259805120509512308, guid: 78cfc479157ee4448bf095149eb9cf2f, type: 3}
+  - {fileID: 7259805120509512308, guid: 78cfc479157ee4448bf095149eb9cf2f, type: 3}
+  - {fileID: 7259805120509512308, guid: 78cfc479157ee4448bf095149eb9cf2f, type: 3}
+  - {fileID: 7259805120509512308, guid: 78cfc479157ee4448bf095149eb9cf2f, type: 3}
+  - {fileID: 7259805120509512308, guid: 78cfc479157ee4448bf095149eb9cf2f, type: 3}
+  - {fileID: 7259805120509512308, guid: 78cfc479157ee4448bf095149eb9cf2f, type: 3}
+  - {fileID: 7259805120509512308, guid: 78cfc479157ee4448bf095149eb9cf2f, type: 3}
+  - {fileID: 7259805120509512308, guid: 78cfc479157ee4448bf095149eb9cf2f, type: 3}
+  - {fileID: 7259805120509512308, guid: 78cfc479157ee4448bf095149eb9cf2f, type: 3}
+  - {fileID: 7259805120509512308, guid: 78cfc479157ee4448bf095149eb9cf2f, type: 3}
+  _centaSpawnAddToList: {fileID: 7259805120509512308, guid: 78cfc479157ee4448bf095149eb9cf2f, type: 3}
   _centaActiveBehavior: {fileID: 0}
   _initializeSpawmManagerPos: {x: 0, y: 10, z: 0}
   _enemySpawnTimer: 1
+  _enemyBSpawnTimer: 6
   _dropChance: 0
   _powerUps:
   - {fileID: 4954854661842003942, guid: aebf7fad86b88e942adca76c1dee296f, type: 3}
   - {fileID: 2052027366121755739, guid: aad08e0c75c42574ca703e855a22bba1, type: 3}
+  - {fileID: 7045116824378274839, guid: c38e78ee25b6a5a42aa87899f7cc5607, type: 3}
   - {fileID: 39842288954593576, guid: eec349a95195381408b59286d66408aa, type: 3}
   - {fileID: 5787096984372237109, guid: f8a5800cccf93e84c9ab609355a6a049, type: 3}
   - {fileID: 2163829806425149769, guid: b5624187ae29216469a058addcbc104d, type: 3}
   - {fileID: 7945619597431905179, guid: 88e5cd7da2144454f8d48a58d602379c, type: 3}
-  - {fileID: 7045116824378274839, guid: c38e78ee25b6a5a42aa87899f7cc5607, type: 3}
   _ammoDrop: {fileID: 2052027366121755739, guid: aad08e0c75c42574ca703e855a22bba1, type: 3}
   _player: {fileID: 0}
 --- !u!1 &6663599436850760792

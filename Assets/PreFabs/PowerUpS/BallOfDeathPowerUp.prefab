@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 354689299}
   - component: {fileID: 354689300}
   - component: {fileID: 814051790321791097}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: BallOfDeathPowerUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}

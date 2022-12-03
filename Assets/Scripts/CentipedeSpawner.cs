@@ -13,11 +13,6 @@ public class CentipedeSpawner : MonoBehaviour // this is on the Centa Spawner th
     private void Start()
     {
         StartCoroutine(SpawnDelay());
-        
-        if (!GameObject.Find("Player").TryGetComponent<Player>(out _player))
-        {    
-            Debug.LogError("_player is NULL");
-        }
     }
 
     private void Update()

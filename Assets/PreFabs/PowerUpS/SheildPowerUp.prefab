@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5787096984372237105}
   - component: {fileID: 8698638058612904540}
   - component: {fileID: 331860690633521945}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: SheildPowerUp
   m_TagString: PowerUp
   m_Icon: {fileID: 0}

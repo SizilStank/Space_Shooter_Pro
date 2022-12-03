@@ -3,7 +3,46 @@ guid: adc550cc9a291cb4da76b33dd62c9548
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - _fireDefaultLaser: {instanceID: 0}
+  - _tripleShotShooting: {instanceID: 0}
+  - _tripleShotOver: {instanceID: 0}
+  - _powerUpCollectedAudioClip: {instanceID: 0}
+  - _tripleShotLoad: {instanceID: 0}
+  - _speedBoostActive: {instanceID: 0}
+  - _speedBoostOver: {instanceID: 0}
+  - _shieldOnPlayerActive: {instanceID: 0}
+  - _shieldIsOver: {instanceID: 0}
+  - _ammoColection: {instanceID: 0}
+  - _healthCollection: {instanceID: 0}
+  - _ballsOfDeathClip: {instanceID: 0}
+  - _ballsOfDeathOver: {instanceID: 0}
+  - _glyphHalloween: {instanceID: 0}
+  - _anim: {instanceID: 0}
+  - _laserPrefab: {instanceID: 0}
+  - _tripleShotPrefab: {instanceID: 0}
+  - _shieldPrefab: {instanceID: 0}
+  - _playerHit1Prefab: {instanceID: 0}
+  - _playerHit2Prefab: {instanceID: 0}
+  - _playerHit3Prefab: {instanceID: 0}
+  - _playerExplosion: {instanceID: 0}
+  - _ekgBlue: {fileID: 7101004587944514695, guid: 230da8baf0371244caf62a85eee5bd10, type: 3}
+  - _ekgRed: {fileID: 1797186293561556733, guid: 5f558af6ff761b64d911f64732f3d6ec, type: 3}
+  - _ballsOfDeath: {instanceID: 0}
+  - _evilEyePlayer: {instanceID: 0}
+  - _audioManager: {instanceID: 0}
+  - _audioSource: {instanceID: 0}
+  - _spawnManager: {instanceID: 0}
+  - _uiManager: {instanceID: 0}
+  - _shieldSpriteRenderer: {instanceID: 0}
+  - _laserSlider: {instanceID: 0}
+  - _thruster: {instanceID: 0}
+  - _camera: {instanceID: 0}
+  - _spriteRenderer: {instanceID: 0}
+  - _shieldToAdd: {instanceID: 0}
+  - _laserToCollect: {instanceID: 0}
+  - _volume: {instanceID: 0}
+  - _canvasGroupAlpha: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

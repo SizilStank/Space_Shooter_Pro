@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
 
     //_______float int_______//
     [SerializeField] private float _defaultSpeed = 1f;
+    [SerializeField] private float _flashBangSpeed = 1f;
     [SerializeField] private float _leftShiftSpeed = 40f;
     [SerializeField] private float _moveFromBumperSpeed = 5f;
     [SerializeField] private float _speedBoostPowerUpSpeed = 1f;
@@ -54,8 +55,6 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject _playerHit2Prefab;
     [SerializeField] private GameObject _playerHit3Prefab;
     [SerializeField] private GameObject _playerExplosion;
-    [SerializeField] private GameObject _ekgBlue;
-    [SerializeField] private GameObject _ekgRed;
     [SerializeField] private GameObject _ballsOfDeath;
     [SerializeField] private GameObject _evilEyePlayer;
 
@@ -115,7 +114,8 @@ public class Player : MonoBehaviour
         _canThrust = true;
         _thrusterFuel = _thrustMax;
         _thruster.ThrusterSetup(_thrustMax);
-        
+
+
         #region Find GameObjects and Components
         if (!GameObject.Find("SpawnManager").TryGetComponent<SpawnManager>(out _spawnManager))
         {
@@ -169,7 +169,6 @@ public class Player : MonoBehaviour
         LaserInstantiate();
         MouseAmins();
         MouseLockandPause();
-        CheckLivesForEKG();
         CheckForHealthForPlayerHitPrefab();
         ThrusterCheck();
         FlashBang();
@@ -188,15 +187,15 @@ public class Player : MonoBehaviour
     {
         if (_isFlashBangOn == true)
         {
-            Time.timeScale = 0.09f;
-            _canvasGroupAlpha.alpha = _canvasGroupAlpha.alpha - Time.deltaTime * 2;
-            _volume.GetComponent<PostProcessVolume>().weight = _volume.GetComponent<PostProcessVolume>().weight - Time.deltaTime * 1;
+            //Time.timeScale = 0.09f;
+            _canvasGroupAlpha.alpha -=  0.18f * Time.deltaTime;
+            _volume.GetComponent<PostProcessVolume>().weight -= 0.18f * Time.deltaTime;
 
             if (_canvasGroupAlpha.alpha <= 0)
             {
                 _volume.GetComponent<PostProcessVolume>().weight = 0;
                 _canvasGroupAlpha.alpha = 0;
-                Time.timeScale = 1;
+                //Time.timeScale = 1;
                 _isFlashBangOn = false;
             }
         }
@@ -235,6 +234,10 @@ public class Player : MonoBehaviour
         {
            
             transform.Translate(direction * _leftShiftSpeed * _defaultSpeed * Time.deltaTime);
+        }
+        else if (_isFlashBangOn == true)
+        {
+            transform.Translate(direction * _flashBangSpeed * Time.deltaTime);
         }
         else
         {
@@ -573,14 +576,6 @@ public class Player : MonoBehaviour
             ShieldAchievement();
         }          
 
-        if (collision.CompareTag("EvilEye"))
-        {
-            _spriteRenderer.enabled = false;
-            _evilEyePlayer.SetActive(true);
-            _audioSource.PlayOneShot(_glyphHalloween, 2);
-            Destroy(collision.gameObject);
-        }
-
         if (collision.CompareTag("FlashBang"))
         {
             _isFlashBangOn = true;
@@ -660,21 +655,7 @@ public class Player : MonoBehaviour
         StartCoroutine(BeamOfDeathTimerActive());
     }
 
-    private void CheckLivesForEKG()
-    {
-        if (_lives >= 3)
-        {
-            _ekgBlue.GetComponent<SpriteRenderer>().sortingOrder = 11;
-            _ekgRed.GetComponent<SpriteRenderer>().sortingOrder = 10;
-        }
-        if (_lives <= 2)
-        {
-            _ekgBlue.GetComponent<SpriteRenderer>().sortingOrder = 10;
-            _ekgRed.GetComponent<SpriteRenderer>().sortingOrder = 11;
-        }
-        
-    }
-
+    
     public void Damage()
     {
              
@@ -682,9 +663,9 @@ public class Player : MonoBehaviour
 
         _uiManager.UpdateLives(_lives);
 
-            if (_lives < 1)
+        if (_lives < 1)
             {
-                Cursor.lockState = CursorLockMode.None;
+                 Cursor.lockState = CursorLockMode.None;
                 _spawnManager.StopFirstEnemyWaveSpawnControl();
                 _spawnManager.StopPowerUpSpawnControl();
                 Instantiate(_playerExplosion, transform.position, Quaternion.identity);

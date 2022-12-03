@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4081943839863942292}
   - component: {fileID: 4081943839863942283}
   - component: {fileID: 508311504}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: BeamOfDeath
   m_TagString: Untagged
   m_Icon: {fileID: 0}

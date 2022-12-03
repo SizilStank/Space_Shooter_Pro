@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4165711632773999461}
   - component: {fileID: 7413120788268290929}
   - component: {fileID: 8970415479087487708}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: TripleShotPowerUp
   m_TagString: TrippleShotReset
   m_Icon: {fileID: 0}

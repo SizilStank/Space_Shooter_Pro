@@ -18,11 +18,11 @@ public class CentaEnemyA1Behavior : MonoBehaviour //This is the Logical Brain fo
     private void Start()
     {
         
-        if ( !GameObject.Find("Player").TryGetComponent<Player>(out _player))
+        /*if ( !GameObject.Find("Player").TryGetComponent<Player>(out _player))
         {
             _player.enabled = false;
             Debug.LogError("Player is NULL");
-        }
+        }*/
 
         if (!GameObject.Find("AudioManager").TryGetComponent<AudioManager>(out _audioManager))
         {
@@ -37,10 +37,15 @@ public class CentaEnemyA1Behavior : MonoBehaviour //This is the Logical Brain fo
     void Update()
     {
 
-        if (transform.position.y <= -9.01)
+        if (transform.position.x <= -13)
         {
-            Vector3 randomRespawn = new Vector3(Random.Range(-9f, 9f), 10, 0);
-            transform.position = randomRespawn;
+            Vector3 Respawn = new Vector3(13, Random.Range(4, 0), 0);
+            transform.position = Respawn;
+        }
+        else if (transform.position.x >= 13)
+        {
+            Vector3 NewRespawn = new Vector3(-13, Random.Range(4, 0), 0);
+            transform.position = NewRespawn;
         }
     }
 
@@ -58,7 +63,7 @@ public class CentaEnemyA1Behavior : MonoBehaviour //This is the Logical Brain fo
 
         if (other.CompareTag("Player"))
         {
-
+            EventManager.OnCentaRemoveFromList();//Remove from SpawnManager List Event
             GameObject explosion = Instantiate(_enemyExplosion, transform.position, Quaternion.identity);
 
             if (_audioManager != null)
@@ -76,7 +81,7 @@ public class CentaEnemyA1Behavior : MonoBehaviour //This is the Logical Brain fo
         }
         else if (other.CompareTag("PlayerLaser"))
         {
-
+            EventManager.OnCentaRemoveFromList();//Remove from SpawnManager List Event
             Destroy(other.gameObject);
 
             GameObject explosion = Instantiate(_enemyExplosion, transform.position, Quaternion.identity);
@@ -106,7 +111,7 @@ public class CentaEnemyA1Behavior : MonoBehaviour //This is the Logical Brain fo
         }
         else if (other.CompareTag("BallsOfDeath"))
         {
-
+            EventManager.OnCentaRemoveFromList();//Remove from SpawnManager List Event
             GameObject explosion = Instantiate(_enemyExplosion, transform.position, Quaternion.identity);
 
             if (_player != null)

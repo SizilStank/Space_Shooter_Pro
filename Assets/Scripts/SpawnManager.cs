@@ -5,23 +5,20 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
 
-    //[SerializeField] private GameObject _centaSpawner01;
-    //[SerializeField] private CentaActiveBehavior _activeBehavior01;
-    //[SerializeField] private float _centaSpawnCounter;
-    //[SerializeField] private bool _isGameTimerStrated;
-
-    
-    [SerializeField] private GameObject _basicEnemyPrefab;
+    [SerializeField] private GameObject[] _basicEnemyPrefab;
     [SerializeField] private GameObject _enemySpawnerContainer;
     [SerializeField] private GameObject _centaSpawner;
+    [SerializeField] private GameObject _thirdWaveSpawnerActive;
+    [SerializeField] private GameObject _enemyBItExplodes;
 
     [SerializeField] private GameObject _bgWaveOne, _bgWaveTwo, _bgWaveThree, _bgBOSS;
 
     [SerializeField] private List<GameObject> _addEnemyAToList;
     [SerializeField] private GameObject _enemyAToAdd;
 
-    [SerializeField] private List<int> _addCentaSpawnToList;
-    
+    [SerializeField] private List<GameObject> _addCentaSpawnToList;
+    [SerializeField] private GameObject _centaSpawnAddToList;
+
 
     [SerializeField] private CentaActiveBehavior _centaActiveBehavior;
     
@@ -29,14 +26,14 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private Vector3 _initializeSpawmManagerPos = new Vector3(0, 10, 0);
 
     [SerializeField] private float _enemySpawnTimer = 1f;
+    [SerializeField] private float _enemyBSpawnTimer = 1f;
     [SerializeField] private float _dropChance;
-    //[SerializeField] private int _countingCentaSpawns;
-    //[SerializeField] private int _counter;
 
     private bool _stopFirstEnemySpawn;
     private bool _stopSecondEnemySpawn;
     private bool _stopThirdEnemySpawn;
     private bool _stopBOSSSpawn;
+    private bool _alwaysSpawningEnemyB = true;
 
     //__________PowerUp__________//
     [SerializeField] private GameObject[] _powerUps;
@@ -48,34 +45,26 @@ public class SpawnManager : MonoBehaviour
 
     private void OnEnable()
     {
-        EventManager.EnemyAAddToList += EnemyAAddToList;
+        EventManager.RemoveEnemyAFromList += RemoveEnemyAFromList;
         EventManager.CentaAddToList += CentaAddToList;
+        EventManager.CentaRemoveFromList += CentaRemoveFromList;
     }
 
     private void OnDisable()
     {
-        EventManager.EnemyAAddToList -= EnemyAAddToList;
+        EventManager.RemoveEnemyAFromList -= RemoveEnemyAFromList;
         EventManager.CentaAddToList -= CentaAddToList;
+        EventManager.CentaRemoveFromList -= CentaRemoveFromList;
     }
 
-    // Start is called before the first frame update
     void Start()
     {
-        
-
         transform.position = _initializeSpawmManagerPos;
 
         if (_basicEnemyPrefab == null || _enemySpawnerContainer == null)
         {
             Debug.LogError("GAME OBJECT is NULL!");
-        }
-
-        
-/*        if (!GameObject.Find("Player").TryGetComponent<Player>(out _player))
-        {
-            _player.enabled = false;
-            Debug.LogError("Player is Null");
-        }*/
+        }    
     }
 
     private void Update()
@@ -87,13 +76,19 @@ public class SpawnManager : MonoBehaviour
 
     private void CentaAddToList()//CenataActiveBehavior is calling this
     {
-        _addCentaSpawnToList.Add(0);
+        _addCentaSpawnToList.Add(_centaSpawnAddToList);
     }
 
-    private void EnemyAAddToList()
+    private void CentaRemoveFromList()
     {
-        _addEnemyAToList.Add(_enemyAToAdd);
+        _addCentaSpawnToList.Remove(_centaSpawnAddToList);
     }
+
+    private void RemoveEnemyAFromList()
+    {
+        _addEnemyAToList.Remove(_enemyAToAdd);
+    }
+
 
     IEnumerator WaitForEnenimesAndPowerUpsToSpawn()
     {
@@ -105,25 +100,37 @@ public class SpawnManager : MonoBehaviour
     public void StartGameAfterAstroidDestroy()//Asteroid is calling this
     {
         StartCoroutine(WaitForEnenimesAndPowerUpsToSpawn());
+        StartCoroutine(AlwaysSpawingEnemyB());
+    }
+
+    IEnumerator AlwaysSpawingEnemyB()
+    {
+        while (_alwaysSpawningEnemyB == true)//_alwaysSpawningEnemyB is set to true.
+        {
+            Vector3 randomPos = new Vector3(Random.Range(-9, 9), transform.position.y, 0);
+            GameObject enemyB = Instantiate(_enemyBItExplodes, randomPos, Quaternion.identity);
+            enemyB.transform.parent = _enemySpawnerContainer.transform;
+            yield return new WaitForSeconds(_enemyBSpawnTimer);
+        }
     }
 
     IEnumerator FirstEnemyWaveSpawnControl()
     {
-        while (_stopFirstEnemySpawn == false)
+        for (int i = 0; i < 10; i++)//change to 60 its a 10 for testing
         {
-            EventManager.OnEnemyAAddToList();
             Vector3 randomPos = new Vector3(Random.Range(-9, 9), transform.position.y, 0);
-            GameObject newEnemy = Instantiate(_basicEnemyPrefab, randomPos, Quaternion.identity);
+            GameObject newEnemy = Instantiate(_basicEnemyPrefab[Random.Range(0, _basicEnemyPrefab.Length)], randomPos, Quaternion.identity);
             newEnemy.transform.parent = _enemySpawnerContainer.transform;
             yield return new WaitForSeconds(_enemySpawnTimer);
+
+            
         }
     }
 
-    public void StopFirstEnemyWaveSpawnControl()//change to 60 its a 10 for testing
+    public void StopFirstEnemyWaveSpawnControl()
     {
-        if (_addEnemyAToList.Count >= 10)
+        if (_addEnemyAToList.Count <= 0)
         {
-            _stopFirstEnemySpawn = true;
             _bgWaveOne.SetActive(false);
             _bgWaveTwo.SetActive(true);
             StartCoroutine(CentaSpawnerSetActiveDelay());//Starting the Second Wave
@@ -138,20 +145,19 @@ public class SpawnManager : MonoBehaviour
         StopCoroutine(CentaSpawnerSetActiveDelay());    
     }
 
-    public void StopSecondEnemyWaveSpawnControl()
+    private void StopSecondEnemyWaveSpawnControl()
     {
-        if (_addCentaSpawnToList.Count >= 3)
+        if (_addCentaSpawnToList.Count == 0)
         {
-            _centaActiveBehavior.CanWeSpawn();//this sets the bool _canWeSpawn to false on the CentaActiveBehavior class
-            StartCoroutine(WaitToChangeThiredWaveBG());
+            _bgWaveTwo.SetActive(false);
+            _bgWaveThree.SetActive(true);
+            ThirdEnemyWaveSpawnControl();
         }
     }
 
-    IEnumerator WaitToChangeThiredWaveBG()
+    private void ThirdEnemyWaveSpawnControl()
     {
-        yield return new WaitForSeconds(10);
-        _bgWaveTwo.SetActive(false);
-        _bgWaveThree.SetActive(true);
+        _thirdWaveSpawnerActive.SetActive(true);
     }
 
     IEnumerator PowerUpSpawnControl()

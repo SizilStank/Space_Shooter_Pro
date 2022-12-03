@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7045116824378274843}
   - component: {fileID: 5987821340739770763}
   - component: {fileID: 8202845280291646670}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: SmileFlashBang_0
   m_TagString: FlashBang
   m_Icon: {fileID: 0}

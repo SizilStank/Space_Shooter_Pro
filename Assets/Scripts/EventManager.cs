@@ -27,8 +27,18 @@ public class EventManager : MonoBehaviour
 
     //*********************************************************//
 
+    public static event UnityAction RemoveEnemyAFromList;
+    public static void OnRemoveEnemyAFromList() => RemoveEnemyAFromList?.Invoke();//adding on the eventmanager
+
+    //*********************************************************//
+
     public static event UnityAction CentaAddToList;
     public static void OnCentaAddToList() => CentaAddToList?.Invoke();//adding on the eventmanager
+
+    //*********************************************************//
+
+    public static event UnityAction CentaRemoveFromList;
+    public static void OnCentaRemoveFromList() => CentaRemoveFromList?.Invoke();//adding on the eventmanager
 
 
 }

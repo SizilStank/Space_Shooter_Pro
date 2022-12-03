@@ -23,30 +23,17 @@ public class MovementTest : MonoBehaviour //This is what controls the Centa and 
     void Update()
     {
         loop();
-        DestroyOnXAxisOnPos();
     }
 
     void loop()
     {
         float yPos = Mathf.PingPong((Time.time + counter) * speed, rangeMotion) * range;
         transform.position = new Vector3(transform.position.x, _startPos.y + yPos, transform.position.z);
-        transform.Translate(_leftORright * moveSpeed * Time.unscaledDeltaTime);//!!!!we changed this to unscaled but breaks Pause game
+        transform.Translate(_leftORright * moveSpeed * Time.deltaTime);
     }
         
     public void SetWaitMotion(int count)
     {
         counter = count * .25f;
-    }
- 
-    private void DestroyOnXAxisOnPos()
-    {
-        if (transform.position.x > 13)
-        {
-            Destroy(this.gameObject);
-        }
-        if (transform.position.x < -13)
-        {
-            Destroy(this.gameObject);
-        }
     }
 }

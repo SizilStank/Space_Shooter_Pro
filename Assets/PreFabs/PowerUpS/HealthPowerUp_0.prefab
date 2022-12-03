@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1728049403}
   - component: {fileID: 6905888223745053715}
   - component: {fileID: 6045304429305531774}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: HealthPowerUp_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}

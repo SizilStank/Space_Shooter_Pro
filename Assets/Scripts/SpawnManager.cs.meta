@@ -3,7 +3,18 @@ guid: 78ca36d5774078349b802dcc77d79b28
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - _basicEnemyPrefab: {fileID: 7259805120509512308, guid: 5cb44bd09b9fdba49b1669837eca2031, type: 3}
+  - _enemySpawnerContainer: {instanceID: 0}
+  - _centaSpawner: {fileID: 2491682270969748115, guid: a901079f33dd49941a4ca95d8c18a836, type: 3}
+  - _bgWaveOne: {fileID: 897800336612531175, guid: 4490e894d9eb863479c68b10efcf1f14, type: 3}
+  - _bgWaveTwo: {fileID: 4217120187519841264, guid: 1530f37420759eb4382ae1e9a237514b, type: 3}
+  - _bgWaveThree: {fileID: 1692852271069456587, guid: 1e1b1eafa8cd8934bb5909e5cab3de38, type: 3}
+  - _bgBOSS: {fileID: 5278924430623202697, guid: ddec2b6133989e44c80c685ee9c3ad4c, type: 3}
+  - _enemyAToAdd: {fileID: 7259805120509512308, guid: 5cb44bd09b9fdba49b1669837eca2031, type: 3}
+  - _centaActiveBehavior: {fileID: 7482914593634186589, guid: 8fbbd748b6c4ef74592c471f24fab48e, type: 3}
+  - _ammoDrop: {fileID: 2052027366121755739, guid: aad08e0c75c42574ca703e855a22bba1, type: 3}
+  - _player: {fileID: 1738078998, guid: ef6c142bcd9813e4b9c2ae96d86eacc4, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
