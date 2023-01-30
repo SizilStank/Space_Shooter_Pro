@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3800228106230090947}
   - component: {fileID: -651634287220127416}
   - component: {fileID: -41101057433510178}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: PlayerLaser
   m_TagString: PlayerLaser
   m_Icon: {fileID: 0}
@@ -30,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1312921614107733225}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.8080008, y: -3.0599985, z: 0}
+  m_LocalPosition: {x: 2.102002, y: -0.59998786, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -103,6 +103,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _laserSpeed: 10
   _destroyGameObejectAtYPos: 6.8
+  _enemyExplosion: {fileID: 4282152767656867292, guid: 269a3aa05f13d554f994b98e67014ee7, type: 3}
+  _enemyExplosionTime: 0.4
+  _audioManager: {fileID: 0}
 --- !u!82 &6792092519499481674
 AudioSource:
   m_ObjectHideFlags: 0

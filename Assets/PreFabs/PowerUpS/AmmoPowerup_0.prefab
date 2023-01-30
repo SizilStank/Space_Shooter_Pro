@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 6264151360770572803}
   m_Layer: 13
   m_Name: AmmoPowerup_0
-  m_TagString: Untagged
+  m_TagString: PickUpVacuum
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -163,6 +163,9 @@ MonoBehaviour:
   _audioSource: {fileID: 6264151360770572803}
   _destroyGameObejectAtYPos: -9
   _powerUpID: 3
+  _playerTransform: {fileID: 1871757107363987202, guid: ef6c142bcd9813e4b9c2ae96d86eacc4, type: 3}
+  _range: 5
+  _travelSpeed: 8
 --- !u!82 &6264151360770572803
 AudioSource:
   m_ObjectHideFlags: 0

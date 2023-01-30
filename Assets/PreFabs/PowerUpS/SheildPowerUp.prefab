@@ -163,6 +163,9 @@ MonoBehaviour:
   _audioSource: {fileID: 331860690633521945}
   _destroyGameObejectAtYPos: -9
   _powerUpID: 2
+  _playerTransform: {fileID: 1871757107363987202, guid: ef6c142bcd9813e4b9c2ae96d86eacc4, type: 3}
+  _range: 5
+  _travelSpeed: 8
 --- !u!82 &331860690633521945
 AudioSource:
   m_ObjectHideFlags: 0

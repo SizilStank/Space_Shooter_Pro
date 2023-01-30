@@ -21,6 +21,10 @@ TagManager:
   - EvilEye
   - DeathRocks
   - FlashBang
+  - PickUpVacuum
+  - Boss01
+  - PlayerLaserSeeks
+  - Boss
   layers:
   - Default
   - TransparentFX
@@ -36,7 +40,7 @@ TagManager:
   - BlueEKG
   - Player
   - PowerUps
-  - 
+  - PlayerLaser
   - 
   - 
   - 

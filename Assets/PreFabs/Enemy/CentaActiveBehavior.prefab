@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7482914593634186588}
   - component: {fileID: 7482914593634186589}
   m_Layer: 0
-  m_Name: CentaActive
+  m_Name: CentaActiveBehavior
   m_TagString: Untagged
   m_Icon: {fileID: 2488908585195742037, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -47,4 +47,4 @@ MonoBehaviour:
   _spawnInCenta: {fileID: 2491682270969748115, guid: a901079f33dd49941a4ca95d8c18a836, type: 3}
   _spawnInCenta01: {fileID: 2491682270969748115, guid: d38e58efbe48d4c4eb43cbf5eb0e5e18, type: 3}
   _spawnWaitTine: 9.55
-  _canWeSpawn: 0
+  _canSpawn: 1

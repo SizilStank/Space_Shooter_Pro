@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.PostProcessing;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Player : MonoBehaviour
 {
@@ -18,7 +20,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float _tripleShotTimer = 3.5f;
     [SerializeField] private float _beamOfDeathTimer = 5f;
     [SerializeField] private int _lives = 0;
-    [SerializeField] private int _score;
+    [SerializeField] private int _score = 0;
     [SerializeField] private int _countShots = 14;
     [SerializeField] private float _thrustMultiplyer;
     [SerializeField] private float _thrustMax = 100f;
@@ -41,6 +43,7 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioClip _ballsOfDeathClip;
     [SerializeField] private AudioClip _ballsOfDeathOver;
     [SerializeField] private AudioClip _glyphHalloween;
+    [SerializeField] private AudioClip _playerLaserSeeksEnemySound;
 
 
     //_______Ainmations_______//
@@ -57,8 +60,10 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject _playerExplosion;
     [SerializeField] private GameObject _ballsOfDeath;
     [SerializeField] private GameObject _evilEyePlayer;
+    [SerializeField] private GameObject _wavesForPowerUpCollection;
+    [SerializeField] private GameObject _playerSeekEnemyLaser;
 
-    
+    [SerializeField] private Transform _seekEnemy;
 
 
     //_______Booleans_______//
@@ -72,7 +77,7 @@ public class Player : MonoBehaviour
     private bool _thrusterActive;
     private bool _timerStarted;
     private bool _isRefueling;
-
+    [SerializeField] private bool _isSeekEnemyActive;
 
     //_______GetComponents_______//
     [SerializeField] private AudioManager _audioManager;
@@ -85,7 +90,6 @@ public class Player : MonoBehaviour
     [SerializeField] private CameraShake _camera;
     [SerializeField] private SpriteRenderer _spriteRenderer;
 
-
     [SerializeField] private float _timer = 0.0f;
 
     [SerializeField] private List<GameObject> _shieldCollected = new List<GameObject>();
@@ -96,6 +100,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] private List<int> _countTimesHit = new List<int>();
     [SerializeField] private int _countTimesHitAddToList;
+
 
     [SerializeField] private PostProcessVolume _volume;
     [SerializeField] private CanvasGroup _canvasGroupAlpha;
@@ -108,6 +113,7 @@ public class Player : MonoBehaviour
         transform.position = new Vector3(0, 0, 0);
 
         _lives = 4;
+        _score = 0;
         _canFire = true;
         _shieldPrefab.SetActive(false);
 
@@ -165,6 +171,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         
+
         MovePlayerIfHiding();
         LaserInstantiate();
         MouseAmins();
@@ -172,6 +179,15 @@ public class Player : MonoBehaviour
         CheckForHealthForPlayerHitPrefab();
         ThrusterCheck();
         FlashBang();
+
+        if (Input.GetMouseButton(1))
+        {
+            _wavesForPowerUpCollection.SetActive(true);
+        }
+        else
+        {
+            _wavesForPowerUpCollection.SetActive(false);
+        }
     }
 
     public void FlashBanged()
@@ -400,7 +416,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && _canFire == true && _isPaused == false)
         {
-            if (_isTripleShotActive == false && _countShots >= 0)
+            if (_isTripleShotActive == false && _isSeekEnemyActive == false && _countShots >= 0)
             {
                 _laserSlider.SetShots(_countShots);
                 _countShots--;
@@ -425,7 +441,17 @@ public class Player : MonoBehaviour
                 _canFire = false;
 
                 StartCoroutine(LaserCoolDown());
+            }
 
+            else if (Input.GetMouseButtonDown(0) && _canFire == true && _isPaused == false && _isSeekEnemyActive == true)
+            {
+               _isSeekEnemyActive = true;
+                Vector3 laserOffset = _playerSeekEnemyLaser.transform.position = new Vector3(transform.position.x, transform.position.y + 1.16f, 0);
+                Instantiate(_playerSeekEnemyLaser, laserOffset, Quaternion.identity);
+
+                _canFire = false;
+
+                StartCoroutine(LaserCoolDown());
             }
 
         }
@@ -457,6 +483,23 @@ public class Player : MonoBehaviour
             yield return new WaitForSeconds(_tripleShotTimer);
             _audioSource.PlayOneShot(_tripleShotOver, 2);
             _isTripleShotActive = false;
+
+        }
+    }
+
+    public void PlayerLaserSeeksEnemy()
+    {
+        _isSeekEnemyActive = true;
+        StartCoroutine(PlayerLaserSeekEnemyActive());
+    }
+
+    IEnumerator PlayerLaserSeekEnemyActive()
+    {
+        if (_isSeekEnemyActive == true)
+        {
+            yield return new WaitForSeconds(_tripleShotTimer);
+            _audioSource.PlayOneShot(_tripleShotOver, 2);
+            _isSeekEnemyActive = false;
 
         }
     }
@@ -663,13 +706,14 @@ public class Player : MonoBehaviour
 
         _uiManager.UpdateLives(_lives);
 
-        if (_lives < 1)
+            if (_lives < 1)
             {
-                 Cursor.lockState = CursorLockMode.None;
-                _spawnManager.StopFirstEnemyWaveSpawnControl();
-                _spawnManager.StopPowerUpSpawnControl();
-                Instantiate(_playerExplosion, transform.position, Quaternion.identity);
-                Destroy(this.gameObject);
+             Cursor.lockState = CursorLockMode.None;
+             _spawnManager.StopFirstEnemyWaveSpawnControl();
+             _spawnManager.StopPowerUpSpawnControl();
+             _spawnManager.StopEnemyBSpawnControl();
+             Instantiate(_playerExplosion, transform.position, Quaternion.identity);
+             Destroy(this.gameObject);
             }       
     }
 
@@ -682,6 +726,8 @@ public class Player : MonoBehaviour
             _uiManager.UpdateLives(_lives);
         }
     }
+
+    
 
     private void SpawnAmmo()
     {

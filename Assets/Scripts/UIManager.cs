@@ -12,6 +12,8 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private Image _imageLives;
 
+    [SerializeField] private Sprite[] _spriteLives;
+
     [SerializeField] private GameObject _gameOverImage;
     [SerializeField] private GameObject _gameOverBoarder;
     [SerializeField] private GameObject _gamePausedImage;
@@ -23,7 +25,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject _uiShieldCollectedFive;
     [SerializeField] private GameObject _uiKillFiftyEneimesWithoutMissing;
 
-    [SerializeField] private Sprite[] _spriteLives;
+    
 
     [SerializeField] private float _flashSpeed = 3;
 

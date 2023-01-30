@@ -18,11 +18,11 @@ public class CentaEnemyA1Behavior : MonoBehaviour //This is the Logical Brain fo
     private void Start()
     {
         
-        /*if ( !GameObject.Find("Player").TryGetComponent<Player>(out _player))
+        if ( !GameObject.Find("Player").TryGetComponent<Player>(out _player))
         {
             _player.enabled = false;
             Debug.LogError("Player is NULL");
-        }*/
+        }
 
         if (!GameObject.Find("AudioManager").TryGetComponent<AudioManager>(out _audioManager))
         {
@@ -66,76 +66,49 @@ public class CentaEnemyA1Behavior : MonoBehaviour //This is the Logical Brain fo
             EventManager.OnCentaRemoveFromList();//Remove from SpawnManager List Event
             GameObject explosion = Instantiate(_enemyExplosion, transform.position, Quaternion.identity);
 
-            if (_audioManager != null)
-            {
-                _audioManager.PlayEnemyExplosionSound();
-            }
-            else
-            {
-                _audioManager.enabled = false;
-                Debug.LogError("_audioManager is Null");
-            }
-
+            _audioManager.PlayEnemyExplosionSound();
+            
             Destroy(explosion, _enemyExplosionTime);
             Destroy(this.gameObject);
         }
-        else if (other.CompareTag("PlayerLaser"))
+
+
+        if (other.CompareTag("PlayerLaser"))
         {
-            EventManager.OnCentaRemoveFromList();//Remove from SpawnManager List Event
-            Destroy(other.gameObject);
-
-            GameObject explosion = Instantiate(_enemyExplosion, transform.position, Quaternion.identity);
-
-            if (_player != null)
+            if (_player)
             {
                 _player.AddPointToScore(10);
-            }
-            else
-            {
-                _player.enabled = false;
-                Debug.LogError("_player is Null");
-            }
+                Debug.Log("centa add points");
 
-            if (_audioManager != null)
-            {
+                EventManager.OnCentaRemoveFromList();//Remove from SpawnManager List Event
+                Destroy(other.gameObject);
+
+                GameObject explosion = Instantiate(_enemyExplosion, transform.position, Quaternion.identity);
+
                 _audioManager.PlayEnemyExplosionSound();
-            }
-            else
-            {
-                _audioManager.enabled = false;
-                Debug.LogError("_audioManager is Null");
-            }
 
-            Destroy(explosion, _enemyExplosionTime);
-            Destroy(this.gameObject);
+                Destroy(explosion, _enemyExplosionTime);
+                Destroy(this.gameObject);
+            }
+            
         }
-        else if (other.CompareTag("BallsOfDeath"))
+
+
+        if (other.CompareTag("BallsOfDeath"))
         {
+            if (_player)
+            {
+                _player.AddPointToScore(10);
+
             EventManager.OnCentaRemoveFromList();//Remove from SpawnManager List Event
             GameObject explosion = Instantiate(_enemyExplosion, transform.position, Quaternion.identity);
 
-            if (_player != null)
-            {
-                _player.AddPointToScore(10);
-            }
-            else
-            {
-                _player.enabled = false;
-                Debug.LogError("_player is Null");
-            }
-
-            if (_audioManager != null)
-            {
-                _audioManager.PlayEnemyExplosionSound();
-            }
-            else
-            {
-                _audioManager.enabled = false;
-                Debug.LogError("_audioManager is Null");
-            }
+            _audioManager.PlayEnemyExplosionSound();
 
             Destroy(explosion, _enemyExplosionTime);
             Destroy(this.gameObject);
+            }
+            
         }
     }
 }

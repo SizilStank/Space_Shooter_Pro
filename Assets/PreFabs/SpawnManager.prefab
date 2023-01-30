@@ -48,10 +48,12 @@ MonoBehaviour:
   _basicEnemyPrefab:
   - {fileID: 475166376169606258, guid: dee5b79afb0a289428d55a2953afb711, type: 3}
   - {fileID: 7259805120509512308, guid: 5cb44bd09b9fdba49b1669837eca2031, type: 3}
+  - {fileID: 3773855230618374240, guid: 41d94107360489549be78b78fbe7a596, type: 3}
   _enemySpawnerContainer: {fileID: 6663599436850760792}
   _centaSpawner: {fileID: 0}
   _thirdWaveSpawnerActive: {fileID: 0}
-  _enemyBItExplodes: {fileID: 1261392355050576922, guid: 2a7b23c973aef17469b8ee7f7e22260f, type: 3}
+  _enemyBRams: {fileID: 1261392355050576922, guid: 2a7b23c973aef17469b8ee7f7e22260f, type: 3}
+  _boss: {fileID: 9142801379685043752, guid: 6b9a094020cc5bb469e6e79d13972654, type: 3}
   _bgWaveOne: {fileID: 0}
   _bgWaveTwo: {fileID: 0}
   _bgWaveThree: {fileID: 0}
@@ -119,6 +121,7 @@ MonoBehaviour:
   - {fileID: 5787096984372237109, guid: f8a5800cccf93e84c9ab609355a6a049, type: 3}
   - {fileID: 2163829806425149769, guid: b5624187ae29216469a058addcbc104d, type: 3}
   - {fileID: 7945619597431905179, guid: 88e5cd7da2144454f8d48a58d602379c, type: 3}
+  - {fileID: 347970457957364649, guid: 7c1e3eb34e463b5498bc961e1e15229c, type: 3}
   _ammoDrop: {fileID: 2052027366121755739, guid: aad08e0c75c42574ca703e855a22bba1, type: 3}
   _player: {fileID: 0}
 --- !u!1 &6663599436850760792

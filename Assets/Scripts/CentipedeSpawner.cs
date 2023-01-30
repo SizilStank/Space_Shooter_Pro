@@ -10,6 +10,8 @@ public class CentipedeSpawner : MonoBehaviour // this is on the Centa Spawner th
     [SerializeField] private float _timeCounter;
     [SerializeField] private Player _player;
 
+    private bool _canSpwn = true;
+
     private void Start()
     {
         StartCoroutine(SpawnDelay());
@@ -19,22 +21,21 @@ public class CentipedeSpawner : MonoBehaviour // this is on the Centa Spawner th
     {
         _timeCounter = Time.time;
 
-        if (_spawnCounter >= 6)
+        if (_spawnCounter == 6)
         {
-            Destroy(this.gameObject);
+            _canSpwn = false;
         }
 
-        if (_player == null)
+        if (!_player )
         {
-            StopCoroutine(SpawnDelay());
-            Destroy(this.gameObject);
+            _canSpwn = false;
         }
     }
 
 
     IEnumerator SpawnDelay()
     {     
-            while (_spawnCounter <= 6)
+            while (_canSpwn == true)
             {
                 yield return new WaitForSeconds(wait);
                 GameObject spawn = Instantiate(_spawn, transform.position, Quaternion.identity);
@@ -42,4 +43,6 @@ public class CentipedeSpawner : MonoBehaviour // this is on the Centa Spawner th
                 _spawnCounter++;
             }
     }
+
+    
 }

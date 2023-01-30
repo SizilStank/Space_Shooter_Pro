@@ -11,11 +11,21 @@ public class PowerUpBehavior : MonoBehaviour
     [SerializeField] private float _destroyGameObejectAtYPos = -9f;
     [SerializeField] private int _powerUpID;
 
+    [SerializeField] private Transform _playerTransform;
+    [SerializeField] private float _range;
+    [SerializeField] private float _travelSpeed;
+
     private void Start()
     {
         AudioSource audioSource = GetComponent<AudioSource>();
 
         if (!GameObject.Find("Player").TryGetComponent<Player>(out _player))//null error on death fix
+        {
+            _player.enabled = false;
+            Debug.LogError("Player is Null");
+        }
+
+        if (!GameObject.Find("Player").TryGetComponent<Transform>(out _playerTransform))//null error on death fix
         {
             _player.enabled = false;
             Debug.LogError("Player is Null");
@@ -31,6 +41,20 @@ public class PowerUpBehavior : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
+        if (_playerTransform)
+        {
+            if (Vector3.Distance(_playerTransform.position, transform.position) <= _range)
+            {
+                if (Input.GetMouseButton(1))
+                {
+                    Debug.Log("MouseButtonIsDown!");
+                    float move = _travelSpeed * Time.deltaTime;
+                    transform.position = Vector3.MoveTowards(transform.position, _playerTransform.position, move);
+                }
+            }
+        }
+        
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -61,6 +85,9 @@ public class PowerUpBehavior : MonoBehaviour
                         break;
                     case 6:
                         _player.FlashBanged();
+                        break;
+                    case 7:
+                        _player.PlayerLaserSeeksEnemy();
                         break;
                 }
                 Destroy(this.gameObject);

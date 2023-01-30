@@ -75,4 +75,9 @@ public class AudioManager : MonoBehaviour
     {
         _audioSource.PlayOneShot(_audioClips[6], 2);
     }
+
+    public void WarpSound()
+    {
+        _audioSource.PlayOneShot(_audioClips[7], 1);
+    }
 }

@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 814051790321791097}
   m_Layer: 13
   m_Name: BallOfDeathPowerUp
-  m_TagString: Untagged
+  m_TagString: PickUpVacuum
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -126,6 +126,9 @@ MonoBehaviour:
   _audioSource: {fileID: 814051790321791097}
   _destroyGameObejectAtYPos: -9
   _powerUpID: 5
+  _playerTransform: {fileID: 1871757107363987202, guid: ef6c142bcd9813e4b9c2ae96d86eacc4, type: 3}
+  _range: 5
+  _travelSpeed: 8
 --- !u!50 &354689299
 Rigidbody2D:
   serializedVersion: 4

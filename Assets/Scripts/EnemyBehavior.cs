@@ -22,7 +22,7 @@ public class EnemyBehavior : MonoBehaviour
     {       
         _canFire = true;
         _audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
-        //_player = GameObject.Find("Player").GetComponent<Player>();
+        _player = GameObject.Find("Player").GetComponent<Player>();
 
         StartCoroutine(EnemyFireLaser());
     }
@@ -82,73 +82,39 @@ public class EnemyBehavior : MonoBehaviour
             EventManager.OnRemoveEnemyAFromList();//Remove from SpawnManager List Event
             GameObject explosion = Instantiate(_enemyExplosion, transform.position, Quaternion.identity);
 
-            if (_audioManager != null)
-            {
-                _audioManager.PlayEnemyExplosionSound();
-            }
-            else
-            {
-                _audioManager.enabled = false;
-                Debug.LogError("_audioManager is Null");
-            }
+            _audioManager.PlayEnemyExplosionSound();
 
             Destroy(explosion,_enemyExplosionTime);
             Destroy(this.gameObject);
         }
-        else if (other.CompareTag("PlayerLaser"))
+        
+        
+        if (other.CompareTag("PlayerLaser"))
         {
             EventManager.OnRemoveEnemyAFromList();//Remove from SpawnManager List Event
             Destroy(other.gameObject);
 
             GameObject explosion = Instantiate(_enemyExplosion, transform.position, Quaternion.identity);
 
-            if (_player != null)
-            {
-                _player.AddPointToScore(10);
-            }
-            else
-            {
-                _player.enabled = false;
-                Debug.LogError("_player is Null");
-            }
+            _player.AddPointToScore(10);
 
-            if (_audioManager != null)
-            {
-                _audioManager.PlayEnemyExplosionSound();
-            }
-            else
-            {
-                _audioManager.enabled = false;
-                Debug.LogError("_audioManager is Null");
-            }
+
+            _audioManager.PlayEnemyExplosionSound();
+
 
             Destroy(explosion, _enemyExplosionTime);
             Destroy(this.gameObject);
         }
-        else if (other.CompareTag("BallsOfDeath"))
+
+
+        if (other.CompareTag("BallsOfDeath"))
         {
             EventManager.OnRemoveEnemyAFromList();//Remove from SpawnManager List Event
             GameObject explosion = Instantiate(_enemyExplosion, transform.position, Quaternion.identity);
 
-            if (_player != null)
-            {
-                _player.AddPointToScore(10);
-            }
-            else
-            {
-                _player.enabled = false;
-                Debug.LogError("_player is Null");
-            }
+            _player.AddPointToScore(10);
 
-            if (_audioManager != null)
-            {
-                _audioManager.PlayEnemyExplosionSound();
-            }
-            else
-            {
-                _audioManager.enabled = false;
-                Debug.LogError("_audioManager is Null");
-            }
+            _audioManager.PlayEnemyExplosionSound();
 
             Destroy(explosion, _enemyExplosionTime);
             Destroy(this.gameObject);

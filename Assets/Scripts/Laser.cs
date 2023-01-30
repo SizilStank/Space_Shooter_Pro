@@ -8,6 +8,15 @@ public class Laser : MonoBehaviour
     [SerializeField] private float _laserSpeed = 1f;
     [SerializeField] private float _destroyGameObejectAtYPos = 6.8f;
 
+    [SerializeField] private GameObject _enemyExplosion;
+    [SerializeField] private float _enemyExplosionTime = 0.4f;
+
+    [SerializeField] private AudioManager _audioManager;
+
+    private void Start()
+    {
+        _audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -33,6 +42,15 @@ public class Laser : MonoBehaviour
             Destroy(this.gameObject);
         }
 
+        if (collision.CompareTag("EnemyLaser"))
+        {
+            GameObject explosion = Instantiate(_enemyExplosion, transform.position, Quaternion.identity);
+
+            Destroy(explosion, _enemyExplosionTime);
+
+            _audioManager.PlayEnemyExplosionSound();
+        }
+
         if (collision.CompareTag("EnemyA"))//Subing to the EventManager
         {
             EventManager.OnLaserCollected();//this is the event that the event manager is listining for
@@ -41,6 +59,22 @@ public class Laser : MonoBehaviour
         if (collision.CompareTag("ResetLaserCount"))//Subing to the EventManager this is a tag on the box collider 
         {
             EventManager.OnSubtractLaserCollected();//this is the event that the event manager is listining for
+        }
+
+        if (collision.CompareTag("Boss"))
+        {
+            GameObject explosion = Instantiate(_enemyExplosion, transform.position, Quaternion.identity);
+
+            Destroy(explosion, _enemyExplosionTime);
+        }
+
+        if (collision.CompareTag("Boss01"))//Subing to the EventManager this is a tag on the Boss01 Spawn 
+        {
+            EventManager.OnRemoveBoss01FromList();//this is the event that the event manager is listining for
+
+            GameObject explosion = Instantiate(_enemyExplosion, transform.position, Quaternion.identity);
+
+            Destroy(explosion, _enemyExplosionTime);
         }
     }
 

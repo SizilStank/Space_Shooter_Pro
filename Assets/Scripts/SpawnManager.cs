@@ -9,7 +9,8 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private GameObject _enemySpawnerContainer;
     [SerializeField] private GameObject _centaSpawner;
     [SerializeField] private GameObject _thirdWaveSpawnerActive;
-    [SerializeField] private GameObject _enemyBItExplodes;
+    [SerializeField] private GameObject _enemyBRams;
+    [SerializeField] private GameObject _boss;
 
     [SerializeField] private GameObject _bgWaveOne, _bgWaveTwo, _bgWaveThree, _bgBOSS;
 
@@ -108,7 +109,7 @@ public class SpawnManager : MonoBehaviour
         while (_alwaysSpawningEnemyB == true)//_alwaysSpawningEnemyB is set to true.
         {
             Vector3 randomPos = new Vector3(Random.Range(-9, 9), transform.position.y, 0);
-            GameObject enemyB = Instantiate(_enemyBItExplodes, randomPos, Quaternion.identity);
+            GameObject enemyB = Instantiate(_enemyBRams, randomPos, Quaternion.identity);
             enemyB.transform.parent = _enemySpawnerContainer.transform;
             yield return new WaitForSeconds(_enemyBSpawnTimer);
         }
@@ -174,7 +175,7 @@ public class SpawnManager : MonoBehaviour
             
             
                 Vector3 randomSpawnRange = new Vector3(Random.Range(-9, 9), transform.position.y, 0);
-                int randomPowerUp = Random.Range(0, 7);
+                int randomPowerUp = Random.Range(0, 8);
                 Instantiate(_powerUps[randomPowerUp], randomSpawnRange, Quaternion.identity);
                 yield return new WaitForSeconds(Random.Range(3, 11));       
         }
@@ -183,6 +184,11 @@ public class SpawnManager : MonoBehaviour
     public void StopPowerUpSpawnControl()//Player class is calling this
     {
         _powerUpActive = false;
+    }
+
+    public void StopEnemyBSpawnControl()//Player class is calling this
+    {
+        _alwaysSpawningEnemyB = false;
     }
 
     IEnumerator WaitToDropAmmo()

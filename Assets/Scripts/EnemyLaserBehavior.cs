@@ -24,5 +24,11 @@ public class EnemyLaserBehavior : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
+        if (collision.CompareTag("PlayerLaser"))
+        {
+            Destroy(this.gameObject);
+            Destroy(collision.gameObject);
+        }
     }
 }
