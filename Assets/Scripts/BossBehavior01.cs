@@ -8,6 +8,7 @@ public class BossBehavior01 : MonoBehaviour
     [SerializeField] private float _moveDownSpeed = 1;
 
     [SerializeField] private GameObject _laserSpread1, _laserSpread2, _laserSpread3, _laserSpread4; //_laserSpread5;
+    [SerializeField] private GameObject _bossExplosion;
 
     [SerializeField] private bool _canBossMoveDown = true;
 
@@ -60,6 +61,8 @@ public class BossBehavior01 : MonoBehaviour
     {
         if (collision.CompareTag("PlayerLaser"))
         {
+            GameObject bossExplosion = Instantiate(_bossExplosion, transform.position, Quaternion.Euler(0, 0, 90));
+            Destroy(bossExplosion, 4);
             Destroy(this.gameObject);
             Destroy(collision.gameObject);
 

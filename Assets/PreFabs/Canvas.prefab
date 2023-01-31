@@ -2435,7 +2435,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Score: 1680'
+  m_text: 'Score: 1360'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
@@ -2643,6 +2643,12 @@ MonoBehaviour:
   _scoreText: {fileID: 5697955071422720310}
   _highScore: {fileID: 2325440414934416324}
   _imageLives: {fileID: 1807617281}
+  _spriteLives:
+  - {fileID: 21300000, guid: 63a9e4cf3f741f2459f50e89a384cb80, type: 3}
+  - {fileID: 21300000, guid: d4a969c6517e7584c91fd5325236762e, type: 3}
+  - {fileID: 21300000, guid: c361f98a59330ad458d0192a1bc1d9cc, type: 3}
+  - {fileID: 21300000, guid: 397b8a07fdafd9545ba95dc8fd37712d, type: 3}
+  - {fileID: 21300000, guid: 30e4bd8235a1d9644bd80f97bc1f6435, type: 3}
   _gameOverImage: {fileID: 7684738485072696465}
   _gameOverBoarder: {fileID: 4104147110588916031}
   _gamePausedImage: {fileID: 1700054676}
@@ -2653,12 +2659,6 @@ MonoBehaviour:
   _uiKillsOneHundred: {fileID: 3052627542387838137}
   _uiShieldCollectedFive: {fileID: 3774242159630550204}
   _uiKillFiftyEneimesWithoutMissing: {fileID: 14507797}
-  _spriteLives:
-  - {fileID: 21300000, guid: 63a9e4cf3f741f2459f50e89a384cb80, type: 3}
-  - {fileID: 21300000, guid: d4a969c6517e7584c91fd5325236762e, type: 3}
-  - {fileID: 21300000, guid: c361f98a59330ad458d0192a1bc1d9cc, type: 3}
-  - {fileID: 21300000, guid: 397b8a07fdafd9545ba95dc8fd37712d, type: 3}
-  - {fileID: 21300000, guid: 30e4bd8235a1d9644bd80f97bc1f6435, type: 3}
   _flashSpeed: 0.5
   _audioManager: {fileID: 0}
   _audioSource: {fileID: 1479781123}

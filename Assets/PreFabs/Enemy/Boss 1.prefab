@@ -162,5 +162,6 @@ MonoBehaviour:
   _laserSpread2: {fileID: 5237274947002099679, guid: 955dba809c8fb3e4f90f1ca3783c165b, type: 3}
   _laserSpread3: {fileID: 5237274947002099679, guid: 955dba809c8fb3e4f90f1ca3783c165b, type: 3}
   _laserSpread4: {fileID: 5237274947002099679, guid: 955dba809c8fb3e4f90f1ca3783c165b, type: 3}
+  _bossExplosion: {fileID: 7984473305726262091, guid: 46294a4ac321d404badf3a95ac8ea405, type: 3}
   _canBossMoveDown: 1
   _audioManager: {fileID: 3278301973754518880, guid: c33decf5d910ef14e8ed90b22d9a7318, type: 3}

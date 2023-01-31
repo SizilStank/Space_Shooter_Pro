@@ -53,7 +53,7 @@ MonoBehaviour:
   _centaSpawner: {fileID: 0}
   _thirdWaveSpawnerActive: {fileID: 0}
   _enemyBRams: {fileID: 1261392355050576922, guid: 2a7b23c973aef17469b8ee7f7e22260f, type: 3}
-  _boss: {fileID: 9142801379685043752, guid: 6b9a094020cc5bb469e6e79d13972654, type: 3}
+  _boss: {fileID: 0}
   _bgWaveOne: {fileID: 0}
   _bgWaveTwo: {fileID: 0}
   _bgWaveThree: {fileID: 0}
@@ -108,6 +108,21 @@ MonoBehaviour:
   - {fileID: 7259805120509512308, guid: 78cfc479157ee4448bf095149eb9cf2f, type: 3}
   - {fileID: 7259805120509512308, guid: 78cfc479157ee4448bf095149eb9cf2f, type: 3}
   _centaSpawnAddToList: {fileID: 7259805120509512308, guid: 78cfc479157ee4448bf095149eb9cf2f, type: 3}
+  _thirdWaveList:
+  - {fileID: 4435816350470054812, guid: 51ad2a1003a50cf4682fe1f54e937382, type: 3}
+  - {fileID: 4435816350470054812, guid: 51ad2a1003a50cf4682fe1f54e937382, type: 3}
+  - {fileID: 4435816350470054812, guid: 51ad2a1003a50cf4682fe1f54e937382, type: 3}
+  - {fileID: 4435816350470054812, guid: 51ad2a1003a50cf4682fe1f54e937382, type: 3}
+  - {fileID: 4435816350470054812, guid: 51ad2a1003a50cf4682fe1f54e937382, type: 3}
+  - {fileID: 4435816350470054812, guid: 51ad2a1003a50cf4682fe1f54e937382, type: 3}
+  - {fileID: 4435816350470054812, guid: 51ad2a1003a50cf4682fe1f54e937382, type: 3}
+  - {fileID: 4435816350470054812, guid: 51ad2a1003a50cf4682fe1f54e937382, type: 3}
+  - {fileID: 4435816350470054812, guid: 51ad2a1003a50cf4682fe1f54e937382, type: 3}
+  - {fileID: 4435816350470054812, guid: 51ad2a1003a50cf4682fe1f54e937382, type: 3}
+  - {fileID: 4435816350470054812, guid: 51ad2a1003a50cf4682fe1f54e937382, type: 3}
+  - {fileID: 4435816350470054812, guid: 51ad2a1003a50cf4682fe1f54e937382, type: 3}
+  - {fileID: 4435816350470054812, guid: 51ad2a1003a50cf4682fe1f54e937382, type: 3}
+  _thirdEnemyObjectToRemove: {fileID: 4435816350470054812, guid: 51ad2a1003a50cf4682fe1f54e937382, type: 3}
   _centaActiveBehavior: {fileID: 0}
   _initializeSpawmManagerPos: {x: 0, y: 10, z: 0}
   _enemySpawnTimer: 1

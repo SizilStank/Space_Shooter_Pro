@@ -51,6 +51,7 @@ public class BossBehavior : MonoBehaviour
         BossMovesAfterFiveHits();
         BossMovesAfterTenHits();
         BossMovesAfterFifteenHits();
+        BossExplosion();
     }
 
     private void OnEnable()//Subing to the EventManager
@@ -218,7 +219,9 @@ public class BossBehavior : MonoBehaviour
     {
         if (_countHits.Count >= 25)
         {
-
+            Destroy(this.gameObject);
+            GameObject bossExplosion = Instantiate(_bossExplosion, transform.position, Quaternion.identity);
+            Destroy(_bossExplosion, 4);
         }
     }
 

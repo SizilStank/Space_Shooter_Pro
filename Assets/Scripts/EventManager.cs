@@ -32,6 +32,11 @@ public class EventManager : MonoBehaviour
 
     //*********************************************************//
 
+    public static event UnityAction RemoveThirdWaveEnemiesFromList;
+    public static void OnRemoveThirdWaveEnemiesFromList() => RemoveThirdWaveEnemiesFromList?.Invoke();//adding on the eventmanager
+
+    //*********************************************************//
+
     public static event UnityAction CentaAddToList;
     public static void OnCentaAddToList() => CentaAddToList?.Invoke();//adding on the eventmanager
 

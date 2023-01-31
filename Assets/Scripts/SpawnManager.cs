@@ -20,6 +20,9 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private List<GameObject> _addCentaSpawnToList;
     [SerializeField] private GameObject _centaSpawnAddToList;
 
+    [SerializeField] private List<GameObject> _thirdWaveList;
+    [SerializeField] private GameObject _thirdEnemyObjectToRemove;
+
 
     [SerializeField] private CentaActiveBehavior _centaActiveBehavior;
     
@@ -47,6 +50,7 @@ public class SpawnManager : MonoBehaviour
     private void OnEnable()
     {
         EventManager.RemoveEnemyAFromList += RemoveEnemyAFromList;
+        EventManager.RemoveThirdWaveEnemiesFromList += RemoveThirdWaveEnemiesFromList;
         EventManager.CentaAddToList += CentaAddToList;
         EventManager.CentaRemoveFromList += CentaRemoveFromList;
     }
@@ -54,12 +58,19 @@ public class SpawnManager : MonoBehaviour
     private void OnDisable()
     {
         EventManager.RemoveEnemyAFromList -= RemoveEnemyAFromList;
+        EventManager.RemoveThirdWaveEnemiesFromList -= RemoveThirdWaveEnemiesFromList;
         EventManager.CentaAddToList -= CentaAddToList;
         EventManager.CentaRemoveFromList -= CentaRemoveFromList;
     }
 
+    private void Awake()
+    {
+        _boss.SetActive(false);
+    }
+
     void Start()
     {
+        
         transform.position = _initializeSpawmManagerPos;
 
         if (_basicEnemyPrefab == null || _enemySpawnerContainer == null)
@@ -73,6 +84,7 @@ public class SpawnManager : MonoBehaviour
         _dropChance = Random.Range(0f, 101f);
         StopFirstEnemyWaveSpawnControl();
         StopSecondEnemyWaveSpawnControl();
+        SetActiveBoss();
     }
 
     private void CentaAddToList()//CenataActiveBehavior is calling this
@@ -90,6 +102,10 @@ public class SpawnManager : MonoBehaviour
         _addEnemyAToList.Remove(_enemyAToAdd);
     }
 
+    private void RemoveThirdWaveEnemiesFromList()
+    {
+        _thirdWaveList.Remove(_thirdEnemyObjectToRemove);
+    }
 
     IEnumerator WaitForEnenimesAndPowerUpsToSpawn()
     {
@@ -148,17 +164,27 @@ public class SpawnManager : MonoBehaviour
 
     private void StopSecondEnemyWaveSpawnControl()
     {
-        if (_addCentaSpawnToList.Count == 0)
+        if (_addCentaSpawnToList.Count <= 0)
         {
+            //Destroy(_centaActiveBehavior);
             _bgWaveTwo.SetActive(false);
             _bgWaveThree.SetActive(true);
             ThirdEnemyWaveSpawnControl();
+            _alwaysSpawningEnemyB = false;
         }
     }
 
     private void ThirdEnemyWaveSpawnControl()
     {
-        _thirdWaveSpawnerActive.SetActive(true);
+        _thirdWaveSpawnerActive.SetActive(true);    
+    }
+
+    private void SetActiveBoss()
+    {
+        if (_thirdWaveList.Count <= 0)
+        {
+            _boss.SetActive(true);
+        }
     }
 
     IEnumerator PowerUpSpawnControl()

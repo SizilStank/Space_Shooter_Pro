@@ -69,6 +69,7 @@ public class MoveToWayPoint : MonoBehaviour
         {
             GameObject explosion = Instantiate(_enemyExplosion, transform.position, Quaternion.identity);
 
+            EventManager.OnRemoveThirdWaveEnemiesFromList();
             //_newEnemySpawnWithRotation.RemoveFromList();
 
             _audioManager.PlayEnemyExplosionSound();
@@ -83,6 +84,8 @@ public class MoveToWayPoint : MonoBehaviour
             //_newEnemySpawnWithRotation.RemoveFromList();
 
             Destroy(other.gameObject);
+
+            EventManager.OnRemoveThirdWaveEnemiesFromList();
 
             GameObject explosion = Instantiate(_enemyExplosion, transform.position, Quaternion.identity);
 

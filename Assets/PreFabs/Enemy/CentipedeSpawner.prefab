@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawn: {fileID: 7259805120509512308, guid: 78cfc479157ee4448bf095149eb9cf2f, type: 3}
-  wait: 1
+  wait: 2
   _spawnCounter: 0
   _timeCounter: 0
   _player: {fileID: 1738078998, guid: ef6c142bcd9813e4b9c2ae96d86eacc4, type: 3}
