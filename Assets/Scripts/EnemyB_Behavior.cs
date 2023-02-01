@@ -32,7 +32,7 @@ public class EnemyB_Behavior : MonoBehaviour
     {
         _audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
 
-        if (_player)
+        if (_player && GameObject.Find("Player"))
         {
             _player = GameObject.Find("Player").GetComponent<Player>();
         }
@@ -105,7 +105,10 @@ public class EnemyB_Behavior : MonoBehaviour
 
             GameObject explosion = Instantiate(_enemyExplosion, transform.position, Quaternion.identity);
 
-            _player.AddPointToScore(10);
+            if (_player && GameObject.Find("Player"))
+            {
+                _player.AddPointToScore(10);
+            }
 
             _audioManager.PlayEnemyExplosionSound();
 
@@ -118,7 +121,10 @@ public class EnemyB_Behavior : MonoBehaviour
         {
             GameObject explosion = Instantiate(_enemyExplosion, transform.position, Quaternion.identity);
 
-            _player.AddPointToScore(10);
+            if (_player && GameObject.Find("Player"))
+            {
+                _player.AddPointToScore(10);
+            }
 
             _audioManager.PlayEnemyExplosionSound();
 

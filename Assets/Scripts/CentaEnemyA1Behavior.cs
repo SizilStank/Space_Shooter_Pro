@@ -74,7 +74,8 @@ public class CentaEnemyA1Behavior : MonoBehaviour //This is the Logical Brain fo
 
         if (other.CompareTag("PlayerLaser"))
         {
-            if (_player != null)
+
+            if (_player && GameObject.Find("Player"))
             {
                 _player.AddPointToScore(10);               
 
@@ -94,17 +95,17 @@ public class CentaEnemyA1Behavior : MonoBehaviour //This is the Logical Brain fo
 
         if (other.CompareTag("BallsOfDeath"))
         {
-            if (_player != null)
+            if (_player && GameObject.Find("Player"))
             {
                 _player.AddPointToScore(10);
 
-            EventManager.OnCentaRemoveFromList();//Remove from SpawnManager List Event
-            GameObject explosion = Instantiate(_enemyExplosion, transform.position, Quaternion.identity);
+             EventManager.OnCentaRemoveFromList();//Remove from SpawnManager List Event
+             GameObject explosion = Instantiate(_enemyExplosion, transform.position, Quaternion.identity);
 
-            _audioManager.PlayEnemyExplosionSound();
+             _audioManager.PlayEnemyExplosionSound();
 
-            Destroy(explosion, _enemyExplosionTime);
-            Destroy(this.gameObject);
+             Destroy(explosion, _enemyExplosionTime);
+             Destroy(this.gameObject);
             }
             
         }

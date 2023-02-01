@@ -22,8 +22,8 @@ public class EnemyBehavior : MonoBehaviour
     {       
         _canFire = true;
         _audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
-        
-        if (_player)
+
+        if (_player && GameObject.Find("Player"))
         {
             _player = GameObject.Find("Player").GetComponent<Player>();
         }
@@ -100,9 +100,11 @@ public class EnemyBehavior : MonoBehaviour
 
             GameObject explosion = Instantiate(_enemyExplosion, transform.position, Quaternion.identity);
 
-            _player.AddPointToScore(10);
-
-
+            if (_player && GameObject.Find("Player"))
+            {
+                _player.AddPointToScore(10);
+            }
+            
             _audioManager.PlayEnemyExplosionSound();
 
 
@@ -116,7 +118,10 @@ public class EnemyBehavior : MonoBehaviour
             EventManager.OnRemoveEnemyAFromList();//Remove from SpawnManager List Event
             GameObject explosion = Instantiate(_enemyExplosion, transform.position, Quaternion.identity);
 
-            _player.AddPointToScore(10);
+            if (_player && GameObject.Find("Player"))
+            {
+                _player.AddPointToScore(10);
+            }
 
             _audioManager.PlayEnemyExplosionSound();
 

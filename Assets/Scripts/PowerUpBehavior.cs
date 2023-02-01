@@ -19,7 +19,7 @@ public class PowerUpBehavior : MonoBehaviour
     {
         AudioSource audioSource = GetComponent<AudioSource>();
 
-        if (_player)
+        if (_player && GameObject.Find("Player"))
         {
             _player = GameObject.Find("Player").GetComponent<Player>();
         }

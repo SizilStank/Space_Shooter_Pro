@@ -28,10 +28,9 @@ public class EnemyCBehavior : MonoBehaviour
         _canFire = true;
         _audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
 
-        GameObject player = GameObject.Find("Player");// this shit right here is magic...
-        if (player)
+        if (_player && GameObject.Find("Player"))
         {
-            GameObject.Find("Player").TryGetComponent<Player>(out _player);
+            _player = GameObject.Find("Player").GetComponent<Player>();
         }
     }
 
@@ -97,7 +96,10 @@ public class EnemyCBehavior : MonoBehaviour
 
             GameObject explosion = Instantiate(_enemyExplosion, transform.position, Quaternion.identity);
 
-            _player.AddPointToScore(10);
+            if (_player && GameObject.Find("Player"))
+            {
+                _player.AddPointToScore(10);
+            }
 
             _audioManager.PlayEnemyExplosionSound();
 
@@ -111,7 +113,10 @@ public class EnemyCBehavior : MonoBehaviour
             EventManager.OnRemoveEnemyAFromList();//Remove from SpawnManager List Event
             GameObject explosion = Instantiate(_enemyExplosion, transform.position, Quaternion.identity);
 
-            _player.AddPointToScore(10);
+            if (_player && GameObject.Find("Player"))
+            {
+                _player.AddPointToScore(10);
+            }
 
             _audioManager.PlayEnemyExplosionSound();
 
