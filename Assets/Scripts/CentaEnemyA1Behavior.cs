@@ -17,11 +17,10 @@ public class CentaEnemyA1Behavior : MonoBehaviour //This is the Logical Brain fo
 
     private void Start()
     {
-        
-        if ( !GameObject.Find("Player").TryGetComponent<Player>(out _player))
+
+        if (_player && GameObject.Find("Player"))
         {
-            _player.enabled = false;
-            Debug.LogError("Player is NULL");
+            _player = GameObject.Find("Player").GetComponent<Player>();
         }
 
         if (!GameObject.Find("AudioManager").TryGetComponent<AudioManager>(out _audioManager))
@@ -30,7 +29,7 @@ public class CentaEnemyA1Behavior : MonoBehaviour //This is the Logical Brain fo
             Debug.Log("_audioManager is NULL");
         }
 
-        InvokeRepeating("EnemyFireLaser", 2.0f, 1.5f);
+        InvokeRepeating("EnemyFireLaser", 2.0f, 3f);
     }
 
     // Update is called once per frame
@@ -75,10 +74,9 @@ public class CentaEnemyA1Behavior : MonoBehaviour //This is the Logical Brain fo
 
         if (other.CompareTag("PlayerLaser"))
         {
-            if (_player)
+            if (_player != null)
             {
-                _player.AddPointToScore(10);
-                Debug.Log("centa add points");
+                _player.AddPointToScore(10);               
 
                 EventManager.OnCentaRemoveFromList();//Remove from SpawnManager List Event
                 Destroy(other.gameObject);
@@ -96,7 +94,7 @@ public class CentaEnemyA1Behavior : MonoBehaviour //This is the Logical Brain fo
 
         if (other.CompareTag("BallsOfDeath"))
         {
-            if (_player)
+            if (_player != null)
             {
                 _player.AddPointToScore(10);
 

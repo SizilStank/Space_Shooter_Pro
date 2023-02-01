@@ -30,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1312921614107733225}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.55201, y: -1.2599932, z: 0}
+  m_LocalPosition: {x: -1.9179971, y: -2.4999971, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -105,7 +105,7 @@ MonoBehaviour:
   _destroyGameObejectAtYPos: 6.8
   _enemyExplosion: {fileID: 4282152767656867292, guid: 269a3aa05f13d554f994b98e67014ee7, type: 3}
   _enemyExplosionTime: 0.4
-  _audioManager: {fileID: 0}
+  _audioManager: {fileID: 3278301973754518880, guid: c33decf5d910ef14e8ed90b22d9a7318, type: 3}
 --- !u!82 &6792092519499481674
 AudioSource:
   m_ObjectHideFlags: 0

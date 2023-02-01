@@ -24,7 +24,7 @@ public class NewEnemySpawnWithRotation : MonoBehaviour
 
 
 
-        if (_newEnemySpawn.Count >= 32)
+        if (_newEnemySpawn.Count >= 25)
         {
             _spawning = false;
             StopCoroutine(NewEnemySpawnFlow());
@@ -47,7 +47,7 @@ public class NewEnemySpawnWithRotation : MonoBehaviour
             {
                 _newEnemySpawn.Add(_enemySpawn);
                 Instantiate(_newEnemySpawn[i], _wayPoints[i].position, Quaternion.identity);
-                yield return new WaitForSeconds(1);
+                yield return new WaitForSeconds(2);
             }
         }
         

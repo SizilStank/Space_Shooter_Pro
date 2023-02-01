@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class BossBehavior : MonoBehaviour
 {
@@ -221,7 +220,7 @@ public class BossBehavior : MonoBehaviour
         {
             Destroy(this.gameObject);
             GameObject bossExplosion = Instantiate(_bossExplosion, transform.position, Quaternion.identity);
-            Destroy(_bossExplosion, 4);
+            Destroy(bossExplosion, 1);
         }
     }
 

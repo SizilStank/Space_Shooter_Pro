@@ -333,7 +333,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1152996293
 Transform:
   m_ObjectHideFlags: 0
@@ -864,7 +864,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5097352330049369591
 Transform:
   m_ObjectHideFlags: 0
@@ -1418,7 +1418,7 @@ MonoBehaviour:
   _tripleShotTimer: 5
   _beamOfDeathTimer: 5
   _lives: 0
-  _score: 0
+  _score: 110
   _countShots: 15
   _thrustMultiplyer: 50
   _thrustMax: 100
@@ -1482,7 +1482,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 9bd47279e275744f599128e083469f8d, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.388
   m_Pitch: 1

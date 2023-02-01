@@ -22,7 +22,11 @@ public class EnemyBehavior : MonoBehaviour
     {       
         _canFire = true;
         _audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
-        _player = GameObject.Find("Player").GetComponent<Player>();
+        
+        if (_player)
+        {
+            _player = GameObject.Find("Player").GetComponent<Player>();
+        }
 
         StartCoroutine(EnemyFireLaser());
     }

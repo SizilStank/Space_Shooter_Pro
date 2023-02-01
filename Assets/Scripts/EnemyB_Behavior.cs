@@ -32,7 +32,10 @@ public class EnemyB_Behavior : MonoBehaviour
     {
         _audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
 
-        _player = GameObject.Find("Player").GetComponent<Player>();       
+        if (_player)
+        {
+            _player = GameObject.Find("Player").GetComponent<Player>();
+        }
 
         _playerTransform = GameObject.Find("Player").GetComponent<Transform>();
 

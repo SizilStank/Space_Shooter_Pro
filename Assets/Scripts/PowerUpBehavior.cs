@@ -19,15 +19,13 @@ public class PowerUpBehavior : MonoBehaviour
     {
         AudioSource audioSource = GetComponent<AudioSource>();
 
-        if (!GameObject.Find("Player").TryGetComponent<Player>(out _player))//null error on death fix
+        if (_player)
         {
-            _player.enabled = false;
-            Debug.LogError("Player is Null");
+            _player = GameObject.Find("Player").GetComponent<Player>();
         }
 
         if (!GameObject.Find("Player").TryGetComponent<Transform>(out _playerTransform))//null error on death fix
         {
-            _player.enabled = false;
             Debug.LogError("Player is Null");
         }
     }

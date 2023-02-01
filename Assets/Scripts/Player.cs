@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.PostProcessing;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Player : MonoBehaviour
 {
@@ -714,6 +713,7 @@ public class Player : MonoBehaviour
              _spawnManager.StopEnemyBSpawnControl();
              Instantiate(_playerExplosion, transform.position, Quaternion.identity);
              Destroy(this.gameObject);
+            _spawnManager.PlayerDiesAndStopsSecondWave();
             }       
     }
 

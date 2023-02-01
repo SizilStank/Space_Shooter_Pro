@@ -27,7 +27,12 @@ public class EnemyCBehavior : MonoBehaviour
     {
         _canFire = true;
         _audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
-        _player = GameObject.Find("Player").GetComponent<Player>();
+
+        GameObject player = GameObject.Find("Player");// this shit right here is magic...
+        if (player)
+        {
+            GameObject.Find("Player").TryGetComponent<Player>(out _player);
+        }
     }
 
 

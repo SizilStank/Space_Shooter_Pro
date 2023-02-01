@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1184520926179966299}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.2419996, y: -1.8000027, z: 0}
+  m_LocalPosition: {x: -7.892002, y: -1.629999, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -109,9 +109,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _laserSpeed: 10
   _destroyGameObejectAtYPos: 6.8
-  _enemyExplosion: {fileID: 0}
+  _enemyExplosion: {fileID: 4282152767656867292, guid: 269a3aa05f13d554f994b98e67014ee7, type: 3}
   _enemyExplosionTime: 0.4
-  _audioManager: {fileID: 0}
+  _audioManager: {fileID: 3278301973754518880, guid: c33decf5d910ef14e8ed90b22d9a7318, type: 3}
 --- !u!82 &-8164570720020211438
 AudioSource:
   m_ObjectHideFlags: 0

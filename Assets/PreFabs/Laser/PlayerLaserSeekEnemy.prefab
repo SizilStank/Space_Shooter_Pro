@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5083874574256691418}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.2879999, y: -2.2500014, z: 0}
+  m_LocalPosition: {x: 4.197995, y: -1.4499937, z: 0}
   m_LocalScale: {x: 1.7159, y: 1.7159, z: 1.7159}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -138,4 +138,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _laserSpeed: 7
   _destroyGameObejectAtYPos: 6.8
-  _seekEnemy: {fileID: 1026631435756350373, guid: b7f3be314a41afe43b81535c8d2df65b, type: 3}
+  _seekEnemy: {fileID: 5192422981473795150, guid: b7f3be314a41afe43b81535c8d2df65b, type: 3}

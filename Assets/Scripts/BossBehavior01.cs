@@ -62,7 +62,7 @@ public class BossBehavior01 : MonoBehaviour
         if (collision.CompareTag("PlayerLaser"))
         {
             GameObject bossExplosion = Instantiate(_bossExplosion, transform.position, Quaternion.Euler(0, 0, 90));
-            Destroy(bossExplosion, 4);
+            Destroy(bossExplosion, 1);
             Destroy(this.gameObject);
             Destroy(collision.gameObject);
 

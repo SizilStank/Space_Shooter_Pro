@@ -164,7 +164,7 @@ public class SpawnManager : MonoBehaviour
 
     private void StopSecondEnemyWaveSpawnControl()
     {
-        if (_addCentaSpawnToList.Count <= 0)
+        if (_addCentaSpawnToList.Count <= 0 || _stopSecondEnemySpawn == true)
         {
             //Destroy(_centaActiveBehavior);
             _bgWaveTwo.SetActive(false);
@@ -174,6 +174,12 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
+    public void PlayerDiesAndStopsSecondWave()
+    {
+        _stopSecondEnemySpawn = true;
+        StopAllCoroutines();
+    }
+
     private void ThirdEnemyWaveSpawnControl()
     {
         _thirdWaveSpawnerActive.SetActive(true);    
@@ -181,9 +187,12 @@ public class SpawnManager : MonoBehaviour
 
     private void SetActiveBoss()
     {
-        if (_thirdWaveList.Count <= 0)
+        if (_thirdWaveList.Count <= 0 )
         {
-            _boss.SetActive(true);
+            if (_boss)
+            {
+                _boss.SetActive(true);
+            }           
         }
     }
 
